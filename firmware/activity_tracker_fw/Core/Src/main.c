@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include "ism330dhcx_reg.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,7 +58,46 @@ UART_HandleTypeDef huart1;
 PCD_HandleTypeDef hpcd_USB_OTG_FS;
 
 /* USER CODE BEGIN PV */
+#define IMU_I2C   hi2c2
+#define IMU_ADDR  (0x6B << 1)
 
+static stmdev_ctx_t imu_ctx;
+
+static int32_t imu_write(void *h, uint8_t reg, uint8_t *buf, uint16_t len)
+{
+  return (HAL_I2C_Mem_Write(&IMU_I2C, IMU_ADDR, reg, I2C_MEMADD_SIZE_8BIT,
+                            buf, len, 100) == HAL_OK) ? 0 : -1;
+}
+
+static int32_t imu_read(void *h, uint8_t reg, uint8_t *buf, uint16_t len)
+{
+  return (HAL_I2C_Mem_Read(&IMU_I2C, IMU_ADDR, reg, I2C_MEMADD_SIZE_8BIT,
+                           buf, len, 100) == HAL_OK) ? 0 : -1;
+}
+
+static void imu_init(void)
+{
+  uint8_t whoami = 0, rst = 1;
+
+  imu_ctx.write_reg = imu_write;
+  imu_ctx.read_reg  = imu_read;
+  imu_ctx.mdelay    = HAL_Delay;
+  imu_ctx.handle    = NULL;
+
+  HAL_Delay(15);
+  ism330dhcx_device_id_get(&imu_ctx, &whoami);
+  printf("WHO_AM_I = 0x%02X (expected 0x%02X)\r\n", whoami, ISM330DHCX_ID);
+  if (whoami != ISM330DHCX_ID) { printf("IMU not found\r\n"); Error_Handler(); }
+
+  ism330dhcx_reset_set(&imu_ctx, PROPERTY_ENABLE);
+  do { ism330dhcx_reset_get(&imu_ctx, &rst); } while (rst);
+
+  ism330dhcx_block_data_update_set(&imu_ctx, PROPERTY_ENABLE);
+  ism330dhcx_xl_full_scale_set(&imu_ctx, ISM330DHCX_4g);
+  ism330dhcx_gy_full_scale_set(&imu_ctx, ISM330DHCX_2000dps);
+  ism330dhcx_xl_data_rate_set(&imu_ctx, ISM330DHCX_XL_ODR_26Hz);
+  ism330dhcx_gy_data_rate_set(&imu_ctx, ISM330DHCX_GY_ODR_26Hz);
+}
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -130,6 +170,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
   setvbuf(stdout, NULL, _IONBF, 0);
   printf("Start\r\n");
+  imu_init();
+   printf("timestamp_ms,ax_mg,ay_mg,az_mg,gx_mdps,gy_mdps,gz_mdps\r\n");
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -140,8 +182,21 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
-	  printf("Hello %lu\r\n", HAL_GetTick());
-	  HAL_Delay(500);
+	    uint8_t drdy = 0;
+	    ism330dhcx_xl_flag_data_ready_get(&imu_ctx, &drdy);
+	    if (drdy) {
+	      int16_t a_raw[3], g_raw[3];
+	      ism330dhcx_acceleration_raw_get(&imu_ctx, a_raw);
+	      ism330dhcx_angular_rate_raw_get(&imu_ctx, g_raw);
+
+	      printf("%lu,%ld,%ld,%ld,%ld,%ld,%ld\r\n", HAL_GetTick(),
+	        (long)ism330dhcx_from_fs4g_to_mg(a_raw[0]),
+	        (long)ism330dhcx_from_fs4g_to_mg(a_raw[1]),
+	        (long)ism330dhcx_from_fs4g_to_mg(a_raw[2]),
+	        (long)ism330dhcx_from_fs2000dps_to_mdps(g_raw[0]),
+	        (long)ism330dhcx_from_fs2000dps_to_mdps(g_raw[1]),
+	        (long)ism330dhcx_from_fs2000dps_to_mdps(g_raw[2]));
+	    }
   }
   /* USER CODE END 3 */
 }

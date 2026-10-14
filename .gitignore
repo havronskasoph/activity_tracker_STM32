@@ -1,0 +1,33 @@
+# CubeIDE
+Debug/
+Release/
+.metadata/
+RemoteSystemsTempFiles/
+*.launch
+
+# Build artifacts
+*.o
+*.d
+*.elf
+*.bin
+*.hex
+*.map
+*.su
+*.cyclo
+*.list
+
+# Python
+__pycache__/
+.venv/
+*.pyc
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Датасети (качаються окремо, див. ml/README.md)
+datasets/
+*.pkl
+WISDM_ar_*
+*.tar.gz

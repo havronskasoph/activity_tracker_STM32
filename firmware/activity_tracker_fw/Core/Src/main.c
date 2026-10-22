@@ -63,6 +63,14 @@ PCD_HandleTypeDef hpcd_USB_OTG_FS;
 
 static stmdev_ctx_t imu_ctx;
 
+/* Sampling is paced by the sensor's own data-ready line (INT1 -> PE11).
+   The ISR only bumps imu_drdy_count; imu_drdy_served is what the main loop
+   has already consumed, so the gap between them exposes samples we did not
+   keep up with. A 32-bit load is atomic on Cortex-M33, no locking needed. */
+static volatile uint32_t imu_drdy_count = 0;
+static uint32_t imu_drdy_served = 0;
+static uint32_t imu_missed = 0;
+
 static int32_t imu_write(void *h, uint8_t reg, uint8_t *buf, uint16_t len) {
 	return (HAL_I2C_Mem_Write(&IMU_I2C, IMU_ADDR, reg, I2C_MEMADD_SIZE_8BIT,
 			buf, len, 100) == HAL_OK) ? 0 : -1;
@@ -100,6 +108,13 @@ static void imu_init(void) {
 	ism330dhcx_xl_data_rate_set(&imu_ctx, ISM330DHCX_XL_ODR_26Hz);
 	ism330dhcx_gy_data_rate_set(&imu_ctx, ISM330DHCX_GY_ODR_26Hz);
 
+	/* Drive accelerometer data-ready out on INT1 (INT1_CTRL, int1_drdy_xl)
+	   as a short pulse, which is what an edge-triggered EXTI line wants. */
+	ism330dhcx_pin_int1_route_t int1_route;
+	ism330dhcx_pin_int1_route_get(&imu_ctx, &int1_route);
+	int1_route.int1_ctrl.int1_drdy_xl = PROPERTY_ENABLE;
+	ism330dhcx_pin_int1_route_set(&imu_ctx, &int1_route);
+	ism330dhcx_data_ready_mode_set(&imu_ctx, ISM330DHCX_DRDY_PULSED);
 }
 
 static void put_ms2(int32_t mm_s2)
@@ -179,6 +194,13 @@ int main(void) {
 	setvbuf(stdout, NULL, _IONBF, 0);
 	printf("Start\r\n");
 	imu_init();
+
+	/* Unmask the line only once the sensor is configured, so none of the
+	   writes above can leave a stale edge pending. */
+	__HAL_GPIO_EXTI_CLEAR_RISING_IT(Mems_ISM330DLC_INT1_Pin);
+	HAL_NVIC_SetPriority(EXTI11_IRQn, 5, 0);
+	HAL_NVIC_EnableIRQ(EXTI11_IRQn);
+
 	printf("timestamp_ms,ax,ay,az\r\n");
 	/* USER CODE END 2 */
 
@@ -188,9 +210,20 @@ int main(void) {
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-	    uint8_t drdy = 0;
-	    ism330dhcx_xl_flag_data_ready_get(&imu_ctx, &drdy);
-	    if (drdy) {
+	    uint32_t drdy_now = imu_drdy_count;
+
+	    if (drdy_now != imu_drdy_served) {
+	      uint32_t pending = drdy_now - imu_drdy_served;
+	      imu_drdy_served = drdy_now;
+
+	      /* Only the newest sample is still in the output registers, so every
+	         interrupt beyond the one we are about to read is a sample we lost.
+	         Reported on its own line, which tools/log.py skips. */
+	      if (pending > 1) {
+	        imu_missed += pending - 1;
+	        printf("# missed %lu\r\n", (unsigned long) imu_missed);
+	      }
+
 	      int16_t a_raw[3];
 	      int32_t a[3];
 	      ism330dhcx_acceleration_raw_get(&imu_ctx, a_raw);
@@ -903,10 +936,22 @@ static void MX_GPIO_Init(void) {
 
 	/* USER CODE BEGIN MX_GPIO_Init_2 */
 
+	/*Re-configure GPIO pin : Mems_ISM330DLC_INT1_Pin (IMU data-ready) */
+	GPIO_InitStruct.Pin = Mems_ISM330DLC_INT1_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	HAL_GPIO_Init(Mems_ISM330DLC_INT1_GPIO_Port, &GPIO_InitStruct);
+
 	/* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_GPIO_EXTI_Rising_Callback(uint16_t GPIO_Pin) {
+	if (GPIO_Pin == Mems_ISM330DLC_INT1_Pin) {
+		imu_drdy_count++;
+	}
+}
+
 int __io_putchar(int ch) {
 	HAL_UART_Transmit(&huart1, (uint8_t*) &ch, 1, HAL_MAX_DELAY);
 	return ch;

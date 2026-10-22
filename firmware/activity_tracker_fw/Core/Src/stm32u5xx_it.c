@@ -200,4 +200,13 @@ void SysTick_Handler(void)
 
 /* USER CODE BEGIN 1 */
 
+/**
+  * @brief This function handles EXTI line11 interrupt.
+  * @note  PE11 carries the ISM330DHCX INT1 (accelerometer data-ready) pulse.
+  */
+void EXTI11_IRQHandler(void)
+{
+  HAL_GPIO_EXTI_IRQHandler(Mems_ISM330DLC_INT1_Pin);
+}
+
 /* USER CODE END 1 */

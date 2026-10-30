@@ -201,7 +201,7 @@ int main(void) {
 	HAL_NVIC_SetPriority(EXTI11_IRQn, 5, 0);
 	HAL_NVIC_EnableIRQ(EXTI11_IRQn);
 
-	printf("timestamp_ms,ax,ay,az\r\n");
+	printf("timestamp_ms,ax,ay,az,gx,gy,gz\r\n");
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
@@ -224,16 +224,21 @@ int main(void) {
 	        printf("# missed %lu\r\n", (unsigned long) imu_missed);
 	      }
 
-	      int16_t a_raw[3];
-	      int32_t a[3];
+	      int16_t a_raw[3], g_raw[3];
+	      int32_t a[3], g[3];
 	      ism330dhcx_acceleration_raw_get(&imu_ctx, a_raw);
-	      for (int i = 0; i < 3; i++)
+	      ism330dhcx_angular_rate_raw_get(&imu_ctx, g_raw);
+	      for (int i = 0; i < 3; i++) {
 	        a[i] = (int32_t)(ism330dhcx_from_fs4g_to_mg(a_raw[i]) * 9.80665f);
-
+	        g[i] = (int32_t)ism330dhcx_from_fs2000dps_to_mdps(g_raw[i]);
+	      }
 	      printf("%lu,", HAL_GetTick());
 	      put_ms2(a[0]); printf(",");
 	      put_ms2(a[1]); printf(",");
-	      put_ms2(a[2]); printf("\r\n");
+	      put_ms2(a[2]); printf(",");
+	      put_ms2(g[0]); printf(",");   /* mdps -> dps */
+	      put_ms2(g[1]); printf(",");
+	      put_ms2(g[2]); printf("\r\n");
 	    }
 	  }
 	/* USER CODE END 3 */

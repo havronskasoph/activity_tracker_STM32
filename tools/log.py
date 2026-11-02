@@ -55,7 +55,7 @@ print(f"logging {name} -> {fname}   (Ctrl+C to stop)")
 
 n, run_n, first, last = 0, 0, None, -1
 with open(fname, "w", buffering=1) as f:   # line buffered: nothing is lost if killed
-    f.write("timestamp_ms,ax,ay,az\n")
+    f.write("timestamp_ms,ax,ay,az,gx,gy,gz\n")
     try:
         while True:
             try:
@@ -73,7 +73,7 @@ with open(fname, "w", buffering=1) as f:   # line buffered: nothing is lost if k
                 print(f"\n{line}")
                 continue
             parts = line.split(",")
-            if len(parts) != 4:
+            if len(parts) != 7:
                 continue
             try:
                 [float(p) for p in parts]

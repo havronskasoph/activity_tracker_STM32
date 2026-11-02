@@ -1,160 +1,148 @@
-# ML-частина: Human Activity Recognition
+# 6-axis HAR model (accelerometer + gyroscope)
 
-Розпізнавання активності людини за даними 3-осьового акселерометра. Використовується готова
-модель з офіційного STM32 AI Model Zoo — власна модель не навчалася. Робота полягала у виборі
-моделі, перевірці її точності та визначенні параметрів збору даних для прошивки.
+Self-contained training and inference for an activity classifier that uses all six IMU axes.
+Everything lives in `ml/`; no clone of the ST Model Zoo is needed.
 
-| Параметр | Значення |
+| | |
 |---|---|
-| Назва | `st_ign` — CNN за Ignatov, модифікація від STMicroelectronics (префікс `st_`) |
-| Варіант | `st_ign_wl_24` (window length = 24 відліки) |
-| Навчена на | `mobility_v1` — власний датасет ST, публічно недоступний |
-| Вхід | `(24, 3, 1)` — 24 відліки × 3 осі акселерометра × 1 канал, FLOAT32 |
-| Вихід | 4 класи: `Stationary`, `Walking`, `Jogging`, `Biking` |
-| Параметрів | 3 064 |
-| Формат файлу | `.keras` (FLOAT32, без квантування) |
+| Model | ST-IGN (from `stm32ai-modelzoo-services`, SLA0044) |
+| Input | 2.0 s windows × 6 axes, order `ax, ay, az, gx, gy, gz` |
+| Units | accelerometer in **g**, gyroscope in **°/s**, raw (normalization is done by the model wrapper) |
+| Classes | `Lying, Stationary, Walking, Running, Stairs` |
+| Data | [RealWorld HAR, upper arm](https://github.com/alinaytsk/har-realworld-dataset) @ `6f24dcd`, 52 Hz, split by person: 10 train / 2 val / 3 test |
 
-Шлях у Model Zoo:
+## Trained models
 
-```
-human_activity_recognition/st_ign/ST_pretrainedmodel_custom_dataset/mobility_v1/st_ign_wl_24/st_ign_wl_24.keras
-```
+Two quick CPU runs (under 30 s each, early-stopped), same data and settings except the sample rate:
 
-| Репозиторій-джерело | URL |
-|---|---|
-| Моделі | https://github.com/STMicroelectronics/stm32ai-modelzoo |
-| Скрипти (training / evaluation / deployment) | https://github.com/STMicroelectronics/stm32ai-modelzoo-services |
+| Model folder | Rate | Window | Params | Test acc. | Test macro-F1 | Val macro-F1 |
+|---|---|---|---|---|---|---|
+| `models/st_ign_realworld_imu_27hz/` | **27.45 Hz** (board) | 55 × 6 | 22,949 | 0.838 | 0.817 | 0.809 |
+| `models/st_ign_realworld_imu/` | 52 Hz (dataset) | 104 × 6 | 50,597 | 0.820 | 0.799 | 0.773 |
 
----
+**Use the 27.45 Hz model with the current firmware.** It matches the rate the board actually
+samples at (26 Hz requested, 27.45 Hz measured). The two models score about the same; with one
+run each, the difference is within run-to-run noise.
+
+Test F1 per class:
+
+| Model | Lying | Stationary | Walking | Running | Stairs |
+|---|---|---|---|---|---|
+| 27.45 Hz | 0.954 | 0.961 | **0.503** | 0.928 | 0.737 |
+| 52 Hz | 0.985 | 0.971 | **0.420** | 0.935 | 0.682 |
+
+Walking vs. Stairs is the weak spot in both: most walking windows of the test subjects are
+predicted as Stairs. Treat these models as baselines; they have not been tuned.
+Each folder has confusion matrices, training curves and full reports.
 
 ## Setup
 
-ML-оточення живе **поза цим репозиторієм** — тут лише документація, зафіксовані версії
-залежностей і результати. Клони офіційних репозиторіїв і датасети в git не додаються.
+```bash
+cd ml
+python3.12 -m venv .venv
+.venv/bin/pip install -r requirements-har.txt
+```
 
-Шляхи нижче наведені для `C:\proj` — можна обрати будь-яку іншу теку, головне узгодити її
-в конфігах.
+## Use the model (teammates start here)
 
-### 1. Клонувати репозиторії STMicroelectronics
+```python
+from har import HARClassifier, board_to_model_units
+
+clf = HARClassifier.load("models/st_ign_realworld_imu_27hz")   # no argument: the 52 Hz model
+print(clf.sample_rate_hz, clf.window_samples)                  # 27.45, 55
+pred = clf.predict(window)            # window: np.ndarray (55, 6), accel in g, gyro in deg/s
+print(pred.label, pred.confidence)    # e.g. "Running", 0.97
+print(pred.probabilities)             # {"Lying": ..., "Stationary": ..., ...}
+
+preds = clf.predict_batch(windows)    # (N, 55, 6) -> list of Prediction
+preds = clf.predict_stream(samples)   # (M, 6) continuous recording, 55-sample windows every 27 samples
+
+samples_g = board_to_model_units(samples_from_board)   # firmware prints accel in m/s^2 -> g
+```
+
+Run it from the `ml/` folder (or add `ml/` to `PYTHONPATH`).
+
+Classify a board recording made with `tools/log.py` (7 columns: `timestamp_ms,ax,ay,az,gx,gy,gz`):
 
 ```bash
-mkdir C:\proj
-cd C:\proj
-git clone https://github.com/STMicroelectronics/stm32ai-modelzoo.git
-git clone https://github.com/STMicroelectronics/stm32ai-modelzoo-services.git
+python -m har.predict ../data/<recording>.csv --model-dir models/st_ign_realworld_imu_27hz
+python -m har.predict ../data/<recording>.csv --model-dir ... --resample   # board rate differs from the model's
 ```
 
-`stm32ai-modelzoo` — самі моделі (`.keras`), `stm32ai-modelzoo-services` — скрипти
-training / evaluation / deployment.
+The window size, stride and sample rate always come from the model's `model_meta.json`.
 
-### 2. Встановити Python-залежності
+## Train
 
 ```bash
-python -m venv C:\proj\venv
-C:\proj\venv\Scripts\activate
-pip install -r <шлях_до_цього_репозиторію>\ml\requirements.txt
+cd ml
+python -m har.train --download                      # first run: fetches ~125 MB into ml/data/ (gitignored)
+python -m har.train --max-minutes 10                # override the wall-clock cap
+python -m har.train --output-dir models/experiment1 # keep the shipped model untouched
+python -m har.train --config configs/st_ign_realworld_imu_27hz.yaml   # board-rate model
 ```
 
-[`requirements.txt`](requirements.txt) — точний зліпок оточення, на якому реально відпрацювали
-обидві оцінки (`pip freeze`, 155 пакетів, Python 3.13.14). Використовуйте саме його, а не
-`requirements.txt` з `stm32ai-modelzoo-services`: офіційний пінить `tensorflow==2.18.0`, для
-якого немає збірок під Python 3.13.
+Settings are in `configs/st_ign_realworld_imu.yaml` (52 Hz) and `configs/st_ign_realworld_imu_27hz.yaml`.
 
-> **Увага.** `stm32ai_main.py` імпортує обгортки **всіх** use-case репозиторію (`api/api.py`),
-> тому для запуску HAR потрібні залежності й для object detection, speech enhancement тощо —
-> включно з `tf2onnx`, `opencv-python`, `tensorboard`, `librosa`, `pesq`.
-> Пакет `pesq` збирається з C-сирців і потребує Visual Studio Build Tools, тому
-> у `ml/requirements.txt` його **немає**. Способи обходу описані в шапці самого файлу.
+**Training sample rate.** `dataset.sample_rate_hz` sets the rate the model is trained for
+(`null` = the dataset's native 52 Hz; only lower rates are possible). The dataset's windows overlap by
+50 %, so the loader stitches them back into continuous recordings, resamples each recording with an
+anti-aliasing filter, and cuts new 2.0 s windows with 50 % overlap. That's the same thing the board
+does on its live stream, so no window-edge artifacts. Normalization mean/std are recomputed at the
+new rate and saved in `model_meta.json`. If the firmware rate changes, set this value to the
+**measured** rate and retrain. Losses use balanced class weights
+(Stationary and Stairs have about 2× the windows). The best epoch by `val_loss` is saved.
 
-### 3. Датасети
+Each run writes `model.keras`, `model_meta.json` (classes, channels, units, rate, window,
+normalization mean/std), `history.csv`, `training_curves.png`, and for val and test:
+`*_metrics.json` (accuracy, macro/weighted F1, per-class precision/recall/F1),
+`*_report.txt` and `*_confusion_matrix.{csv,png}`.
 
-#### mobility_v1 (demo-семпл) — завантажувати не треба
+## Firmware vs. model
 
-Уже вбудований у клон `stm32ai-modelzoo-services`:
+| | 27.45 Hz model | Firmware now |
+|---|---|---|
+| Sample rate | 27.45 Hz | 26 Hz requested, 27.45 Hz measured ✓ |
+| Accelerometer units | g | m/s² (use `board_to_model_units`, or change `put_ms2` scaling) |
+| Gyroscope units | °/s | °/s ✓ |
+| Channel order | ax, ay, az, gx, gy, gz | same ✓ |
+| Placement | upper arm, above the elbow | — |
+
+The 27.45 Hz rate was measured with the accelerometer only. Re-measure it once the gyro firmware
+runs on the board. If it differs, retrain with that value. On the MCU, the same `mean`/`std` from
+`model_meta.json` must be applied before inference.
+
+## Open questions
+
+- [ ] **Quantization.** Models are FLOAT32 `.keras` only. Decide whether int8 is needed, and what
+      RAM/Flash budget the model gets on the STM32U585.
+- [ ] **Smoothing across windows.** One window is 2 s. Check on real board recordings how stable a
+      single-window prediction is, and whether to vote or average over several consecutive windows.
+- [ ] **Walking vs. Stairs.** Most test-subject walking windows are predicted as Stairs.
+- [ ] **Real board data.** No recording from the board has been classified yet.
+
+## Files
 
 ```
-C:\proj\stm32ai-modelzoo-services\human_activity_recognition\datasets\mobility_v1\
-├── train.pkl
-└── test.pkl
+ml/
+├── configs/
+│   ├── st_ign_realworld_imu.yaml        52 Hz training config
+│   └── st_ign_realworld_imu_27hz.yaml   board-rate training config
+├── har/
+│   ├── data.py         download + load the dataset (pinned commit), sanity checks, resampling
+│   ├── model.py        ST-IGN (adapted from the ST Model Zoo)
+│   ├── train.py        training CLI
+│   ├── evaluate.py     metrics, confusion matrices, training curves
+│   ├── inference.py    HARClassifier: load, preprocess, predict
+│   └── predict.py      CLI for tools/log.py recordings
+├── models/st_ign_realworld_imu/        52 Hz model + reports (versioned)
+├── models/st_ign_realworld_imu_27hz/   27.45 Hz model + reports (versioned)
+└── data/                               dataset (not versioned)
 ```
 
-Це невелика підмножина (11 записів у `train.pkl`, 5 у `test.pkl`), а не повний датасет.
-Повний `mobility_v1` — власність ST і публічно недоступний. Ліцензія підмножини — SLA044,
-див. `human_activity_recognition/datasets/LICENSE.md`.
+What was not taken from the ST fork: its CSV loader (`realworld_imu.py`) and `imu_transfer.py`.
+The dataset repo already provides windowed, subject-split data, and the transfer helper only
+supports the 24-sample model, not 104-sample windows.
 
-#### WISDM — завантажити окремо
-
-```bash
-mkdir C:\proj\datasets\wisdm
-cd C:\proj\datasets\wisdm
-curl -L -o WISDM_ar_latest.tar.gz https://www.cis.fordham.edu/wisdm/includes/datasets/latest/WISDM_ar_latest.tar.gz
-tar -xzf WISDM_ar_latest.tar.gz --strip-components=1
-```
-
-Після розпакування має бути `WISDM_ar_v1.1_raw.txt` (приблизно 50 МБ) — для оцінки потрібен
-тільки він. Якщо `--strip-components=1` не підійде до структури архіву, приберіть цей ключ
-і перевірте, де опинився файл.
-
-Сторінка датасету: https://www.cis.fordham.edu/wisdm/dataset.php, ліцензія CC BY 2.0.
-
-> **Увага.** Завантажувач WISDM викликає `clean_csv()`, який **перезаписує вихідний
-> `WISDM_ar_v1.1_raw.txt` на місці** (прибирає `;` у кінці рядків, файл зменшується приблизно
-> на 2 МБ). Зробіть копію оригіналу, якщо він потрібен у первинному вигляді.
-
-### 4. Налаштувати конфіг і запустити
-
-Конфіг для `mobility_v1`:
-
-```yaml
-operation_mode: evaluation
-
-dataset:
-  dataset_name: mobility_v1
-  class_names: [Stationary, Walking, Jogging, Biking]
-  training_path: ./datasets/mobility_v1/train.pkl
-  test_path: ./datasets/mobility_v1/test.pkl
-
-model:
-  model_path: ../../stm32ai-modelzoo/human_activity_recognition/st_ign/ST_pretrainedmodel_custom_dataset/mobility_v1/st_ign_wl_24/st_ign_wl_24.keras
-
-preprocessing:
-  gravity_rot_sup: true
-  normalization: false
-```
-
-Для WISDM міняються **дві** секції — і `dataset`, і `model`. Модель інша: під WISDM навчена
-окрема копія, у підпапці `ST_pretrainedmodel_public_dataset`, з іншим набором класів.
-Якщо підставити модель `mobility_v1`, результат буде беззмістовним:
-
-```yaml
-dataset:
-  dataset_name: wisdm
-  class_names: [Jogging, Stationary, Stairs, Walking]
-  training_path: ../../datasets/wisdm/WISDM_ar_v1.1_raw.txt
-
-model:
-  model_path: ../../stm32ai-modelzoo/human_activity_recognition/st_ign/ST_pretrainedmodel_public_dataset/WISDM/st_ign_wl_24/st_ign_wl_24.keras
-```
-
-`test_path` для WISDM не потрібен — тестова вибірка відділяється від `training_path`
-автоматично.
-
-Шляхи відносні до теки `human_activity_recognition`, з якої запускається скрипт.
-
-```bash
-cd C:\proj\stm32ai-modelzoo-services\human_activity_recognition
-python stm32ai_main.py --config-path ./config_file_examples/ --config-name <ваш_конфіг>.yaml
-```
-
-Результати — точність, лог і confusion matrix — зберігаються в
-`tf/src/experiments_outputs/<дата-час>/`.
-
----
-
-## Решта документації
-
-| Файл | Про що |
-|---|---|
-| [SENSOR_PARAMS.md](SENSOR_PARAMS.md) | **Параметри для прошивки сенсора** — ODR, full scale, одиниці, орієнтація осей, розмір вікна. Головний документ для firmware |
-| [results/RESULTS.md](results/RESULTS.md) | Результати точності, confusion matrix, список TODO |
-| [requirements.txt](requirements.txt) | Зафіксоване Python-оточення |
+Earlier work used ST's ready-made 3-axis model `st_ign_wl_24` without training it
+(91.78 % on WISDM, 88.83 % on the `mobility_v1` demo sample). Its docs and evaluation were removed
+from this folder; they are in git history at commit `cd24ea8`.

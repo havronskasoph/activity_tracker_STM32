@@ -1,0 +1,13 @@
+test: accuracy=0.8375  macro_f1=0.8166  n=11946
+
+              precision    recall  f1-score   support
+
+       Lying      0.934     0.976     0.954      1803
+  Stationary      0.957     0.964     0.961      3548
+     Walking      0.664     0.405     0.503      1850
+     Running      0.909     0.948     0.928      1803
+      Stairs      0.680     0.804     0.737      2942
+
+    accuracy                          0.838     11946
+   macro avg      0.829     0.820     0.817     11946
+weighted avg      0.833     0.838     0.829     11946

@@ -1,0 +1,27 @@
+# ST-IGN on RealWorld HAR (upper arm), accelerometer + gyroscope.
+# Run from the ml/ folder:  python -m har.train --config configs/st_ign_realworld_imu.yaml
+# Relative paths below are relative to the ml/ folder.
+
+run_name: st_ign_realworld_imu      # artifacts go to <output_root>/<run_name>/
+output_root: models
+seed: 123
+
+dataset:
+  data_dir: data/realworld_imu      # not in git; fill with --download
+  # Everything else (52 Hz, 104-sample windows, channel order, units, classes,
+  # subject split, train-only mean/std) comes from the dataset files themselves.
+
+model:
+  name: st_ign
+  dropout: 0.5
+
+training:
+  batch_size: 256
+  epochs: 200
+  learning_rate: 0.001
+  class_weight: balanced            # Stationary and Stairs have ~2x the windows of other classes
+  max_train_minutes: 4              # hard wall-clock cap for CPU runs; null = no cap
+  early_stopping_patience: 15       # on val_loss
+  reduce_lr_patience: 6
+  reduce_lr_factor: 0.5
+  min_learning_rate: 1.0e-5

@@ -1,0 +1,96 @@
+{
+  "model_file": "model.keras",
+  "architecture": "st_ign",
+  "input_shape": [
+    104,
+    6,
+    1
+  ],
+  "class_names": [
+    "Lying",
+    "Stationary",
+    "Walking",
+    "Running",
+    "Stairs"
+  ],
+  "channels": [
+    "ax",
+    "ay",
+    "az",
+    "gx",
+    "gy",
+    "gz"
+  ],
+  "units": {
+    "acc": "g",
+    "gyr": "dps"
+  },
+  "sample_rate_hz": 52.0,
+  "window_samples": 104,
+  "stride_samples": 52,
+  "normalization": {
+    "mean": [
+      -0.18432734906673431,
+      0.7175533175468445,
+      0.13446247577667236,
+      -1.4228135347366333,
+      -0.1953411102294922,
+      1.1252031326293945
+    ],
+    "std": [
+      0.43092653155326843,
+      0.6563245058059692,
+      0.2652789354324341,
+      27.913663864135742,
+      75.96048736572266,
+      46.68024826049805
+    ],
+    "formula": "(x - mean) / std, per channel, in the units above"
+  },
+  "params": 50597,
+  "dataset": {
+    "repo": "https://github.com/alinaytsk/har-realworld-dataset",
+    "commit": "6f24dcd14a23003fffe7f2d72e03c49f4af2a11c",
+    "train_subjects": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      11,
+      13
+    ],
+    "val_subjects": [
+      6,
+      10
+    ],
+    "test_subjects": [
+      12,
+      14,
+      15
+    ]
+  },
+  "training": {
+    "finished_utc": "2026-11-02T17:04:33+00:00",
+    "epochs_run": 19,
+    "best_epoch": 4,
+    "stop_reason": "early_stopping",
+    "train_seconds": 16.5,
+    "tensorflow": "2.21.0"
+  },
+  "results": {
+    "val": {
+      "accuracy": 0.7844717319007419,
+      "macro_f1": 0.7733073642301564,
+      "weighted_f1": 0.7847908479630609
+    },
+    "test": {
+      "accuracy": 0.8195253779241618,
+      "macro_f1": 0.798708654654358,
+      "weighted_f1": 0.8111648054541133
+    }
+  }
+}

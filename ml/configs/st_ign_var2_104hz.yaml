@@ -1,5 +1,5 @@
-# ST-IGN on RealWorld HAR (upper arm), accel + gyro, resampled to the board rate (27.45 Hz).
-# Run from the ml/ folder:  python -m har.train --config configs/st_ign_realworld_imu_27hz.yaml
+# ST-IGN on RealWorld HAR (upper arm), accel + gyro, native 104 Hz dataset.
+# Run from the ml/ folder:  python -m har.train --config configs/st_ign_var2_104hz.yaml
 # Relative paths below are relative to the ml/ folder.
 
 run_name: st_ign_var2_104hz

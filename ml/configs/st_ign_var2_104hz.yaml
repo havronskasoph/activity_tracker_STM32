@@ -1,0 +1,25 @@
+# ST-IGN on RealWorld HAR (upper arm), accel + gyro, resampled to the board rate (27.45 Hz).
+# Run from the ml/ folder:  python -m har.train --config configs/st_ign_realworld_imu_27hz.yaml
+# Relative paths below are relative to the ml/ folder.
+
+run_name: st_ign_var2_104hz
+output_root: models
+seed: 123
+
+dataset:
+  data_dir: data/har_var2
+  sample_rate_hz: null
+model:
+  name: st_ign
+  dropout: 0.5
+
+training:
+  batch_size: 256
+  epochs: 200
+  learning_rate: 0.001
+  class_weight: balanced            # Stationary and Stairs have ~2x the windows of other classes
+  max_train_minutes: 4              # hard wall-clock cap for CPU runs; null = no cap
+  early_stopping_patience: 15       # on val_loss
+  reduce_lr_patience: 6
+  reduce_lr_factor: 0.5
+  min_learning_rate: 1.0e-5

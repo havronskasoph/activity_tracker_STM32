@@ -40,13 +40,23 @@ buffer 55-sample windows and integrate the model.
 Our own 6-axis model (accelerometer + gyroscope), ST-IGN architecture from the
 [STM32 AI Model Zoo](https://github.com/STMicroelectronics/stm32ai-modelzoo-services), trained on the
 [RealWorld HAR](https://github.com/alinaytsk/har-realworld-dataset) upper-arm dataset.
-The model for the current firmware runs at 27.45 Hz on 2 s windows (55 × 6) and scores
-**83.8 %** accuracy / **0.817** macro-F1 on held-out people.
+Three trained variants are available. The **27.45 Hz** model matches the current board sampling rate
+and scores **83.8 %** test accuracy / **0.817** macro-F1. The new **104 Hz** model uses 2 s windows
+(208 × 6) and scores **82.0 %** / **0.803** on the held-out test subjects. It is not a drop-in model
+for the current 27.45 Hz firmware; use it when the board input is sampled at 104 Hz and prefiltered
+to 25 Hz. Its training data was resampled from RealWorld's approximately 50 Hz recordings, so 104 Hz
+aligns the model input format with the sensor but does not add signal detail above the source's 25 Hz
+Nyquist limit.
+
+Prepared 104 Hz data is stored locally in `ml/data/har_var2/` and excluded from git. Model metrics,
+training commands, and inference requirements are documented in [ml/README.md](ml/README.md).
 
 | | |
 |---|---|
 | [ml/README.md](ml/README.md) | Setup, training, results, inference API for teammates, firmware requirements |
 | `ml/har/` | Training, evaluation and inference code |
-| `ml/models/` | Trained models with metrics and plots |
+| `ml/models/` | Trained models with metrics and plots, including `st_ign_var2_104hz/` |
 
-The dataset is not stored in git; `python -m har.train --download` fetches it.
+The original 52 Hz training dataset can be fetched with `python -m har.train --download`. The prepared
+104 Hz dataset is local-only; its source pipeline checkout is in `ml/data/har_var2_source/` and is
+also excluded from git.

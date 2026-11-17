@@ -1,38 +1,4 @@
 {
-  "source": "board_logs/selftest_release.log",
-  "lines": 70,
-  "vectors": {
-    "matched": 50,
-    "total": 50,
-    "ratio": 1.0
-  },
-  "inference": {
-    "cycles_min": 5231929,
-    "cycles_avg": 5558138,
-    "cycles_max": 5926949,
-    "clock_hz": 160000000,
-    "ms_min": 32.69955625,
-    "ms_avg": 34.7383625,
-    "ms_max": 37.04343125
-  },
-  "odr": {
-    "processed_hz": 106.65,
-    "dropped_per_s": 3.15,
-    "actual_hz": 109.80000000000001,
-    "nominal_hz": 104.0,
-    "deviation_pct": 5.576923076923079,
-    "window_seconds": 1.8943533697632056,
-    "status_lines": 5
-  },
-  "live": {
-    "count": 27,
-    "classes": {
-      "Lying": 27
-    },
-    "p_min": 0.97,
-    "p_max": 0.972,
-    "period_ms_median": 947.0
-  },
-  "status": "ok",
-  "build": "Release (-Os)"
+  "status": "skipped",
+  "reason": "плата не підключена і немає board_logs/selftest_release.log"
 }

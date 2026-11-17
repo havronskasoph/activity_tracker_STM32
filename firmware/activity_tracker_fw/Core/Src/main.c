@@ -25,6 +25,8 @@
 #include "ism330dhcx_reg.h"
 #include "har_preproc.h"
 #include "har_model.h"
+#include "har_out.h"
+#include "har_ble.h"
 
 /* Самоперевірка на платі: одноразовий прогін тестових векторів із
    har_test_vectors.h і вимір часу інференсу лічильником тактів DWT одразу
@@ -129,11 +131,16 @@ static void imu_init(void) {
 	ism330dhcx_block_data_update_set(&imu_ctx, PROPERTY_ENABLE);
 	ism330dhcx_xl_full_scale_set(&imu_ctx, ISM330DHCX_4g);
 	ism330dhcx_gy_full_scale_set(&imu_ctx, ISM330DHCX_2000dps);
-	/* 104 Гц на обох датчиках — рівно та частота, на якій підготовлений
+	/* ODR 26 Гц. Увага: фактична частота датчика вища за номінал — виміряно
+	   27.45 Гц, і саме на 27.45 навчена модель (див. HAR_FS_HZ). Тому вікно
+	   з 55 відліків триває рівно дві секунди, як при навчанні.
+	   Попередній варіант на 104 Гц давав фактичні 109.8 і вікно 1.89 с.
+
+	   Нижче — коментар, успадкований від тієї версії:
 	   датасет (har_model_config.h: HAR_FS_HZ). Міняти тут, не узгодивши з
 	   датасетом, не можна: вікно 208 відліків перестане дорівнювати 2 с. */
-	ism330dhcx_xl_data_rate_set(&imu_ctx, ISM330DHCX_XL_ODR_104Hz);
-	ism330dhcx_gy_data_rate_set(&imu_ctx, ISM330DHCX_GY_ODR_104Hz);
+	ism330dhcx_xl_data_rate_set(&imu_ctx, ISM330DHCX_XL_ODR_26Hz);
+	ism330dhcx_gy_data_rate_set(&imu_ctx, ISM330DHCX_GY_ODR_26Hz);
 
 	/* Вбудовані фільтри датчика лишаємо вимкненими: LPF2 акселерометра дає
 	   щонайбільше ODR/10 = 10.4 Гц (зрізало б корисний сигнал), а LPF1
@@ -178,8 +185,7 @@ static void emit_csv(uint32_t t_ms, const float s[HAR_CHANNELS])
 	*p++ = '\r';
 	*p++ = '\n';
 
-	HAL_UART_Transmit(&huart1, (uint8_t *) line, (uint16_t) (p - line),
-			HAL_MAX_DELAY);
+	har_out_write(line, (uint16_t) (p - line));
 }
 
 /* Результат класифікації окремим рядком, що починається з '#': tools/log.py
@@ -195,8 +201,7 @@ static void emit_pred(uint32_t t_ms, int cls, float p)
 	*q++ = '\r';
 	*q++ = '\n';
 
-	HAL_UART_Transmit(&huart1, (uint8_t *) line, (uint16_t) (q - line),
-			HAL_MAX_DELAY);
+	har_out_write(line, (uint16_t) (q - line));
 }
 /* USER CODE END PV */
 
@@ -313,6 +318,10 @@ int main(void) {
 	MX_USB_OTG_FS_PCD_Init();
 	/* USER CODE BEGIN 2 */
 	setvbuf(stdout, NULL, _IONBF, 0);
+#if HAR_OUT_PORT == HAR_OUT_BLE
+	/* Канал має піднятися до першого рядка, інакше його нікуди віддавати. */
+	const uint8_t ble_status = har_ble_init();
+#endif
 	printf("Start\r\n");
 	imu_init();
 	har_preproc_init();
@@ -324,6 +333,11 @@ int main(void) {
 			HAR_HOP_SAMPLES, (int) HAR_LPF_HZ, HAR_ACC_UNIT, HAR_GYR_UNIT);
 	printf("# model=%s classes=%d\r\n",
 			har_model_status_str(model_st), HAR_CLASS_COUNT);
+	printf("# out=%s\r\n", har_out_name());
+#if HAR_OUT_PORT == HAR_OUT_BLE
+	printf("# ble=%s step=%u\r\n",
+			(ble_status == 0u) ? "ok" : "fail", (unsigned) ble_status);
+#endif
 
 #if HAR_SELFTEST
 	har_selftest();
@@ -419,8 +433,7 @@ int main(void) {
 	                   (unsigned long) window_count, (unsigned long) imu_missed);
 	      *p++ = '\r';
 	      *p++ = '\n';
-	      HAL_UART_Transmit(&huart1, (uint8_t *) line, (uint16_t) (p - line),
-	                        HAL_MAX_DELAY);
+	      har_out_write(line, (uint16_t) (p - line));
 
 	      status_at = now;
 	      sample_count = 0;
@@ -857,7 +870,12 @@ static void MX_UART4_Init(void) {
 
 	/* USER CODE END UART4_Init 1 */
 	huart4.Instance = UART4;
+#if HAR_OUT_PORT == HAR_OUT_BLE
+	/* AT-протокол модуля STM32WB5MMG працює на 9600 — так у прикладі ST. */
+	huart4.Init.BaudRate = 9600;
+#else
 	huart4.Init.BaudRate = 115200;
+#endif
 	huart4.Init.WordLength = UART_WORDLENGTH_8B;
 	huart4.Init.StopBits = UART_STOPBITS_1;
 	huart4.Init.Parity = UART_PARITY_NONE;
@@ -1143,7 +1161,8 @@ void HAL_GPIO_EXTI_Rising_Callback(uint16_t GPIO_Pin) {
 }
 
 int __io_putchar(int ch) {
-	HAL_UART_Transmit(&huart1, (uint8_t*) &ch, 1, HAL_MAX_DELAY);
+	const char c = (char) ch;
+	har_out_write(&c, 1u);
 	return ch;
 }
 /* USER CODE END 4 */

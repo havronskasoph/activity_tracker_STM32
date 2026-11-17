@@ -205,7 +205,7 @@
         }
       },
       "repro_delta_test_macro_f1": 0.0,
-      "board_compatible": false
+      "board_compatible": true
     },
     "52hz": {
       "name": "st_ign_realworld_imu",
@@ -619,42 +619,42 @@
         }
       },
       "repro_delta_test_macro_f1": 0.0,
-      "board_compatible": true
+      "board_compatible": false
     }
   },
   "board": {
-    "fs_hz": 104.0,
-    "window_samples": 208,
-    "hop_samples": 104,
+    "fs_hz": 27.45,
+    "window_samples": 55,
+    "hop_samples": 27,
     "channels": 6,
-    "lpf_hz": 25.0,
+    "lpf_hz": 12.0,
     "lpf_order": 4,
     "lpf_sos": [
       [
-        0.08308933554,
-        0.1661786711,
-        0.08308933554,
-        -0.06282248154,
-        0.04047772339
+        0.5945940043,
+        1.189188009,
+        0.5945940043,
+        1.362058372,
+        0.4755963524
       ],
       [
         1.0,
         2.0,
         1.0,
-        -0.08737936609,
-        0.4471934516
+        1.609226317,
+        0.7433676358
       ]
     ]
   },
-  "chosen": "104hz",
+  "chosen": "27hz",
   "header_cross_check": {
     "status": "ok",
-    "header": "C:\\Users\\User\\Desktop\\pok\\project\\variant_104hz\\activity_tracker_STM32_var2\\firmware\\activity_tracker_fw\\Core\\Inc\\har_model_config.h",
+    "header": "C:\\Users\\User\\Desktop\\pok\\project\\activity_tracker_STM32\\firmware\\activity_tracker_fw\\Core\\Inc\\har_model_config.h",
     "found": {
-      "fs_hz": 104.0,
-      "window_samples": 208,
-      "hop_samples": 104,
-      "lpf_hz": 25.0
+      "fs_hz": 27.45,
+      "window_samples": 55,
+      "hop_samples": 27,
+      "lpf_hz": 12.0
     },
     "mismatches": {},
     "passed": true

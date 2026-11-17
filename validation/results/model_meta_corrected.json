@@ -119,6 +119,7 @@
       "weighted_f1": 0.8139095919665797
     }
   },
+  "_model": "st_ign_var2_104hz",
   "_correction_note": "Оригінальний model_meta.json записує repo=har-realworld-dataset і commit=6f24dcd... — це 52-герцовий датасет, на якому ця модель навчена бути не могла: її вхід (208, 6, 1). Причина — захардкоджені DATASET_REPO і DATASET_COMMIT у ml/har/data.py, які train.py копіює в метадані незалежно від фактичного dataset.data_dir. Тут поле замінено на фактичне джерело, ідентифіковане sha256 файлів датасету.",
   "_original_dataset_field": {
     "repo": "https://github.com/alinaytsk/har-realworld-dataset",

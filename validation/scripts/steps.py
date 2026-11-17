@@ -226,11 +226,18 @@ def _write_expected_csv(path: Path, y, pred, proba, subj) -> None:
 
 
 # ── Виправлені метадані ──────────────────────────────────────────────────────
+# Дефект метаданих стосується саме моделі 104 Гц: вона навчена на локальній
+# теці data/har_var2, а в model_meta.json записаний 52-герцовий датасет.
+# У моделей 27.45 і 52 Гц метадані правильні — вони справді навчені на даних
+# із har-realworld-dataset (27-герцова через передискретизацію в пам'яті).
+METADATA_DEFECT_MODEL = "104hz"
+
+
 def step_corrected_metadata() -> dict:
-    key = C.CHOSEN
+    key = METADATA_DEFECT_MODEL
     spec = C.MODELS[key]
     meta = datasets.meta(key)
-    d = C.dataset_dir(spec["dataset"])
+    d = C.DATASET_104HZ
     files = {}
     for fn in ("train.npz", "val.npz", "test.npz", "norm_stats.json", "label_map.json"):
         p = d / fn
@@ -248,6 +255,7 @@ def step_corrected_metadata() -> dict:
         "val_subjects": meta["dataset"]["val_subjects"],
         "test_subjects": meta["dataset"]["test_subjects"],
     }
+    corrected["_model"] = spec["name"]
     corrected["_correction_note"] = (
         "Оригінальний model_meta.json записує repo=har-realworld-dataset і "
         "commit=6f24dcd... — це 52-герцовий датасет, на якому ця модель навчена бути "

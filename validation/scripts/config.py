@@ -23,8 +23,8 @@ VECTORS_DIR = VALIDATION_DIR / "test_vectors"
 _DEFAULT_52 = REPO_ROOT.parent / "har-dataset" / "data" / "processed"
 _DEFAULT_104 = (REPO_ROOT.parent / "variant_104hz" / "har-dataset_var2"
                 / "data" / "processed")
-_DEFAULT_HEADER = (REPO_ROOT.parent / "variant_104hz" / "activity_tracker_STM32_var2"
-                   / "firmware" / "activity_tracker_fw" / "Core" / "Inc"
+# Прошивка тепер живе в цьому ж репозиторії.
+_DEFAULT_HEADER = (REPO_ROOT / "firmware" / "activity_tracker_fw" / "Core" / "Inc"
                    / "har_model_config.h")
 
 DATASET_52HZ = Path(os.environ.get("HAR_DATASET_52HZ", _DEFAULT_52))
@@ -64,7 +64,10 @@ MODELS = {
     },
 }
 
-CHOSEN = "104hz"
+# Модель, яку деплоїмо. 27.45 Гц обрана після вимірювання фактичного ODR:
+# при номінальних 26 Гц плата видає 27.45, тож вікно з 55 відліків триває
+# рівно 2.00 с. Варіант 104 Гц давав 109.8 Гц і вікно 1.89 с.
+CHOSEN = "27hz"
 MODEL_ORDER = ["27hz", "52hz", "104hz"]
 CLASS_NAMES = ["Lying", "Stationary", "Walking", "Running", "Stairs"]
 TEST_SUBJECTS = [12, 14, 15]
@@ -74,17 +77,19 @@ TEST_SUBJECTS = [12, 14, 15]
 # згенерований scripts/export_firmware_constants.py із har-dataset_var2.
 # Якщо заголовок доступний, test_01 звіряє ці числа з ним.
 BOARD = {
-    "fs_hz": 104.0,
-    "window_samples": 208,
-    "hop_samples": 104,
+    "fs_hz": 27.45,
+    "window_samples": 55,
+    "hop_samples": 27,
     "channels": 6,
-    "lpf_hz": 25.0,
+    "lpf_hz": 12.0,
     "lpf_order": 4,
     # HAR_LPF_SOS: Баттерворт 4-го порядку, зріз 25 Гц при 104 Гц, каскад біквадів.
     # {b0, b1, b2, a1, a2} на секцію, a0 нормалізований до 1.
+    # HAR_LPF_SOS із har_model_config.h: Баттерворт 4-го порядку, зріз 12 Гц
+    # при 27.45 Гц. {b0, b1, b2, a1, a2} на секцію, a0 нормалізований до 1.
     "lpf_sos": [
-        [8.308933554e-02, 1.661786711e-01, 8.308933554e-02, -6.282248154e-02, 4.047772339e-02],
-        [1.000000000e+00, 2.000000000e+00, 1.000000000e+00, -8.737936609e-02, 4.471934516e-01],
+        [5.945940043e-01, 1.189188009e+00, 5.945940043e-01, 1.362058372e+00, 4.755963524e-01],
+        [1.000000000e+00, 2.000000000e+00, 1.000000000e+00, 1.609226317e+00, 7.433676358e-01],
     ],
 }
 MCU = {"name": "STM32U585AII", "flash_kib": 2048, "ram_kib": 768}

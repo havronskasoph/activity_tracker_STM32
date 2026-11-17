@@ -112,7 +112,8 @@
 варіанта лежать у `validation/board_logs/104hz_historical/`.
 
 Перевірки, метрики, графіки — у теці [validation/](validation/); обґрунтування
-вибору моделі — [validation/model_selection_report.pdf](validation/model_selection_report.pdf).
+вибору моделі — у звіті `model_selection_report.pdf`, який генерується командою
+`python -m validation.scripts.report_pdf` і лягає поза репозиторієм.
 
 ## ML part
 

@@ -1,6 +1,6 @@
 # validation — тести підтвердження вибору моделі
 
-Відтворюваний набір тестів, який обґрунтовує вибір **`st_ign_var2_104hz`** для
+Відтворюваний набір тестів, який обґрунтовує вибір **`st_ign_realworld_imu_27hz`** для
 деплою на STM32U585. Результати й графіки — у [VALIDATION.md](VALIDATION.md).
 
 ## Запуск однією командою
@@ -68,8 +68,8 @@ project/
   activity_tracker_STM32/          <- цей репозиторій
   har-dataset/                     <- 52 Гц
   variant_104hz/
-    har-dataset_var2/              <- 104 Гц, на ньому навчена обрана модель
-    activity_tracker_STM32_var2/   <- прошивка 104 Гц
+    har-dataset_var2/              <- 104 Гц, для порівняння варіантів
+    activity_tracker_STM32_var2/   <- архів варіанта 104 Гц
 ```
 
 Якщо розкладка інша, задай змінні оточення:
@@ -78,7 +78,7 @@ project/
 |---|---|---|
 | `HAR_DATASET_52HZ` | `data/processed` датасету 52 Гц | `../har-dataset/data/processed` |
 | `HAR_DATASET_104HZ` | `data/processed` датасету 104 Гц | `../variant_104hz/har-dataset_var2/data/processed` |
-| `HAR_FIRMWARE_HEADER` | `har_model_config.h` прошивки | у `activity_tracker_STM32_var2` |
+| `HAR_FIRMWARE_HEADER` | `har_model_config.h` прошивки | `firmware/activity_tracker_fw/Core/Inc/` цього репо |
 | `STEDGEAI_PATH` | виконуваний файл ST Edge AI Core | `stedgeai` з `PATH` |
 
 Якщо датасет не знайдено, скрипт падає з повідомленням, яку саме змінну задати.

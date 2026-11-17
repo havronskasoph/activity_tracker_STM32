@@ -23,3 +23,7 @@ st_ai_output/
 
 # Великі тестові вектори у вигляді сирих масивів (у git іде лише .npz і .h)
 test_vectors/*.raw
+
+# Звіти у PDF — особисті матеріали, живуть поза репозиторієм.
+# Перегенеровуються: python -m validation.scripts.report_pdf
+*.pdf

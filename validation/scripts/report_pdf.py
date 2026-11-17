@@ -1,4 +1,7 @@
-"""Генератор validation/model_selection_report.pdf.
+"""Генератор model_selection_report.pdf.
+
+Звіт пишеться ПОЗА репозиторієм — поруч із ним, у теці проєкту, бо це
+особистий матеріал. У validation/ PDF не зберігаються (див. .gitignore).
 
 Верстка на matplotlib: кожна сторінка — окрема фігура A4, текст і графіки
 розкладаються згори вниз простим потоковим укладальником. Шрифт DejaVu Sans
@@ -17,6 +20,8 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 
 from . import config as C
+
+H = "104hz_historical/"
 
 A4 = (8.27, 11.69)
 LEFT, RIGHT, TOP, BOTTOM = 0.09, 0.93, 0.945, 0.055
@@ -130,7 +135,9 @@ def _r(name: str) -> dict:
 
 
 def build(out_path: Path | None = None) -> Path:
-    out = out_path or (C.VALIDATION_DIR / "model_selection_report.pdf")
+    # Звіт — особистий матеріал, тому пишеться поза репозиторієм,
+    # поруч з іншими конспектами.
+    out = out_path or (C.REPO_ROOT.parent / "model_selection_report.pdf")
     cmp_ = _r("01_model_comparison.json")
     q = _r("02_quantization.json")
     par = _r("05_preprocessing_parity.json")
@@ -366,7 +373,7 @@ def build(out_path: Path | None = None) -> Path:
                 "Попередній варіант на 104 Гц ці тести проходив: 50 з 50 векторів "
                 "збіглися, інференс 34.7 мс. Саме той прогін і дав вимірювання ODR, "
                 "яке привело до зміни моделі.")
-            p.image("board_odr.png",
+            p.image(H + "board_odr.png",
                     "Рис. 9. Вимірювання на варіанті 104 Гц. Фактичні 109.8 Гц проти "
                     "номінальних 104 — відхилення, через яке вибір моделі змінився.",
                     max_h=0.24)
@@ -402,7 +409,7 @@ def build(out_path: Path | None = None) -> Path:
             f"1 040 класифікуються як сходи. Загальна accuracy "
             f"{ch['test']['accuracy']:.3f} це приховує. Та сама вада є в усіх трьох моделей, "
             "тобто вона властива архітектурі або самим даним, а не вибору частоти.")
-        p.image("confusion_104hz.png",
+        p.image("confusion_chosen.png",
                 "Рис. 11. Матриця помилок обраної моделі, нормована по рядках. Лише 42 % "
                 "вікон ходьби розпізнаються правильно; решта йде у Stairs.",
                 max_h=0.275)

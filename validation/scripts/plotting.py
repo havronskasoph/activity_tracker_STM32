@@ -155,7 +155,7 @@ def confusion_chosen(cmp: dict) -> Path:
     ax.set_title(f'Матриця помилок: {m["label"]}, test', color=C.INK, loc="left", pad=12)
     for s in ax.spines.values():
         s.set_visible(False)
-    return _save(fig, "confusion_104hz.png")
+    return _save(fig, "confusion_chosen.png")
 
 
 # ── 5. macro-F1 по учасниках ─────────────────────────────────────────────────

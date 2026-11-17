@@ -1,10 +1,11 @@
 # Spokiy
 
-React/Vite frontend and a Node.js backend for activity measurements read from an STM32 Bluetooth device by the browser.
+React/Vite frontend and a Python FastAPI backend for activity measurements read from an STM32 Bluetooth device by the browser.
 
 ## Requirements
 
-- Node.js **24 or later** (check `node --version`). The backend uses Node's built-in SQLite and has no third-party dependencies. Node may print a SQLite experimental warning.
+- Python **3.10 or later** for the FastAPI backend.
+- Node.js **24 or later** for the frontend.
 - pnpm **10.34.3** for the frontend.
 - Two terminals, starting in `spokiy_app/`.
 
@@ -14,13 +15,16 @@ In PowerShell:
 
 ```powershell
 cd backend
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
 Copy-Item .env.example .env
-npm run dev
+python -m uvicorn server:create_app --factory --host 127.0.0.1 --port 3001 --env-file .env --reload
 ```
 
-Use `npm.cmd` if PowerShell blocks the `npm.ps1` script. Copy `.env.example` only for initial setup; preserve your configuration on subsequent runs.
+Copy `.env.example` only for initial setup; preserve your configuration on subsequent runs. If PowerShell blocks activation, run `.venv\Scripts\python.exe` directly instead.
 
-The API listens at **http://127.0.0.1:3001**. Open http://127.0.0.1:3001/api/health to check it. For normal operation without file watching, run `npm start`. Stop with Ctrl+C.
+The API listens at **http://127.0.0.1:3001**. Open http://127.0.0.1:3001/api/health to check it. For normal operation without file watching, omit `--reload`. Uvicorn command-line options determine the host and port. Stop with Ctrl+C.
 
 SQLite tables are created automatically in `backend/data/spokiy.sqlite`. Accounts, sessions, profiles, devices, and measurements survive restarts. This directory and `.env` are excluded from Git. Paths are relative to the backend working directory. No separate database installation is needed.
 
@@ -156,7 +160,7 @@ Every batch is validated before insertion and inserted in a transaction. Invalid
 
 ```powershell
 cd backend
-npm test
+python -m unittest discover -s test -p "test_*.py"
 ```
 
 Tests use an isolated temporary SQLite file and exercise registration, login/logout, validation, profile persistence, restart persistence, device ownership, atomic batch validation, duplicate uploads, summaries, and history.
@@ -169,10 +173,10 @@ npx.cmd --yes pnpm@10.34.3 typecheck
 npx.cmd --yes pnpm@10.34.3 test
 ```
 
-The frontend test builds the app and uses an in-memory backend on temporary ports; it does not modify your account database. It checks registration cookies, authenticated profile changes, device registration, measurement uploads, dashboard totals, and logout through both proxies. It is an HTTP integration test; browser interactions and physical Bluetooth hardware need separate manual verification.
+The frontend test builds the app and starts a temporary FastAPI backend; set `SPOKIY_PYTHON` to the backend virtual environment?s Python executable if needed; it does not modify your account database. It checks registration cookies, authenticated profile changes, device registration, measurement uploads, dashboard totals, and logout through both proxies. It is an HTTP integration test; browser interactions and physical Bluetooth hardware need separate manual verification.
 
 ## Deployment notes
 
 This is a single-process backend suitable for local development and an initial small deployment. Before public deployment, serve both apps over HTTPS (preferably through the same origin), set `COOKIE_SECURE=true`, set the exact frontend origin, back up SQLite using a consistent SQLite backup procedure, and add password recovery/email verification as needed. The in-memory authentication limiter is per process and resets on restart; use a shared limiter when scaling. The API currently has no password recovery, account deletion, or device removal endpoints.
 
-SQLite API reference: https://nodejs.org/docs/latest-v24.x/api/sqlite.html
+FastAPI documentation: https://fastapi.tiangolo.com/

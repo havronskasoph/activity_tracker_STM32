@@ -1,0 +1,36 @@
+{
+  "status": "ok",
+  "model": "st_ign_var2_104hz",
+  "tflite_file": "st_ign_var2_104hz_int8.tflite",
+  "tflite_bytes": 115760,
+  "representative_windows": 300,
+  "float32": {
+    "macro_f1": 0.803495725681066,
+    "accuracy": 0.8195253779241618,
+    "f1_per_class": {
+      "Lying": 0.969140950792327,
+      "Stationary": 0.9638282899366644,
+      "Walking": 0.46801968019680196,
+      "Running": 0.9345074298293891,
+      "Stairs": 0.6819822776501477
+    }
+  },
+  "int8": {
+    "macro_f1": 0.7964025105209344,
+    "accuracy": 0.8106578836246938,
+    "f1_per_class": {
+      "Lying": 0.9393694421988682,
+      "Stationary": 0.9473834715470403,
+      "Walking": 0.48257211538461536,
+      "Running": 0.9332600933809393,
+      "Stairs": 0.679427430093209
+    }
+  },
+  "macro_f1_drop_pp": 0.7093215160131616,
+  "walking_f1_drop_pp": -1.4552435187813406,
+  "criteria": {
+    "macro_f1_drop_pp_max": 1.5,
+    "walking_f1_drop_pp_max": 3.0
+  },
+  "passed": true
+}

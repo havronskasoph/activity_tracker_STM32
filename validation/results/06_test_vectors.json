@@ -1,0 +1,31 @@
+{
+  "status": "ok",
+  "model": "st_ign_var2_104hz",
+  "n_vectors": 50,
+  "per_class": 10,
+  "window_shape": [
+    208,
+    6
+  ],
+  "input": "нормалізовані вікна (x - mean) / std — подаються прямо в модель, минаючи har_preproc: цей тест перевіряє лише C-модель",
+  "pc_argmax_matches_expected": true,
+  "pc_self_agreement": 1.0,
+  "class_distribution": {
+    "Lying": 10,
+    "Stationary": 10,
+    "Walking": 10,
+    "Running": 10,
+    "Stairs": 10
+  },
+  "pc_accuracy_on_vectors": 0.86,
+  "files": {
+    "expected.csv": 3474,
+    "har_test_vectors.h": 1073205,
+    "README.md": 3584,
+    "test_vectors.npz": 464609
+  },
+  "board_criterion": {
+    "argmax_match_min": 0.98,
+    "status": "очікує прогону на платі"
+  }
+}

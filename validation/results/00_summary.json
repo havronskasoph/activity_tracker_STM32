@@ -1,0 +1,54 @@
+{
+  "rows": [
+    {
+      "name": "1. Порівняння трьох моделей",
+      "detail": "обрана 104 Гц: macro-F1 0.8035; метрики відтворено (дельта 0e+00)",
+      "status": "PASS"
+    },
+    {
+      "name": "2. Квантування int8",
+      "detail": "macro-F1 -0.71 п., Walking +1.46 п. (плюс = краще)",
+      "status": "PASS"
+    },
+    {
+      "name": "3. ST Edge AI analyze",
+      "detail": "ST Edge AI Core не встановлений",
+      "status": "SKIP"
+    },
+    {
+      "name": "4. ST Edge AI validate",
+      "detail": "ST Edge AI Core не встановлений",
+      "status": "SKIP"
+    },
+    {
+      "name": "5. Паритет препроцесингу",
+      "detail": "ФНЧ плати: macro-F1 -0.04 п.",
+      "status": "PASS"
+    },
+    {
+      "name": "6. Тестові вектори ПК -> MCU",
+      "detail": "50 вікон згенеровано (прогін на платі — тест 7)",
+      "status": "PASS"
+    },
+    {
+      "name": "7. Плата: тестові вектори",
+      "detail": "50/50 збігів argmax",
+      "status": "PASS"
+    },
+    {
+      "name": "8. Плата: час інференсу",
+      "detail": "34.7 мс = 3.5 % кроку вікна",
+      "status": "PASS"
+    },
+    {
+      "name": "9. Плата: класифікація наживо",
+      "detail": "27 передбачень, раз на 947 мс",
+      "status": "PASS"
+    },
+    {
+      "name": "10. Плата: фактичний ODR",
+      "detail": "109.8 Гц проти 104 (+5.6 %)",
+      "status": "FAIL"
+    }
+  ]
+}

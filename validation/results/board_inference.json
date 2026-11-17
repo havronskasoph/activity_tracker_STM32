@@ -1,0 +1,15 @@
+{
+  "cycles_min": 5231929,
+  "cycles_avg": 5558138,
+  "cycles_max": 5926949,
+  "clock_hz": 160000000,
+  "ms_min": 32.69955625,
+  "ms_avg": 34.7383625,
+  "ms_max": 37.04343125,
+  "hop_budget_ms": 1000.0,
+  "budget_used_frac": 0.0347383625,
+  "criterion": "істотно менше кроку вікна",
+  "passed": true,
+  "build": "Release (-Os)",
+  "status": "ok"
+}

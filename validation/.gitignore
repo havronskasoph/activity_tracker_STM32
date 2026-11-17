@@ -1,0 +1,25 @@
+# Віртуальні середовища (створюються ПОЗА репозиторієм, див. README.md)
+.venv/
+venv/
+*.venv
+
+# Кеш Python і pytest
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Проміжні артефакти, які не комітяться
+# (.tflite лишаємо в git: ~110 КіБ, потрібен для ST Edge AI Core)
+*.npy
+*.bin
+*.elf
+*.log
+*.tmp
+
+# Теки, куди ST Edge AI Core складає згенерований C-код і звіти
+stedgeai_out/
+st_ai_output/
+
+# Великі тестові вектори у вигляді сирих масивів (у git іде лише .npz і .h)
+test_vectors/*.raw

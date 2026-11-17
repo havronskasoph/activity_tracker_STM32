@@ -1,0 +1,4 @@
+{
+  "status": "skipped",
+  "reason": "ST Edge AI Core не знайдено. Встанови його і або додай у PATH, або задай змінну STEDGEAI_PATH з повним шляхом до stedgeai(.exe). Інструкція — у validation/README.md."
+}

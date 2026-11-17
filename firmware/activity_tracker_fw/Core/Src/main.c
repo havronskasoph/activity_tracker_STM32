@@ -23,6 +23,18 @@
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 #include "ism330dhcx_reg.h"
+#include "har_preproc.h"
+#include "har_model.h"
+
+/* Самоперевірка на платі: одноразовий прогін тестових векторів із
+   har_test_vectors.h і вимір часу інференсу лічильником тактів DWT одразу
+   після старту. Вмикати після кожної зміни моделі чи ваг: результат має бути
+   50/50 збігів із очікуваними класами. 0 — звичайна робота. */
+#define HAR_SELFTEST      0
+
+#if HAR_SELFTEST
+#include "har_test_vectors.h"
+#endif
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -32,7 +44,19 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+/* Потік CSV у UART: 1 — для збору даних, 0 — коли працює тільки інференс
+   (при 104 Гц рядок займає ~60 % пропускної здатності 115200 бод). */
+#define HAR_STREAM_CSV    0
 
+/* Що саме виводити: 1 — відліки після ФНЧ (те, що бачить модель),
+   0 — сирі, якщо треба подивитися на сигнал до фільтра. */
+#define HAR_LOG_FILTERED  1
+
+/* Як часто друкувати фактичну частоту і лічильник втрат, мс. */
+#define HAR_STATUS_PERIOD_MS  5000u
+
+/* Один рядок CSV: мітка часу + 6 значень у форматі -123.456 */
+#define CSV_LINE_MAX      96
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -105,8 +129,16 @@ static void imu_init(void) {
 	ism330dhcx_block_data_update_set(&imu_ctx, PROPERTY_ENABLE);
 	ism330dhcx_xl_full_scale_set(&imu_ctx, ISM330DHCX_4g);
 	ism330dhcx_gy_full_scale_set(&imu_ctx, ISM330DHCX_2000dps);
-	ism330dhcx_xl_data_rate_set(&imu_ctx, ISM330DHCX_XL_ODR_26Hz);
-	ism330dhcx_gy_data_rate_set(&imu_ctx, ISM330DHCX_GY_ODR_26Hz);
+	/* 104 Гц на обох датчиках — рівно та частота, на якій підготовлений
+	   датасет (har_model_config.h: HAR_FS_HZ). Міняти тут, не узгодивши з
+	   датасетом, не можна: вікно 208 відліків перестане дорівнювати 2 с. */
+	ism330dhcx_xl_data_rate_set(&imu_ctx, ISM330DHCX_XL_ODR_104Hz);
+	ism330dhcx_gy_data_rate_set(&imu_ctx, ISM330DHCX_GY_ODR_104Hz);
+
+	/* Вбудовані фільтри датчика лишаємо вимкненими: LPF2 акселерометра дає
+	   щонайбільше ODR/10 = 10.4 Гц (зрізало б корисний сигнал), а LPF1
+	   гіроскопа задається «силою», а не частотою. Потрібні рівно 25 Гц —
+	   їх робить har_preproc.c тими самими коефіцієнтами, що й датасет. */
 
 	/* Drive accelerometer data-ready out on INT1 (INT1_CTRL, int1_drdy_xl)
 	   as a short pulse, which is what an edge-triggered EXTI line wants. */
@@ -117,12 +149,101 @@ static void imu_init(void) {
 	ism330dhcx_data_ready_mode_set(&imu_ctx, ISM330DHCX_DRDY_PULSED);
 }
 
-static void put_ms2(int32_t mm_s2)
+/* Друк дробових чисел без printf("%f"): значення тримаємо в тисячних
+   (мілі-g і мілі-dps) і форматуємо цілими. Знак обробляємо окремо, інакше
+   -0.5 надрукувалося б як "0.-500". */
+static char *put_milli(char *p, int32_t milli)
 {
-	  if (mm_s2 < 0) { printf("-"); mm_s2 = -mm_s2; }
-	  printf("%ld.%03ld", (long)(mm_s2 / 1000), (long)(mm_s2 % 1000));
+	if (milli < 0) {
+		*p++ = '-';
+		milli = -milli;
+	}
+	p += sprintf(p, "%ld.%03ld", (long) (milli / 1000), (long) (milli % 1000));
+	return p;
+}
+
+/* Увесь рядок збираємо в буфер і віддаємо в UART одним викликом: при 104 Гц
+   побайтовий HAL_UART_Transmit (через printf) з'їдав би більшу частину
+   періоду вибірки. */
+static void emit_csv(uint32_t t_ms, const float s[HAR_CHANNELS])
+{
+	char line[CSV_LINE_MAX];
+	char *p = line;
+
+	p += sprintf(p, "%lu", (unsigned long) t_ms);
+	for (int c = 0; c < HAR_CHANNELS; c++) {
+		*p++ = ',';
+		p = put_milli(p, (int32_t) (s[c] * 1000.0f));
+	}
+	*p++ = '\r';
+	*p++ = '\n';
+
+	HAL_UART_Transmit(&huart1, (uint8_t *) line, (uint16_t) (p - line),
+			HAL_MAX_DELAY);
+}
+
+/* Результат класифікації окремим рядком, що починається з '#': tools/log.py
+   такі рядки пропускає, тож потік лишається придатним і для збору CSV. */
+static void emit_pred(uint32_t t_ms, int cls, float p)
+{
+	char line[CSV_LINE_MAX];
+	char *q = line;
+
+	q += sprintf(q, "# pred t=%lu class=%s p=", (unsigned long) t_ms,
+			har_model_class_name(cls));
+	q = put_milli(q, (int32_t) (p * 1000.0f));
+	*q++ = '\r';
+	*q++ = '\n';
+
+	HAL_UART_Transmit(&huart1, (uint8_t *) line, (uint16_t) (q - line),
+			HAL_MAX_DELAY);
 }
 /* USER CODE END PV */
+
+#if HAR_SELFTEST
+/* Прогін тестових векторів і вимір часу інференсу. Викликається один раз
+   після старту; результати йдуть у UART рядками з '#', тож tools/log.py їх
+   пропускає. Лічильник тактів DWT дає точність до одного такту ядра. */
+static void har_selftest(void)
+{
+	CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;
+	DWT->CYCCNT = 0;
+	DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;
+
+	int ok = 0;
+	uint32_t cyc_min = 0xFFFFFFFFu, cyc_max = 0, cyc_sum = 0;
+
+	for (int i = 0; i < HAR_TV_COUNT; i++) {
+		float probs[HAR_CLASS_COUNT];
+		int cls = -1;
+
+		const uint32_t t0 = DWT->CYCCNT;
+		const har_model_status_t st = har_model_predict(&har_tv_input[i][0][0], probs, &cls);
+		const uint32_t dt = DWT->CYCCNT - t0;
+
+		if (st != HAR_MODEL_OK) {
+			printf("# selftest vector %d: %s\r\n", i, har_model_status_str(st));
+			continue;
+		}
+		if (dt < cyc_min) { cyc_min = dt; }
+		if (dt > cyc_max) { cyc_max = dt; }
+		cyc_sum += dt;
+		if (cls == (int) har_tv_expected[i]) {
+			ok++;
+		} else {
+			printf("# selftest mismatch %d: expected=%d got=%d\r\n",
+				i, (int) har_tv_expected[i], cls);
+		}
+	}
+
+	printf("# selftest match=%d/%d\r\n", ok, HAR_TV_COUNT);
+	printf("# selftest cycles min=%lu avg=%lu max=%lu clk=%lu\r\n",
+			(unsigned long) cyc_min, (unsigned long) (cyc_sum / HAR_TV_COUNT),
+			(unsigned long) cyc_max, (unsigned long) SystemCoreClock);
+	printf("# selftest us avg=%lu\r\n",
+			(unsigned long) ((uint64_t) (cyc_sum / HAR_TV_COUNT) * 1000000u / SystemCoreClock));
+}
+#endif /* HAR_SELFTEST */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -194,6 +315,19 @@ int main(void) {
 	setvbuf(stdout, NULL, _IONBF, 0);
 	printf("Start\r\n");
 	imu_init();
+	har_preproc_init();
+	const har_model_status_t model_st = har_model_init();
+	/* Без %f/%g: newlib-nano за замовчуванням не лінкує float-форматування,
+	   тому всі дробові значення друкуємо цілими (див. put_milli). */
+	printf("# fs=%d Hz window=%d x %d hop=%d lpf=%d Hz units=%s,%s\r\n",
+			(int) HAR_FS_HZ, HAR_WINDOW_SAMPLES, HAR_CHANNELS,
+			HAR_HOP_SAMPLES, (int) HAR_LPF_HZ, HAR_ACC_UNIT, HAR_GYR_UNIT);
+	printf("# model=%s classes=%d\r\n",
+			har_model_status_str(model_st), HAR_CLASS_COUNT);
+
+#if HAR_SELFTEST
+	har_selftest();
+#endif
 
 	/* Unmask the line only once the sensor is configured, so none of the
 	   writes above can leave a stale edge pending. */
@@ -201,7 +335,13 @@ int main(void) {
 	HAL_NVIC_SetPriority(EXTI11_IRQn, 5, 0);
 	HAL_NVIC_EnableIRQ(EXTI11_IRQn);
 
+#if HAR_STREAM_CSV
 	printf("timestamp_ms,ax,ay,az,gx,gy,gz\r\n");
+#endif
+
+	/* Лічильники для рядка стану: фактична частота, зібрані вікна, втрати. */
+	uint32_t sample_count = 0, window_count = 0;
+	uint32_t status_at = HAL_GetTick();
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
@@ -217,28 +357,73 @@ int main(void) {
 	      imu_drdy_served = drdy_now;
 
 	      /* Only the newest sample is still in the output registers, so every
-	         interrupt beyond the one we are about to read is a sample we lost.
-	         Reported on its own line, which tools/log.py skips. */
-	      if (pending > 1) {
-	        imu_missed += pending - 1;
-	        printf("# missed %lu\r\n", (unsigned long) imu_missed);
-	      }
+	         interrupt beyond the one we are about to read is a sample we lost. */
+	      const uint32_t lost = (pending > 1) ? (pending - 1) : 0;
+	      imu_missed += lost;
 
+	      /* Одиниці рівно як у датасеті: акселерометр у g, гіроскоп у °/с.
+	         Драйвер віддає мілі-одиниці, тому ділимо на 1000. */
 	      int16_t a_raw[3], g_raw[3];
-	      int32_t a[3], g[3];
+	      float sample[HAR_CHANNELS];
+
 	      ism330dhcx_acceleration_raw_get(&imu_ctx, a_raw);
 	      ism330dhcx_angular_rate_raw_get(&imu_ctx, g_raw);
 	      for (int i = 0; i < 3; i++) {
-	        a[i] = (int32_t)(ism330dhcx_from_fs4g_to_mg(a_raw[i]) * 9.80665f);
-	        g[i] = (int32_t)ism330dhcx_from_fs2000dps_to_mdps(g_raw[i]);
+	        sample[i]     = ism330dhcx_from_fs4g_to_mg(a_raw[i]) / 1000.0f;
+	        sample[3 + i] = ism330dhcx_from_fs2000dps_to_mdps(g_raw[i]) / 1000.0f;
 	      }
-	      printf("%lu,", HAL_GetTick());
-	      put_ms2(a[0]); printf(",");
-	      put_ms2(a[1]); printf(",");
-	      put_ms2(a[2]); printf(",");
-	      put_ms2(g[0]); printf(",");   /* mdps -> dps */
-	      put_ms2(g[1]); printf(",");
-	      put_ms2(g[2]); printf("\r\n");
+
+	      /* ФНЧ 25 Гц + накопичення вікна 208 x 6 (крок 104) з урахуванням
+	         втрачених відліків: малий провал добивається інтерполяцією,
+	         великий рве вікно — так само, як у препроцесингу датасету. */
+	      const int window_ready = har_preproc_push_missed(sample, lost);
+	      sample_count++;
+
+#if HAR_STREAM_CSV
+#if HAR_LOG_FILTERED
+	      emit_csv(HAL_GetTick(), har_preproc_last());
+#else
+	      emit_csv(HAL_GetTick(), sample);
+#endif
+#endif
+
+	      if (window_ready) {
+	        window_count++;
+	        float *window = har_preproc_window();
+	        har_preproc_normalize(window);
+
+	        /* Вікно готове рівно в тому вигляді, в якому навчалася модель.
+	           Доки мережі в прошивці немає (HAR_MODEL_DEPLOYED == 0), виклик
+	           повертає NOT_DEPLOYED і цикл просто йде далі. */
+	        float probs[HAR_CLASS_COUNT];
+	        int cls = -1;
+
+	        if (har_model_predict(window, probs, &cls) == HAR_MODEL_OK) {
+	          emit_pred(HAL_GetTick(), cls, probs[cls]);
+	        }
+	      }
+	    }
+
+	    /* Фактична частота: ODR у даташиті номінальний, і якщо реально вийде
+	       не 104 Гц, вікно у 208 відліків перестане бути двома секундами. */
+	    const uint32_t now = HAL_GetTick();
+	    if (now - status_at >= HAR_STATUS_PERIOD_MS) {
+	      const uint32_t elapsed = now - status_at;
+	      const uint32_t milli_hz = (sample_count * 1000000u) / elapsed;
+	      char line[CSV_LINE_MAX];
+	      char *p = line;
+
+	      p += sprintf(p, "# rate=");
+	      p = put_milli(p, (int32_t) milli_hz);
+	      p += sprintf(p, " Hz windows=%lu missed=%lu",
+	                   (unsigned long) window_count, (unsigned long) imu_missed);
+	      *p++ = '\r';
+	      *p++ = '\n';
+	      HAL_UART_Transmit(&huart1, (uint8_t *) line, (uint16_t) (p - line),
+	                        HAL_MAX_DELAY);
+
+	      status_at = now;
+	      sample_count = 0;
 	    }
 	  }
 	/* USER CODE END 3 */

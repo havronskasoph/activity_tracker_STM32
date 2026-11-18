@@ -74,30 +74,13 @@
 ```c
 #define HAR_OUT_PORT  HAR_OUT_STLINK   // типово: USART1 -> ST-Link -> USB
 #define HAR_OUT_PORT  HAR_OUT_UART4    // UART4 -> зовнішній UART-модуль
-#define HAR_OUT_PORT  HAR_OUT_BLE      // Bluetooth LE, вбудований STM32WB5MMG
+#define HAR_BLE_ENABLED 1             // Bluetooth LE, вбудований STM32WB5MMG
 ```
 
 **Кабель** (`HAR_OUT_STLINK`) — дані йдуть у віртуальний COM-порт ST-Link,
 дивитися через `python tools/watch.py`. Це робочий режим за замовчуванням.
 
-**Bluetooth LE** (`HAR_OUT_BLE`) — через вбудований модуль **STM32WB5MMG**.
-На цій платі два окремі бездротові чипи: EMW3080 робить Wi-Fi, а BLE —
-саме STM32WB5MMG. Головний мікроконтролер керує ним AT-командами по UART4
-на 9600 бод; протокол реалізує компонент ST `stm32wb_at`, а наша обв'язка
-лежить у `Core/Src/har_ble.c`. Рядки йдуть BLE-сповіщеннями, по 64 байти
-максимум — наш `# pred` займає близько 35.
-
-Щоб це запрацювало, потрібні **дві разові дії** (докладно — у шапці
-`Core/Inc/har_ble.h`):
-
-1. Додати в проєкт компонент [stm32wb_at](https://github.com/STMicroelectronics/stm32-wb-at)
-   у `Drivers/BSP/Components/stm32wb_at/` і прописати цю теку в Include paths.
-2. Прошити сам модуль STM32WB5MMG — з заводу він порожній. Потрібні FUS,
-   BLE-стек і застосунок `BLE_AT_Server` із пакета STM32Cube_FW_WB,
-   заливаються через STM32CubeProgrammer зовнішнім ST-LINK на роз'єм CN5.
-
-Поки крок 1 не зроблено, `har_ble.c` компілюється в порожнечу і прошивка
-збирається як звичайно — нічого не ламається.
+**Bluetooth LE**: the firmware can send predictions over the built-in STM32WB5MMG while keeping USB serial output. See [firmware/BLE_SETUP.md](firmware/BLE_SETUP.md) for required module firmware, UUIDs, and hardware verification. This path is not yet tested on the board.
 
 **Зовнішній модуль** (`HAR_OUT_UART4`) — запасний шлях, якщо з вбудованим не
 складеться: HC-05 або HM-10 на ніжки PC10/PC11, 115200. Для ноутбука він

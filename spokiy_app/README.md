@@ -64,15 +64,30 @@ Stop the development server before running preview: both use port 8443.
 
 The frontend sends `/api` requests through Vite to `http://127.0.0.1:3001`, including session cookies. This works in development and preview. If your backend uses a different address, set `$env:API_PROXY_TARGET="http://127.0.0.1:YOUR_PORT"` before starting Vite. If you change the frontend URL, update the backend's `FRONTEND_ORIGIN` and restart it. For production hosting, configure your web server to forward `/api` to the backend; Vite's proxy is a local development/preview feature.
 
+## Live model predictions over USB
+
+The STM32 firmware defaults to ST-Link virtual COM output at 115200 baud. Connect the board through its ST-Link USB port, start the backend and frontend, sign in, and select **Connect tracker by USB** on the dashboard. In Chrome or Edge, choose the board?s serial port. Close other programs using that COM port first. The browser requires localhost or HTTPS and Web Serial support.
+
+The dashboard shows the activity class, model confidence, firmware uptime, and browser reception time of the latest `# pred` line. Predictions appear after the model has collected a full window. They are live only: they are not stored in the database and do not represent steps or heart-rate measurements. After disconnecting, the last reading is marked as disconnected.
+
+The board must run the deployed model with `HAR_OUT_PORT` set to `HAR_OUT_STLINK` (the default). The firmware can also send predictions over Bluetooth as described below.
+
 ## Bluetooth connection
 
 Click **Connect device**, then **Find Bluetooth devices**. Choose your STM32 tracker in the browser's Bluetooth chooser. The app opens a real BLE GATT connection and automatically registers the selected browser device ID with your account. Use **Disconnect device** to disconnect. Connection indicators reflect the current Bluetooth link, not saved database devices.
 
 Use a browser with Web Bluetooth support, such as Chrome or Edge on Windows. Open the app on localhost for development, or HTTPS in production. The hardware must advertise Bluetooth Low Energy (BLE); Bluetooth Classic serial modules cannot use this GATT flow.
 
-**Current limitation:** device selection and GATT connection are implemented. Measurement subscription, decoding, and automatic uploads cannot be completed until the STM32 firmware service UUID, notification characteristic UUID, and payload layout are supplied. The dialog explicitly distinguishes connection from measurement syncing. No readings are fabricated. Manual registration and JSON upload forms have been removed from the normal connection flow.
+The tracker firmware creates a custom service on ST's `BLE_AT_Server`. The website defaults to these UUIDs:
 
-If the service UUID is known, set `$env:VITE_BLE_SERVICE_UUID="your-service-uuid"` in the frontend terminal before starting Vite. This grants access to that service during pairing; it does not yet implement its measurement decoder. Once the firmware protocol is available, decoded readings can be sent using `uploadMeasurements` in `frontend/src/api.ts`.
+- Service: `0000aabb-cc7a-482a-984a-7f2ed5b3e58f`
+- Notification characteristic: `00003344-8e22-4541-9d4c-21edae82ed19`
+
+Build and flash the main STM32 firmware with `HAR_BLE_ENABLED` set to `1` in `Core/Inc/har_ble.h` (the default). Its USB serial output remains enabled. The STM32WB5MMG module must already have a compatible ST BLE stack and `BLE_AT_Server` installed; see the repository's [BLE setup guide](../firmware/BLE_SETUP.md). Power-cycle the board after flashing, then use **Connect device** and choose `Spokiy` if it appears. Chrome or Edge on a Bluetooth-capable Windows computer and localhost or HTTPS are required; iPhone browsers do not support this Web Bluetooth flow. Close the phone's BLE connection first if the board cannot accept another connection.
+
+The status line on USB (`# ble=ok step=0` or `# ble=fail step=N`) reports whether AT commands were acknowledged, not whether the BLE stack actually created the characteristic. Check the service with a BLE scanner and test notifications on the board. The implementation is unverified on hardware. Predictions are live only, not saved or uploaded as steps. They are sent as newline-terminated UTF-8 text split into notifications of at most 18 bytes; the browser reassembles them.
+
+To override the UUIDs for a compatible server, set `VITE_BLE_SERVICE_UUID` and `VITE_BLE_CHARACTERISTIC_UUID` in the frontend environment before starting Vite. Both must match the running firmware.
 
 ## API
 
@@ -144,7 +159,7 @@ For real Bluetooth integration:
 3. Register `BluetoothDevice.id` through `/api/devices`; retain the returned backend device ID.
 4. Queue decoded samples locally, then upload batches of 1–500 samples. Only remove queued samples after a successful response. Retain the same sample IDs when retrying.
 
-The firmware's BLE service UUID, characteristic UUID, payload layout, timestamp source, and counter semantics must be supplied before implementing the real Bluetooth reader. Use a browser that supports Web Bluetooth; production requires HTTPS, while localhost can be used for local development.
+Hardware notification behavior must be verified before using the Bluetooth reader; timestamp and counter semantics must be established before uploading measurements. Use a browser that supports Web Bluetooth; production requires HTTPS, while localhost can be used for local development.
 
 Measurement contract:
 

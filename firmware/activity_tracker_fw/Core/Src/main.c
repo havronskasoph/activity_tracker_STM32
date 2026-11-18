@@ -27,6 +27,9 @@
 #include "har_model.h"
 #include "har_out.h"
 #include "har_ble.h"
+#if HAR_BLE_ENABLED && HAR_OUT_PORT == HAR_OUT_UART4
+#error "Disable HAR_BLE_ENABLED before selecting UART4 output"
+#endif
 
 /* Самоперевірка на платі: одноразовий прогін тестових векторів із
    har_test_vectors.h і вимір часу інференсу лічильником тактів DWT одразу
@@ -202,6 +205,9 @@ static void emit_pred(uint32_t t_ms, int cls, float p)
 	*q++ = '\n';
 
 	har_out_write(line, (uint16_t) (q - line));
+#if HAR_BLE_ENABLED
+	(void) har_ble_send(line, (uint16_t) (q - line));
+#endif
 }
 /* USER CODE END PV */
 
@@ -318,7 +324,7 @@ int main(void) {
 	MX_USB_OTG_FS_PCD_Init();
 	/* USER CODE BEGIN 2 */
 	setvbuf(stdout, NULL, _IONBF, 0);
-#if HAR_OUT_PORT == HAR_OUT_BLE
+#if HAR_BLE_ENABLED
 	/* Канал має піднятися до першого рядка, інакше його нікуди віддавати. */
 	const uint8_t ble_status = har_ble_init();
 #endif
@@ -334,7 +340,7 @@ int main(void) {
 	printf("# model=%s classes=%d\r\n",
 			har_model_status_str(model_st), HAR_CLASS_COUNT);
 	printf("# out=%s\r\n", har_out_name());
-#if HAR_OUT_PORT == HAR_OUT_BLE
+#if HAR_BLE_ENABLED
 	printf("# ble=%s step=%u\r\n",
 			(ble_status == 0u) ? "ok" : "fail", (unsigned) ble_status);
 #endif
@@ -870,7 +876,7 @@ static void MX_UART4_Init(void) {
 
 	/* USER CODE END UART4_Init 1 */
 	huart4.Instance = UART4;
-#if HAR_OUT_PORT == HAR_OUT_BLE
+#if HAR_BLE_ENABLED
 	/* AT-протокол модуля STM32WB5MMG працює на 9600 — так у прикладі ST. */
 	huart4.Init.BaudRate = 9600;
 #else

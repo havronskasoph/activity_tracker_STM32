@@ -1,4 +1,5 @@
-import { pairDevice, type Bluetooth, type BluetoothDevice } from "./bluetooth";
+import { openSerial, readPredictions, type Prediction, type Serial, type SerialPort } from "./predictions";
+import { pairDevice, subscribePredictions, type Bluetooth, type BluetoothDevice } from "./bluetooth";
 import { FormEvent, ReactNode, useEffect, useState, useCallback, useRef } from "react";
 import {
   api,
@@ -101,19 +102,34 @@ function App() {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [bluetoothName, setBluetoothName] = useState("");
   const [pairing, setPairing] = useState(false);
+  const [serialConnected, setSerialConnected] = useState(false);
+  const [prediction, setPrediction] = useState<Prediction | null>(null);
+  const [predictionSource, setPredictionSource] = useState<"USB" | "Bluetooth" | null>(null);
+  const [bleSubscribed, setBleSubscribed] = useState(false);
+  const serialPort = useRef<SerialPort | null>(null);
+  const serialAbort = useRef<AbortController | null>(null);
+  const serialAttempt = useRef(0);
+  const disconnectSerial = useCallback(() => {
+    serialAttempt.current++;
+    serialAbort.current?.abort();
+  }, []);
   const bluetoothDevice = useRef<BluetoothDevice | null>(null);
+  const unsubscribeBle = useRef<(() => void) | null>(null);
   const pairAttempt = useRef(0);
   const disconnectBluetooth = useCallback(() => {
     pairAttempt.current++;
+    unsubscribeBle.current?.();
+    unsubscribeBle.current = null;
+    setBleSubscribed(false);
     bluetoothDevice.current?.gatt?.disconnect();
     bluetoothDevice.current = null;
     setBluetoothName("");
   }, []);
 
   useEffect(() => {
-    if (!user) disconnectBluetooth();
-    return disconnectBluetooth;
-  }, [user, disconnectBluetooth]);
+    if (!user) { disconnectBluetooth(); disconnectSerial(); }
+    return () => { disconnectBluetooth(); disconnectSerial(); };
+  }, [user, disconnectBluetooth, disconnectSerial]);
 
   const handleError = useCallback((cause: unknown) => {
     if (cause instanceof ApiError && cause.status === 401) {
@@ -528,6 +544,37 @@ function App() {
           <p className="p-8">Your profile has not loaded. Use Refresh data to retry.</p>
         ) : page === "dashboard" ? (
           <div className="mx-auto max-w-[1380px] p-5 sm:p-8 lg:p-10">
+            <section aria-live="polite" className="mb-6 rounded-2xl border border-[#e3e8e4] bg-white p-6">
+              <h2 className="font-bold">Live activity prediction</h2>
+              {prediction ? <div className="mt-3">
+                <p className="text-2xl font-semibold text-[#214f39]">{prediction.activity}</p>
+                <p className="mt-1 text-sm text-[#748078]">Model confidence: {(prediction.confidence * 100).toFixed(1)}% ? device uptime: {(prediction.timestampMs / 1000).toFixed(1)} s ? received {prediction.receivedAt.toLocaleTimeString()}</p>
+                {predictionSource && <p className="mt-1 text-sm text-[#748078]">Source: {predictionSource}{(predictionSource === "USB" ? !serialConnected : !bleSubscribed) && " ? disconnected; showing the last reading"}</p>}
+              </div> : <p className="mt-3 text-sm text-[#748078]">{serialConnected || bleSubscribed ? "Waiting for a prediction from the tracker?" : "Connect the STM32 by USB or Bluetooth to see live predictions."}</p>}
+              <p className="mt-2 text-xs text-[#748078]">Live predictions are not saved and do not update step counts.</p>
+              <button className="mt-4 rounded-xl bg-[#214f39] px-4 py-3 text-sm font-semibold text-white disabled:opacity-50" disabled={pairing} onClick={async () => {
+                if (serialConnected) { disconnectSerial(); return; }
+                setError(""); setPairing(true);
+                const attempt = ++serialAttempt.current;
+                let port: SerialPort | null = null;
+                try {
+                  port = await openSerial((navigator as Navigator & { serial?: Serial }).serial);
+                  if (attempt !== serialAttempt.current) return;
+                  serialPort.current = port;
+                  const controller = new AbortController();
+                  serialAbort.current = controller;
+                  setPrediction(null); setSerialConnected(true); setPairing(false);
+                  await readPredictions(port, (value) => { setPrediction(value); setPredictionSource("USB"); }, controller.signal);
+                  if (!controller.signal.aborted) setError("USB connection closed. Reconnect the tracker to continue.");
+                } catch (cause) {
+                  if (!(cause instanceof DOMException && cause.name === "NotFoundError")) handleError(cause);
+                } finally {
+                  if (port) { try { await port.close(); } catch {} }
+                  if (serialPort.current === port) { serialPort.current = null; serialAbort.current = null; setSerialConnected(false); }
+                  setPairing(false);
+                }
+              }}>{pairing ? "Connecting?" : serialConnected ? "Disconnect USB" : "Connect tracker by USB"}</button>
+            </section>
             <section className="mb-8 overflow-hidden rounded-[28px] bg-[#183d2c] text-white">
               <div className="grid items-center gap-8 p-7 sm:p-9 lg:grid-cols-[1fr_auto]">
                 <div>
@@ -608,7 +655,7 @@ function App() {
                 </div>
                 <p className="text-sm text-[#748078]">
                   {bluetoothName
-                    ? "Connected over Bluetooth. Measurement syncing awaits firmware configuration."
+                    ? bleSubscribed ? "Receiving live predictions over Bluetooth." : "Connected over Bluetooth; prediction subscription is not configured."
                     : "Connect your tracker over Bluetooth."}{" "}
                   ({devices.length} saved devices)
                 </p>
@@ -752,7 +799,7 @@ function App() {
               </h3>
               <p className="mt-3 text-sm text-[#748078]">
                 {bluetoothName
-                  ? "Bluetooth is connected. Activity syncing still needs your firmware service, characteristic and measurement format."
+                  ? bleSubscribed ? "Bluetooth is connected and listening for live predictions." : "Bluetooth is connected. Configure both UUIDs to receive predictions."
                   : "Keep your wearable nearby with Bluetooth enabled. Choose it in the browser Bluetooth window."}
               </p>
               {error && (
@@ -779,7 +826,7 @@ function App() {
                     try {
                       selected = await pairDevice(
                         (navigator as Navigator & { bluetooth?: Bluetooth }).bluetooth,
-                        import.meta.env.VITE_BLE_SERVICE_UUID,
+                        import.meta.env.VITE_BLE_SERVICE_UUID || "0000aabb-cc7a-482a-984a-7f2ed5b3e58f",
                       );
                       if (attempt !== pairAttempt.current) {
                         selected.gatt?.disconnect();
@@ -791,6 +838,9 @@ function App() {
                         "gattserverdisconnected",
                         () => {
                           if (bluetoothDevice.current === device) {
+                            unsubscribeBle.current?.();
+                            unsubscribeBle.current = null;
+                            setBleSubscribed(false);
                             bluetoothDevice.current = null;
                             setBluetoothName("");
                           }
@@ -807,9 +857,26 @@ function App() {
                       }
                       if (!device.gatt?.connected)
                         throw new Error("Device disconnected while connecting. Please try again.");
+                      const serviceUuid = import.meta.env.VITE_BLE_SERVICE_UUID?.trim() || "0000aabb-cc7a-482a-984a-7f2ed5b3e58f";
+                      const characteristicUuid = import.meta.env.VITE_BLE_CHARACTERISTIC_UUID?.trim() || "00003344-8e22-4541-9d4c-21edae82ed19";
+                      if (serviceUuid && characteristicUuid) {
+                        const unsubscribe = await subscribePredictions(device, serviceUuid, characteristicUuid, (value) => {
+                          if (pairAttempt.current === attempt) { setPrediction(value); setPredictionSource("Bluetooth"); }
+                        });
+                        if (attempt !== pairAttempt.current || !device.gatt?.connected) {
+                          unsubscribe();
+                          device.gatt?.disconnect();
+                          return;
+                        }
+                        unsubscribeBle.current = unsubscribe;
+                        setBleSubscribed(true);
+                      }
                       setBluetoothName(device.name || "STM32 tracker");
                       await refresh();
                     } catch (cause) {
+                      unsubscribeBle.current?.();
+                      unsubscribeBle.current = null;
+                      setBleSubscribed(false);
                       selected?.gatt?.disconnect();
                       if (attempt === pairAttempt.current) {
                         bluetoothDevice.current = null;

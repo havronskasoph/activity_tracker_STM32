@@ -1,35 +1,6 @@
-/* Куди прошивка віддає результати.
- *
- * Увесь вивід — передбачення, рядки стану, printf — проходить через цей шар,
- * тому змінити канал передачі можна одним #define, не чіпаючи логіку.
- *
- * HAR_OUT_STLINK (типово)
- *     USART1 -> мікросхема ST-Link на платі -> USB -> віртуальний COM-порт.
- *     Потрібен кабель до комп'ютера.
- *
- * HAR_OUT_UART4
- *     UART4 на ніжках PC10 (TX) і PC11 (RX). Сюди чіпляється зовнішній
- *     Bluetooth-модуль з UART-інтерфейсом: HC-05 (класичний SPP) або HM-10
- *     (BLE). Для ноутбука такий модуль виглядає звичайним COM-портом, тож
- *     tools/watch.py і tools/log.py працюють без змін.
- *
- *     Підключення модуля: VCC -> 3V3, GND -> GND, модуль RX -> плата PC10,
- *     модуль TX -> плата PC11. Швидкість модуля має бути 115200.
- *
- *     Увага: ці ніжки на платі розведені на вбудований модуль EMW3080
- *     (у схемі названі WRLS_UART4_*). Перед підключенням зовнішнього модуля
- *     треба переконатися за схемою, що лінії вільні, інакше два передавачі
- *     боротимуться за одну лінію.
- *
- * HAR_OUT_BLE
- *     Bluetooth LE через вбудований модуль STM32WB5MMG (той самий UART4, але
- *     на 9600 бод — цього вимагає AT-протокол модуля). Телефон або ноутбук
- *     бачить плату як BLE-пристрій і отримує рядки сповіщеннями.
- *     Вимагає разової підготовки — див. har_ble.h.
- *
- *     Рядки накопичуються в буфері й вирушають цілими: одне сповіщення
- *     вміщає 64 байти, тож слати побайтово було б і повільно, і марно.
- */
+/* Output routing: ST-Link USB serial is the default. HAR_OUT_UART4 is for an
+ * external UART module and requires HAR_BLE_ENABLED=0 in har_ble.h. BLE
+ * predictions are sent separately alongside ST-Link output; see BLE_SETUP.md. */
 #ifndef HAR_OUT_H
 #define HAR_OUT_H
 
@@ -41,6 +12,10 @@
 
 #ifndef HAR_OUT_PORT
 #define HAR_OUT_PORT  HAR_OUT_STLINK
+#endif
+
+#if HAR_OUT_PORT == HAR_OUT_BLE
+#error "Use HAR_OUT_STLINK with HAR_BLE_ENABLED in har_ble.h for BLE predictions"
 #endif
 
 #ifdef __cplusplus

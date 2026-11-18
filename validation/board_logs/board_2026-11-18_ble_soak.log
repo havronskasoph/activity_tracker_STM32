@@ -1,0 +1,3059 @@
+    0.5  # rate=26.400 Hz windows=44 missed=57
+    1.0  # pred t=48158 class=Lying p=0.844
+    1.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342034383135380a
+    1.0  # at< OK..
+    2.0  # pred t=49141 class=Lying p=0.844
+    2.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342034393134310a
+    2.0  # at< OK..
+    3.0  # pred t=50125 class=Lying p=0.843
+    3.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332035303132350a
+    3.0  # at< OK..
+    4.1  # pred t=51109 class=Lying p=0.843
+    4.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332035313130390a
+    4.1  # at< OK..
+    5.1  # pred t=52092 class=Lying p=0.842
+    5.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322035323039320a
+    5.1  # at< OK..
+    5.6  # rate=26.400 Hz windows=49 missed=62
+    5.6  # pred t=53076 class=Lying p=0.843
+    6.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332035333037360a
+    6.1  # at< OK..
+    6.6  # pred t=54059 class=Lying p=0.843
+    7.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332035343035390a
+    7.1  # at< OK..
+    7.6  # pred t=55043 class=Lying p=0.843
+    7.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332035353034330a
+    7.6  # at< OK..
+    8.6  # pred t=56026 class=Lying p=0.843
+    8.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332035363032360a
+    8.6  # at< OK..
+    9.6  # pred t=57010 class=Lying p=0.844
+    9.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342035373031300a
+    9.6  # at< OK..
+   10.7  # rate=26.400 Hz windows=54 missed=67
+   10.7  # pred t=57993 class=Lying p=0.844
+   10.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342035373939330a
+   10.7  # at< OK..
+   11.7  # pred t=58977 class=Lying p=0.844
+   11.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342035383937370a
+   11.7  # at< OK..
+   12.7  # pred t=59960 class=Lying p=0.844
+   12.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342035393936300a
+   12.7  # at< OK..
+   13.7  # pred t=60944 class=Lying p=0.844
+   13.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342036303934340a
+   13.7  # at< OK..
+   14.7  # pred t=61927 class=Lying p=0.845
+   14.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352036313932370a
+   14.7  # at< OK..
+   15.7  # pred t=62911 class=Lying p=0.844
+   15.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342036323931310a
+   15.7  # at< OK..
+   15.7  # rate=26.175 Hz windows=60 missed=72
+   16.8  # pred t=63894 class=Lying p=0.843
+   16.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332036333839340a
+   16.8  # at< OK..
+   17.8  # pred t=64878 class=Lying p=0.844
+   17.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342036343837380a
+   17.8  # at< OK..
+   18.8  # pred t=65861 class=Lying p=0.844
+   18.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342036353836310a
+   18.8  # at< OK..
+   19.3  # pred t=66845 class=Lying p=0.845
+   19.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352036363834350a
+   19.8  # at< OK..
+   20.3  # pred t=67828 class=Lying p=0.843
+   20.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332036373832380a
+   20.3  # at< OK..
+   20.8  # rate=26.600 Hz windows=65 missed=78
+   21.3  # pred t=68812 class=Lying p=0.842
+   21.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322036383831320a
+   21.3  # at< OK..
+   22.3  # pred t=69795 class=Lying p=0.840
+   22.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834302036393739350a
+   22.3  # at< OK..
+   23.4  # pred t=70779 class=Lying p=0.841
+   23.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834312037303737390a
+   23.4  # at< OK..
+   24.4  # pred t=71763 class=Lying p=0.842
+   24.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322037313736330a
+   24.4  # at< OK..
+   25.4  # pred t=72746 class=Lying p=0.842
+   25.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322037323734360a
+   25.4  # at< OK..
+   25.4  # rate=26.400 Hz windows=70 missed=83
+   26.4  # pred t=73730 class=Lying p=0.841
+   26.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834312037333733300a
+   26.4  # at< OK..
+   27.4  # pred t=74713 class=Lying p=0.842
+   27.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322037343731330a
+   27.4  # at< OK..
+   28.4  # pred t=75697 class=Lying p=0.843
+   28.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332037353639370a
+   28.4  # at< OK..
+   29.4  # pred t=76680 class=Lying p=0.841
+   29.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834312037363638300a
+   29.4  # at< OK..
+   30.5  # pred t=77664 class=Lying p=0.841
+   30.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834312037373636340a
+   30.5  # at< OK..
+   30.5  # rate=26.600 Hz windows=75 missed=88
+   31.5  # pred t=78647 class=Lying p=0.843
+   31.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332037383634370a
+   31.5  # at< OK..
+   32.0  # pred t=79631 class=Lying p=0.842
+   32.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322037393633310a
+   32.5  # at< OK..
+   33.0  # pred t=80614 class=Lying p=0.843
+   33.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332038303631340a
+   33.5  # at< OK..
+   34.0  # pred t=81598 class=Lying p=0.843
+   34.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332038313539380a
+   34.0  # at< OK..
+   35.0  # pred t=82581 class=Lying p=0.842
+   35.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322038323538310a
+   35.0  # at< OK..
+   35.5  # rate=26.400 Hz windows=80 missed=93
+   36.0  # pred t=83565 class=Lying p=0.846
+   36.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834362038333536350a
+   36.0  # at< OK..
+   37.1  # pred t=84548 class=Lying p=0.845
+   37.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352038343534380a
+   37.1  # at< OK..
+   38.1  # pred t=85532 class=Lying p=0.843
+   38.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332038353533320a
+   38.1  # at< OK..
+   39.1  # pred t=86515 class=Lying p=0.846
+   39.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834362038363531350a
+   39.1  # at< OK..
+   40.1  # pred t=87499 class=Lying p=0.846
+   40.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834362038373439390a
+   40.1  # at< OK..
+   40.6  # rate=26.400 Hz windows=85 missed=98
+   41.1  # pred t=88482 class=Lying p=0.844
+   41.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342038383438320a
+   41.1  # at< OK..
+   42.1  # pred t=89466 class=Lying p=0.842
+   42.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322038393436360a
+   42.1  # at< OK..
+   43.1  # pred t=90450 class=Lying p=0.841
+   43.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834312039303435300a
+   43.1  # at< OK..
+   44.1  # pred t=91433 class=Lying p=0.845
+   44.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352039313433330a
+   44.1  # at< OK..
+   45.2  # pred t=92417 class=Lying p=0.843
+   45.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332039323431370a
+   45.2  # at< OK..
+   45.7  # rate=26.400 Hz windows=90 missed=103
+   45.7  # pred t=93400 class=Lying p=0.841
+   46.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834312039333430300a
+   46.2  # at< OK..
+   46.7  # pred t=94384 class=Lying p=0.843
+   47.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332039343338340a
+   47.2  # at< OK..
+   47.7  # pred t=95368 class=Lying p=0.844
+   47.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342039353336380a
+   47.7  # at< OK..
+   48.7  # pred t=96351 class=Lying p=0.842
+   48.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322039363335310a
+   48.7  # at< OK..
+   49.7  # pred t=97335 class=Lying p=0.842
+   49.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322039373333350a
+   49.7  # at< OK..
+   50.2  # rate=26.600 Hz windows=95 missed=108
+   50.7  # pred t=98319 class=Lying p=0.845
+   50.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352039383331390a
+   50.7  # at< OK..
+   51.7  # pred t=99302 class=Lying p=0.845
+   51.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352039393330320a
+   51.7  # at< OK..
+   52.8  # pred t=100286 class=Lying p=0.845
+   52.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203130303238360a
+   52.8  # at< OK..
+   53.8  # pred t=101269 class=Lying p=0.844
+   53.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203130313236390a
+   53.8  # at< OK..
+   54.8  # pred t=102253 class=Lying p=0.844
+   54.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203130323235330a
+   54.8  # at< OK..
+   55.3  # rate=26.400 Hz windows=100 missed=113
+   55.8  # pred t=103237 class=Lying p=0.844
+   55.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203130333233370a
+   55.8  # at< OK..
+   56.9  # pred t=104220 class=Lying p=0.845
+   56.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203130343232300a
+   56.9  # at< OK..
+   57.9  # pred t=105204 class=Lying p=0.844
+   57.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203130353230340a
+   57.9  # at< OK..
+   58.4  # pred t=106187 class=Lying p=0.844
+   58.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203130363138370a
+   58.9  # at< OK..
+   59.4  # pred t=107171 class=Lying p=0.843
+   59.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203130373137310a
+   59.9  # at< OK..
+   60.4  # rate=26.400 Hz windows=105 missed=118
+   60.4  # pred t=108155 class=Lying p=0.844
+   60.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203130383135350a
+   60.4  # at< OK..
+   61.4  # pred t=109138 class=Lying p=0.841
+   61.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203130393133380a
+   61.4  # at< OK..
+   62.4  # pred t=110122 class=Lying p=0.842
+   62.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203131303132320a
+   62.4  # at< OK..
+   63.4  # pred t=111106 class=Lying p=0.845
+   63.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203131313130360a
+   63.4  # at< OK..
+   64.4  # pred t=112089 class=Lying p=0.843
+   64.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203131323038390a
+   64.4  # at< OK..
+   65.5  # rate=26.400 Hz windows=110 missed=123
+   65.5  # pred t=113073 class=Lying p=0.844
+   65.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203131333037330a
+   65.5  # at< OK..
+   66.5  # pred t=114057 class=Lying p=0.844
+   66.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203131343035370a
+   66.5  # at< OK..
+   67.5  # pred t=115040 class=Lying p=0.844
+   67.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203131353034300a
+   67.5  # at< OK..
+   68.5  # pred t=116024 class=Lying p=0.845
+   68.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203131363032340a
+   68.5  # at< OK..
+   69.5  # pred t=117008 class=Lying p=0.844
+   69.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203131373030380a
+   69.5  # at< OK..
+   70.5  # pred t=117991 class=Lying p=0.844
+   70.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203131373939310a
+   70.5  # at< OK..
+   70.5  # rate=26.160 Hz windows=116 missed=128
+   71.6  # pred t=118975 class=Lying p=0.844
+   71.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203131383937350a
+   71.6  # at< OK..
+   72.1  # pred t=119959 class=Lying p=0.844
+   72.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203131393935390a
+   72.6  # at< OK..
+   73.1  # pred t=120942 class=Lying p=0.843
+   73.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203132303934320a
+   73.6  # at< OK..
+   74.1  # pred t=121926 class=Lying p=0.843
+   74.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203132313932360a
+   74.1  # at< OK..
+   75.1  # pred t=122909 class=Lying p=0.843
+   75.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203132323930390a
+   75.1  # at< OK..
+   75.6  # rate=26.600 Hz windows=121 missed=134
+   76.1  # pred t=123893 class=Lying p=0.843
+   76.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203132333839330a
+   76.1  # at< OK..
+   77.1  # pred t=124877 class=Lying p=0.844
+   77.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203132343837370a
+   77.1  # at< OK..
+   78.1  # pred t=125860 class=Lying p=0.844
+   78.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203132353836300a
+   78.1  # at< OK..
+   79.2  # pred t=126844 class=Lying p=0.844
+   79.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203132363834340a
+   79.2  # at< OK..
+   80.2  # pred t=127828 class=Lying p=0.843
+   80.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203132373832380a
+   80.2  # at< OK..
+   80.2  # rate=26.400 Hz windows=126 missed=139
+   81.2  # pred t=128811 class=Lying p=0.844
+   81.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203132383831310a
+   81.2  # at< OK..
+   82.2  # pred t=129795 class=Lying p=0.844
+   82.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203132393739350a
+   82.2  # at< OK..
+   83.2  # pred t=130778 class=Lying p=0.844
+   83.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203133303737380a
+   83.2  # at< OK..
+   84.2  # pred t=131762 class=Lying p=0.844
+   84.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203133313736320a
+   84.2  # at< OK..
+   85.2  # pred t=132746 class=Lying p=0.843
+   85.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203133323734360a
+   85.2  # at< OK..
+   85.2  # rate=26.600 Hz windows=131 missed=144
+   86.2  # pred t=133729 class=Lying p=0.844
+   86.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203133333732390a
+   86.2  # at< OK..
+   86.7  # pred t=134713 class=Lying p=0.844
+   87.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203133343731330a
+   87.2  # at< OK..
+   87.8  # pred t=135697 class=Lying p=0.844
+   87.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203133353639370a
+   88.3  # at< OK..
+   88.8  # pred t=136680 class=Lying p=0.843
+   88.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203133363638300a
+   88.8  # at< OK..
+   89.8  # pred t=137664 class=Lying p=0.845
+   89.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203133373636340a
+   89.8  # at< OK..
+   90.3  # rate=26.400 Hz windows=136 missed=149
+   90.8  # pred t=138647 class=Lying p=0.848
+   90.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383438203133383634370a
+   90.8  # at< OK..
+   91.8  # pred t=139631 class=Lying p=0.843
+   91.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203133393633310a
+   91.8  # at< OK..
+   92.8  # pred t=140615 class=Lying p=0.843
+   92.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203134303631350a
+   92.8  # at< OK..
+   93.8  # pred t=141598 class=Lying p=0.843
+   93.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203134313539380a
+   93.8  # at< OK..
+   94.8  # pred t=142582 class=Lying p=0.843
+   94.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203134323538320a
+   94.8  # at< OK..
+   95.3  # rate=26.400 Hz windows=141 missed=154
+   95.9  # pred t=143566 class=Lying p=0.842
+   95.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203134333536360a
+   95.9  # at< OK..
+   96.9  # pred t=144549 class=Lying p=0.844
+   96.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203134343534390a
+   96.9  # at< OK..
+   97.9  # pred t=145533 class=Lying p=0.847
+   97.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383437203134353533330a
+   97.9  # at< OK..
+   98.9  # pred t=146516 class=Lying p=0.845
+   98.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203134363531360a
+   98.9  # at< OK..
+   99.9  # pred t=147500 class=Lying p=0.845
+   99.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203134373530300a
+   99.9  # at< OK..
+  100.4  # rate=26.400 Hz windows=146 missed=159
+  100.4  # pred t=148484 class=Lying p=0.844
+  100.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203134383438340a
+  100.9  # at< OK..
+  101.4  # pred t=149467 class=Lying p=0.843
+  101.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203134393436370a
+  101.4  # at< OK..
+  102.5  # pred t=150451 class=Lying p=0.848
+  102.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383438203135303435310a
+  102.5  # at< OK..
+  103.5  # pred t=151434 class=Lying p=0.854
+  103.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383534203135313433340a
+  103.5  # at< OK..
+  104.5  # pred t=152418 class=Lying p=0.844
+  104.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203135323431380a
+  104.5  # at< OK..
+  105.0  # rate=26.600 Hz windows=151 missed=164
+  105.5  # pred t=153401 class=Lying p=0.844
+  105.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203135333430310a
+  105.5  # at< OK..
+  106.5  # pred t=154385 class=Lying p=0.843
+  106.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203135343338350a
+  106.5  # at< OK..
+  107.5  # pred t=155369 class=Lying p=0.843
+  107.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203135353336390a
+  107.5  # at< OK..
+  108.5  # pred t=156352 class=Lying p=0.843
+  108.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203135363335320a
+  108.5  # at< OK..
+  109.6  # pred t=157336 class=Lying p=0.844
+  109.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203135373333360a
+  109.6  # at< OK..
+  110.1  # rate=26.400 Hz windows=156 missed=169
+  110.6  # pred t=158319 class=Lying p=0.844
+  110.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203135383331390a
+  110.6  # at< OK..
+  111.6  # pred t=159303 class=Lying p=0.844
+  111.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203135393330330a
+  111.6  # at< OK..
+  112.6  # pred t=160286 class=Lying p=0.844
+  112.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203136303238360a
+  112.6  # at< OK..
+  113.6  # pred t=161270 class=Lying p=0.845
+  113.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203136313237300a
+  113.6  # at< OK..
+  114.1  # pred t=162254 class=Lying p=0.844
+  115.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203136323235340a
+  115.1  # at< <OK..   <-- таймаут
+  115.1  # rate=23.800 Hz windows=161 missed=187
+  115.1  # pred t=163237 class=Lying p=0.844
+  115.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203136333233370a
+  115.6  # at< OK..
+  116.1  # pred t=164221 class=Lying p=0.844
+  116.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203136343232310a
+  116.1  # at< OK..
+  117.2  # pred t=165204 class=Lying p=0.843
+  117.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203136353230340a
+  117.2  # at< OK..
+  118.2  # pred t=166188 class=Lying p=0.843
+  118.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203136363138380a
+  118.2  # at< OK..
+  119.2  # pred t=167171 class=Lying p=0.844
+  119.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203136373137310a
+  119.2  # at< OK..
+  120.2  # rate=26.400 Hz windows=166 missed=192
+  120.2  # pred t=168155 class=Lying p=0.843
+  120.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203136383135350a
+  120.2  # at< OK..
+  121.2  # pred t=169138 class=Lying p=0.843
+  121.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203136393133380a
+  121.2  # at< OK..
+  122.2  # pred t=170122 class=Lying p=0.844
+  122.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203137303132320a
+  122.2  # at< OK..
+  123.3  # pred t=171105 class=Lying p=0.843
+  123.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203137313130350a
+  123.3  # at< OK..
+  124.3  # pred t=172089 class=Lying p=0.843
+  124.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203137323038390a
+  124.3  # at< OK..
+  125.3  # pred t=173072 class=Lying p=0.843
+  125.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203137333037320a
+  125.3  # at< OK..
+  125.3  # rate=26.175 Hz windows=172 missed=197
+  126.3  # pred t=174056 class=Lying p=0.839
+  126.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383339203137343035360a
+  126.3  # at< OK..
+  126.8  # pred t=175039 class=Lying p=0.839
+  127.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383339203137353033390a
+  127.3  # at< OK..
+  127.8  # pred t=176023 class=Lying p=0.843
+  128.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203137363032330a
+  128.3  # at< OK..
+  128.8  # pred t=177006 class=Lying p=0.844
+  128.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203137373030360a
+  128.8  # at< OK..
+  129.8  # pred t=177990 class=Lying p=0.845
+  129.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203137373939300a
+  129.8  # at< OK..
+  130.4  # rate=26.600 Hz windows=177 missed=203
+  130.9  # pred t=178974 class=Lying p=0.844
+  130.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203137383937340a
+  130.9  # at< OK..
+  131.9  # pred t=179957 class=Lying p=0.843
+  131.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203137393935370a
+  131.9  # at< OK..
+  132.9  # pred t=180941 class=Lying p=0.843
+  132.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203138303934310a
+  132.9  # at< OK..
+  133.9  # pred t=181924 class=Lying p=0.843
+  133.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203138313932340a
+  133.9  # at< OK..
+  134.9  # pred t=182908 class=Lying p=0.844
+  134.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203138323930380a
+  134.9  # at< OK..
+  134.9  # rate=26.400 Hz windows=182 missed=208
+  135.9  # pred t=183891 class=Lying p=0.843
+  135.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203138333839310a
+  135.9  # at< OK..
+  136.9  # pred t=184875 class=Lying p=0.843
+  136.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203138343837350a
+  136.9  # at< OK..
+  138.0  # pred t=185858 class=Lying p=0.843
+  138.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203138353835380a
+  138.0  # at< OK..
+  139.0  # pred t=186842 class=Lying p=0.845
+  139.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203138363834320a
+  139.0  # at< OK..
+  140.0  # pred t=187825 class=Lying p=0.843
+  140.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203138373832350a
+  140.0  # at< OK..
+  140.0  # rate=26.600 Hz windows=187 missed=213
+  140.5  # pred t=188809 class=Lying p=0.843
+  141.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203138383830390a
+  141.0  # at< OK..
+  141.5  # pred t=189793 class=Lying p=0.844
+  142.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203138393739330a
+  142.0  # at< OK..
+  142.5  # pred t=190776 class=Lying p=0.843
+  142.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203139303737360a
+  142.5  # at< OK..
+  143.6  # pred t=191760 class=Lying p=0.845
+  143.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203139313736300a
+  143.6  # at< OK..
+  144.6  # pred t=192743 class=Lying p=0.865
+  144.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383635203139323734330a
+  144.6  # at< OK..
+  145.1  # rate=26.400 Hz windows=192 missed=218
+  145.6  # pred t=193727 class=Lying p=0.853
+  145.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383533203139333732370a
+  145.6  # at< OK..
+  146.6  # pred t=194710 class=Lying p=0.847
+  146.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383437203139343731300a
+  146.6  # at< OK..
+  147.6  # pred t=195694 class=Lying p=0.842
+  147.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203139353639340a
+  147.6  # at< OK..
+  148.6  # pred t=196677 class=Lying p=0.846
+  148.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203139363637370a
+  148.6  # at< OK..
+  149.7  # pred t=197661 class=Lying p=0.843
+  149.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203139373636310a
+  149.7  # at< OK..
+  150.2  # rate=26.400 Hz windows=197 missed=223
+  150.7  # pred t=198645 class=Lying p=0.843
+  150.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203139383634350a
+  150.7  # at< OK..
+  151.7  # pred t=199628 class=Lying p=0.843
+  151.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203139393632380a
+  151.7  # at< OK..
+  152.7  # pred t=200612 class=Lying p=0.843
+  152.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203230303631320a
+  152.7  # at< OK..
+  153.2  # pred t=201595 class=Lying p=0.840
+  153.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203230313539350a
+  153.7  # at< OK..
+  154.2  # pred t=202579 class=Lying p=0.839
+  154.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383339203230323537390a
+  154.2  # at< OK..
+  154.7  # rate=26.400 Hz windows=202 missed=228
+  155.3  # pred t=203562 class=Lying p=0.839
+  155.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383339203230333536320a
+  155.3  # at< OK..
+  156.3  # pred t=204546 class=Lying p=0.842
+  156.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203230343534360a
+  156.3  # at< OK..
+  157.3  # pred t=205530 class=Lying p=0.844
+  157.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203230353533300a
+  157.3  # at< OK..
+  158.3  # pred t=206513 class=Lying p=0.839
+  158.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383339203230363531330a
+  158.3  # at< OK..
+  159.3  # pred t=207497 class=Lying p=0.835
+  159.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383335203230373439370a
+  159.3  # at< OK..
+  159.8  # rate=26.600 Hz windows=207 missed=233
+  160.3  # pred t=208480 class=Lying p=0.842
+  160.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203230383438300a
+  160.3  # at< OK..
+  161.3  # pred t=209464 class=Lying p=0.843
+  161.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203230393436340a
+  161.3  # at< OK..
+  162.3  # pred t=210447 class=Lying p=0.843
+  162.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203231303434370a
+  162.3  # at< OK..
+  163.3  # pred t=211431 class=Lying p=0.843
+  163.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203231313433310a
+  163.3  # at< OK..
+  164.3  # pred t=212414 class=Lying p=0.843
+  164.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203231323431340a
+  164.3  # at< OK..
+  164.9  # rate=26.400 Hz windows=212 missed=238
+  165.4  # pred t=213398 class=Lying p=0.842
+  165.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203231333339380a
+  165.4  # at< OK..
+  166.4  # pred t=214382 class=Lying p=0.846
+  166.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203231343338320a
+  166.4  # at< OK..
+  166.9  # pred t=215365 class=Lying p=0.846
+  167.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203231353336350a
+  167.4  # at< OK..
+  167.9  # pred t=216349 class=Lying p=0.844
+  168.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203231363334390a
+  168.4  # at< OK..
+  168.9  # pred t=217332 class=Lying p=0.844
+  168.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203231373333320a
+  168.9  # at< OK..
+  169.9  # rate=26.400 Hz windows=217 missed=243
+  169.9  # pred t=218316 class=Lying p=0.843
+  169.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203231383331360a
+  169.9  # at< OK..
+  170.9  # pred t=219299 class=Lying p=0.843
+  170.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203231393239390a
+  170.9  # at< OK..
+  171.9  # pred t=220283 class=Lying p=0.843
+  171.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203232303238330a
+  171.9  # at< OK..
+  172.9  # pred t=221267 class=Lying p=0.844
+  172.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203232313236370a
+  172.9  # at< OK..
+  174.0  # pred t=222250 class=Lying p=0.844
+  174.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203232323235300a
+  174.0  # at< OK..
+  175.0  # rate=26.400 Hz windows=222 missed=248
+  175.0  # pred t=223234 class=Lying p=0.843
+  175.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203232333233340a
+  175.0  # at< OK..
+  176.0  # pred t=224218 class=Lying p=0.844
+  176.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203232343231380a
+  176.0  # at< OK..
+  177.0  # pred t=225201 class=Lying p=0.844
+  177.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203232353230310a
+  177.0  # at< OK..
+  178.0  # pred t=226185 class=Lying p=0.843
+  178.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203232363138350a
+  178.0  # at< OK..
+  179.0  # pred t=227168 class=Lying p=0.842
+  179.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203232373136380a
+  179.0  # at< OK..
+  180.1  # pred t=228152 class=Lying p=0.841
+  180.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203232383135320a
+  180.1  # at< OK..
+  180.1  # rate=26.186 Hz windows=228 missed=253
+  180.6  # pred t=229136 class=Lying p=0.840
+  181.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203232393133360a
+  181.1  # at< OK..
+  181.6  # pred t=230119 class=Lying p=0.845
+  182.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203233303131390a
+  182.1  # at< OK..
+  182.6  # pred t=231103 class=Lying p=0.845
+  182.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203233313130330a
+  182.6  # at< OK..
+  183.6  # pred t=232086 class=Lying p=0.842
+  183.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203233323038360a
+  183.6  # at< OK..
+  184.6  # pred t=233070 class=Lying p=0.841
+  184.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203233333037300a
+  184.6  # at< OK..
+  184.6  # rate=26.600 Hz windows=233 missed=259
+  185.6  # pred t=234053 class=Lying p=0.842
+  185.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203233343035330a
+  185.6  # at< OK..
+  186.7  # pred t=235037 class=Lying p=0.843
+  186.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203233353033370a
+  186.7  # at< OK..
+  187.7  # pred t=236021 class=Lying p=0.843
+  187.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203233363032310a
+  187.7  # at< OK..
+  188.7  # pred t=237004 class=Lying p=0.842
+  188.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203233373030340a
+  188.7  # at< OK..
+  189.7  # pred t=237988 class=Lying p=0.841
+  189.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203233373938380a
+  189.7  # at< OK..
+  189.7  # rate=26.400 Hz windows=238 missed=264
+  190.7  # pred t=238972 class=Lying p=0.842
+  190.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203233383937320a
+  190.7  # at< OK..
+  191.7  # pred t=239955 class=Lying p=0.843
+  191.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203233393935350a
+  191.7  # at< OK..
+  192.8  # pred t=240939 class=Lying p=0.839
+  192.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383339203234303933390a
+  192.8  # at< OK..
+  193.8  # pred t=241922 class=Lying p=0.842
+  193.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203234313932320a
+  193.8  # at< OK..
+  194.3  # pred t=242906 class=Lying p=0.841
+  194.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203234323930360a
+  194.8  # at< OK..
+  194.8  # rate=26.600 Hz windows=243 missed=269
+  195.3  # pred t=243890 class=Lying p=0.841
+  195.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203234333839300a
+  195.8  # at< OK..
+  196.3  # pred t=244873 class=Lying p=0.840
+  196.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203234343837330a
+  196.3  # at< OK..
+  197.3  # pred t=245857 class=Lying p=0.840
+  197.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203234353835370a
+  197.3  # at< OK..
+  198.3  # pred t=246841 class=Lying p=0.842
+  198.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203234363834310a
+  198.3  # at< OK..
+  199.3  # pred t=247824 class=Lying p=0.841
+  199.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203234373832340a
+  199.3  # at< OK..
+  199.8  # rate=26.400 Hz windows=248 missed=274
+  200.3  # pred t=248808 class=Lying p=0.840
+  200.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203234383830380a
+  200.3  # at< OK..
+  201.3  # pred t=249792 class=Lying p=0.841
+  201.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203234393739320a
+  201.3  # at< OK..
+  202.3  # pred t=250775 class=Lying p=0.841
+  202.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203235303737350a
+  202.3  # at< OK..
+  203.3  # pred t=251759 class=Lying p=0.842
+  203.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203235313735390a
+  203.3  # at< OK..
+  204.4  # pred t=252743 class=Lying p=0.843
+  204.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203235323734330a
+  204.4  # at< OK..
+  204.9  # rate=26.400 Hz windows=253 missed=279
+  205.4  # pred t=253726 class=Lying p=0.842
+  205.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203235333732360a
+  205.4  # at< OK..
+  206.4  # pred t=254710 class=Lying p=0.843
+  206.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203235343731300a
+  206.4  # at< OK..
+  207.4  # pred t=255694 class=Lying p=0.842
+  207.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203235353639340a
+  207.4  # at< OK..
+  208.4  # pred t=256677 class=Lying p=0.841
+  208.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203235363637370a
+  208.4  # at< OK..
+  208.9  # pred t=257661 class=Lying p=0.842
+  209.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203235373636310a
+  209.4  # at< OK..
+  209.9  # rate=26.400 Hz windows=258 missed=284
+  209.9  # pred t=258645 class=Lying p=0.842
+  210.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203235383634350a
+  210.4  # at< OK..
+  211.0  # pred t=259628 class=Lying p=0.841
+  211.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203235393632380a
+  211.0  # at< OK..
+  212.0  # pred t=260612 class=Lying p=0.843
+  212.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203236303631320a
+  212.0  # at< OK..
+  213.0  # pred t=261596 class=Lying p=0.843
+  213.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203236313539360a
+  213.0  # at< OK..
+  214.0  # pred t=262579 class=Lying p=0.839
+  214.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383339203236323537390a
+  214.0  # at< OK..
+  214.5  # rate=26.600 Hz windows=263 missed=289
+  215.0  # pred t=263563 class=Lying p=0.840
+  215.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203236333536330a
+  215.0  # at< OK..
+  216.0  # pred t=264546 class=Lying p=0.847
+  216.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383437203236343534360a
+  216.0  # at< OK..
+  217.0  # pred t=265530 class=Lying p=0.843
+  217.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203236353533300a
+  217.0  # at< OK..
+  218.0  # pred t=266514 class=Lying p=0.846
+  218.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203236363531340a
+  218.0  # at< OK..
+  219.1  # pred t=267497 class=Lying p=0.844
+  219.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203236373439370a
+  219.1  # at< OK..
+  219.6  # rate=26.400 Hz windows=268 missed=294
+  220.1  # pred t=268481 class=Lying p=0.843
+  220.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203236383438310a
+  220.1  # at< OK..
+  221.1  # pred t=269464 class=Lying p=0.843
+  221.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203236393436340a
+  221.1  # at< OK..
+  222.1  # pred t=270448 class=Lying p=0.845
+  222.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203237303434380a
+  222.1  # at< OK..
+  222.6  # pred t=271432 class=Lying p=0.844
+  223.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203237313433320a
+  223.1  # at< OK..
+  223.6  # pred t=272415 class=Lying p=0.842
+  223.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203237323431350a
+  223.6  # at< OK..
+  224.7  # rate=26.400 Hz windows=273 missed=299
+  224.7  # pred t=273399 class=Lying p=0.842
+  224.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203237333339390a
+  224.7  # at< OK..
+  225.7  # pred t=274383 class=Lying p=0.843
+  225.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203237343338330a
+  225.7  # at< OK..
+  226.7  # pred t=275366 class=Lying p=0.845
+  226.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203237353336360a
+  226.7  # at< OK..
+  227.7  # pred t=276350 class=Lying p=0.842
+  227.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203237363335300a
+  227.7  # at< OK..
+  228.7  # pred t=277333 class=Lying p=0.845
+  228.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203237373333330a
+  228.7  # at< OK..
+  229.7  # rate=26.400 Hz windows=278 missed=304
+  229.7  # pred t=278317 class=Lying p=0.843
+  229.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203237383331370a
+  229.7  # at< OK..
+  230.8  # pred t=279300 class=Lying p=0.842
+  230.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203237393330300a
+  230.8  # at< OK..
+  231.8  # pred t=280284 class=Lying p=0.844
+  231.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203238303238340a
+  231.8  # at< OK..
+  232.8  # pred t=281268 class=Lying p=0.841
+  232.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203238313236380a
+  232.8  # at< OK..
+  233.8  # pred t=282251 class=Lying p=0.843
+  233.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203238323235310a
+  233.8  # at< OK..
+  234.8  # pred t=283235 class=Lying p=0.843
+  234.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203238333233350a
+  234.8  # at< OK..
+  234.8  # rate=26.165 Hz windows=284 missed=309
+  235.3  # pred t=284218 class=Lying p=0.844
+  235.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203238343231380a
+  235.8  # at< OK..
+  236.3  # pred t=285202 class=Lying p=0.844
+  236.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203238353230320a
+  236.3  # at< OK..
+  237.4  # pred t=286185 class=Lying p=0.841
+  237.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203238363138350a
+  237.4  # at< OK..
+  242.4  # at> AT
+  242.4  # at< OK..
+  242.4  # --- ble probe ---
+  242.4  # at> AT+BLE_PUB_ADDR?
+  242.4  # at< +BLE_PUB_ADDR:0x0080e127a2ae..OK..
+  243.0  # at> AT+BLE_ADV?
+  243.0  # at< +BLE_ADV:1..OK..
+  243.0  # at> AT+BLE_SVC?
+  243.0  # at< +BLE_SVC:3..OK..
+  243.0  # at> AT
+  243.0  # at< OK..
+  243.5  # at> AT+ZZZZ?
+  243.5  # at< ERROR..
+  243.5  # at> AT+VERSION?
+  243.5  # at< ERROR..
+  244.0  # at> AT+VERS?
+  244.0  # at< ERROR..
+  244.0  # at> AT+GMR
+  244.0  # at< ERROR..
+  244.5  # at> ATI
+  244.5  # at< ERROR..
+  244.5  # at> AT+HELP?
+  244.5  # at< ERROR..
+  244.5  # at> AT+NAME?
+  245.0  # at< ERROR..
+  245.0  # at> AT+ADDR?
+  245.0  # at< ERROR..
+  245.0  # at> AT+MAC?
+  245.0  # at< ERROR..
+  245.5  # at> AT+ROLE?
+  245.5  # at< ERROR..
+  245.5  # at> AT+BLE_PUB_ADDR?
+  245.5  # at< +BLE_PUB_ADDR:0x0080e127a2ae..OK..
+  246.0  # at> AT+BLE_SVC=1
+  246.0  # at< OK..
+  246.0  # --- probe end ---
+  246.5  # at> AT+BLE_NAME=Spokiy
+  246.5  # at< OK..
+  247.0  # at> AT+BLE_INIT=1
+  247.0  # at< OK..
+  247.0  # at> AT+BLE_SVC=3,2,0xaabb,10
+  247.0  # at< OK..
+  247.0  # at> AT+BLE_CHAR_ADD=3,1,2,0x3344,20,0x10,0,0
+  247.0  # at< OK..
+  247.5  # at> AT+BLE_ADV=1
+  247.5  # at< OK..
+  247.5  Start
+  247.5  WHO_AM_I = 0x6B (expected 0x6B)
+  247.5  # fs=27 Hz window=55 x 6 hop=27 lpf=12 Hz units=g,dps
+  247.5  # model=ok classes=5
+  247.5  # out=USART1 (ST-Link VCP)
+  247.5  # ble=ok step=0 soft=0x00
+  249.5  # pred t=9015 class=Running p=0.581
+  249.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3320302e35383120393031350a
+  249.5  # at< OK..
+  250.6  # pred t=9999 class=Lying p=0.843
+  250.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e38343320393939390a
+  250.6  # at< OK..
+  251.6  # pred t=10982 class=Lying p=0.845
+  251.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352031303938320a
+  251.6  # at< OK..
+  252.1  # pred t=11966 class=Lying p=0.844
+  252.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342031313936360a
+  252.6  # at< OK..
+  252.6  # rate=26.525 Hz windows=4 missed=3
+  253.1  # pred t=12949 class=Lying p=0.843
+  253.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332031323934390a
+  253.6  # at< OK..
+  254.1  # pred t=13933 class=Lying p=0.845
+  254.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352031333933330a
+  254.1  # at< OK..
+  255.1  # pred t=14917 class=Lying p=0.843
+  255.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332031343931370a
+  255.1  # at< OK..
+  256.1  # pred t=15900 class=Lying p=0.840
+  256.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834302031353930300a
+  256.1  # at< OK..
+  257.2  # pred t=16884 class=Lying p=0.843
+  257.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332031363838340a
+  257.2  # at< OK..
+  257.2  # rate=26.600 Hz windows=9 missed=9
+  258.2  # pred t=17867 class=Lying p=0.843
+  258.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332031373836370a
+  258.2  # at< OK..
+  259.2  # pred t=18851 class=Lying p=0.843
+  259.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332031383835310a
+  259.2  # at< OK..
+  260.2  # pred t=19834 class=Lying p=0.844
+  260.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342031393833340a
+  260.2  # at< OK..
+  261.2  # pred t=20818 class=Lying p=0.842
+  261.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322032303831380a
+  261.2  # at< OK..
+  262.2  # pred t=21801 class=Lying p=0.843
+  262.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332032313830310a
+  262.2  # at< OK..
+  262.2  # rate=26.400 Hz windows=14 missed=14
+  263.2  # pred t=22785 class=Lying p=0.842
+  263.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322032323738350a
+  263.2  # at< OK..
+  264.2  # pred t=23768 class=Lying p=0.842
+  264.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322032333736380a
+  264.2  # at< OK..
+  264.8  # pred t=24752 class=Lying p=0.842
+  265.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322032343735320a
+  265.3  # at< OK..
+  265.8  # pred t=25735 class=Lying p=0.843
+  266.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332032353733350a
+  266.3  # at< OK..
+  266.8  # pred t=26719 class=Lying p=0.842
+  266.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322032363731390a
+  266.8  # at< OK..
+  267.3  # rate=26.600 Hz windows=19 missed=19
+  267.8  # pred t=27702 class=Lying p=0.844
+  267.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342032373730320a
+  267.8  # at< OK..
+  268.8  # pred t=28686 class=Lying p=0.843
+  268.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332032383638360a
+  268.8  # at< OK..
+  269.8  # pred t=29669 class=Lying p=0.842
+  269.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322032393636390a
+  269.8  # at< OK..
+  270.8  # pred t=30653 class=Lying p=0.842
+  270.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322033303635330a
+  270.8  # at< OK..
+  271.8  # pred t=31637 class=Lying p=0.844
+  271.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342033313633370a
+  271.8  # at< OK..
+  272.3  # rate=26.400 Hz windows=24 missed=24
+  272.8  # pred t=32620 class=Lying p=0.843
+  272.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332033323632300a
+  272.8  # at< OK..
+  273.9  # pred t=33604 class=Lying p=0.843
+  273.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332033333630340a
+  273.9  # at< OK..
+  274.9  # pred t=34587 class=Lying p=0.843
+  274.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332033343538370a
+  274.9  # at< OK..
+  275.9  # pred t=35571 class=Lying p=0.843
+  275.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332033353537310a
+  275.9  # at< OK..
+  276.9  # pred t=36554 class=Lying p=0.842
+  276.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322033363535340a
+  276.9  # at< OK..
+  277.4  # rate=26.400 Hz windows=29 missed=29
+  277.9  # pred t=37538 class=Lying p=0.842
+  277.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322033373533380a
+  277.9  # at< OK..
+  278.9  # pred t=38522 class=Lying p=0.844
+  278.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342033383532320a
+  278.9  # at< OK..
+  279.9  # pred t=39505 class=Lying p=0.842
+  279.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322033393530350a
+  279.9  # at< OK..
+  280.4  # pred t=40489 class=Lying p=0.843
+  280.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332034303438390a
+  280.9  # at< OK..
+  281.5  # pred t=41472 class=Lying p=0.845
+  281.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352034313437320a
+  281.5  # at< OK..
+  282.0  # rate=26.400 Hz windows=34 missed=34
+  282.5  # pred t=42456 class=Lying p=0.847
+  282.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834372034323435360a
+  282.5  # at< OK..
+  283.5  # pred t=43440 class=Lying p=0.845
+  283.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352034333434300a
+  283.5  # at< OK..
+  284.5  # pred t=44423 class=Lying p=0.845
+  284.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352034343432330a
+  284.5  # at< OK..
+  285.5  # pred t=45407 class=Lying p=0.841
+  285.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834312034353430370a
+  285.5  # at< OK..
+  286.5  # pred t=46391 class=Lying p=0.847
+  286.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834372034363339310a
+  286.5  # at< OK..
+  287.0  # rate=26.600 Hz windows=39 missed=39
+  287.5  # pred t=47374 class=Lying p=0.846
+  287.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834362034373337340a
+  287.5  # at< OK..
+  288.5  # pred t=48358 class=Lying p=0.844
+  288.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342034383335380a
+  288.5  # at< OK..
+  289.5  # pred t=49341 class=Lying p=0.845
+  289.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352034393334310a
+  289.5  # at< OK..
+  290.6  # pred t=50325 class=Lying p=0.845
+  290.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352035303332350a
+  290.6  # at< OK..
+  291.6  # pred t=51309 class=Lying p=0.845
+  291.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352035313330390a
+  291.6  # at< OK..
+  292.1  # rate=26.400 Hz windows=44 missed=44
+  292.6  # pred t=52292 class=Lying p=0.844
+  292.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342035323239320a
+  292.6  # at< OK..
+  293.6  # pred t=53276 class=Lying p=0.847
+  293.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834372035333237360a
+  293.6  # at< OK..
+  294.6  # pred t=54259 class=Lying p=0.841
+  294.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834312035343235390a
+  294.6  # at< OK..
+  295.1  # pred t=55243 class=Lying p=0.845
+  295.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352035353234330a
+  295.6  # at< OK..
+  296.1  # pred t=56226 class=Lying p=0.845
+  296.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352035363232360a
+  296.6  # at< OK..
+  297.1  # rate=26.400 Hz windows=49 missed=49
+  297.1  # pred t=57210 class=Lying p=0.845
+  297.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352035373231300a
+  297.1  # at< OK..
+  298.1  # pred t=58193 class=Lying p=0.844
+  298.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342035383139330a
+  298.1  # at< OK..
+  299.1  # pred t=59177 class=Lying p=0.843
+  299.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332035393137370a
+  299.1  # at< OK..
+  300.1  # pred t=60161 class=Lying p=0.842
+  300.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322036303136310a
+  300.1  # at< OK..
+  301.2  # pred t=61144 class=Lying p=0.843
+  301.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332036313134340a
+  301.2  # at< OK..
+  302.2  # rate=26.400 Hz windows=54 missed=54
+  302.2  # pred t=62128 class=Lying p=0.844
+  302.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342036323132380a
+  302.2  # at< OK..
+  303.2  # pred t=63111 class=Lying p=0.846
+  303.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834362036333131310a
+  303.2  # at< OK..
+  304.2  # pred t=64095 class=Lying p=0.844
+  304.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342036343039350a
+  304.2  # at< OK..
+  305.2  # pred t=65079 class=Lying p=0.843
+  305.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332036353037390a
+  305.7  # at< <OK..   <-- таймаут
+  306.2  # pred t=66062 class=Lying p=0.843
+  306.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332036363036320a
+  306.2  # at< OK..
+  307.2  # pred t=67046 class=Lying p=0.844
+  307.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342036373034360a
+  307.2  # at< OK..
+  307.2  # rate=23.622 Hz windows=60 missed=72
+  308.3  # pred t=68030 class=Lying p=0.844
+  308.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342036383033300a
+  308.3  # at< OK..
+  308.8  # pred t=69013 class=Lying p=0.842
+  309.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322036393031330a
+  309.3  # at< OK..
+  309.8  # pred t=69997 class=Lying p=0.845
+  310.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352036393939370a
+  310.3  # at< OK..
+  310.8  # pred t=70981 class=Lying p=0.844
+  310.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342037303938310a
+  310.8  # at< OK..
+  311.8  # pred t=71964 class=Lying p=0.844
+  311.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342037313936340a
+  311.8  # at< OK..
+  312.3  # rate=26.600 Hz windows=65 missed=78
+  312.8  # pred t=72948 class=Lying p=0.844
+  312.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342037323934380a
+  312.8  # at< OK..
+  317.9  # at> AT
+  317.9  # at< OK..
+  317.9  # at> AT+BLE_RST=1
+  317.9  # at< OK..
+  318.4  # at> AT+BLE_NAME=Spokiy
+  318.4  # at< OK..
+  318.4  # at> AT+BLE_INIT=1
+  318.4  # at< OK..
+  318.9  # at> AT+BLE_SVC=3,2,0xaabb,10
+  318.9  # at< OK..
+  318.9  # at> AT+BLE_CHAR_ADD=3,1,2,0x3344,20,0x10,0,0
+  318.9  # at< OK..
+  318.9  # at> AT+BLE_ADV=1
+  318.9  # at< OK..
+  318.9  Start
+  319.4  WHO_AM_I = 0x6B (expected 0x6B)
+  319.4  # fs=27 Hz window=55 x 6 hop=27 lpf=12 Hz units=g,dps
+  319.4  # model=ok classes=5
+  319.4  # out=USART1 (ST-Link VCP)
+  319.4  # ble=ok step=0 soft=0x00
+  320.9  # pred t=5401 class=Running p=0.861
+  321.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3320302e38363120353430310a
+  321.4  # at< OK..
+  321.9  # pred t=6385 class=Lying p=0.847
+  322.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e38343720363338350a
+  322.5  # at< OK..
+  323.0  # pred t=7368 class=Lying p=0.840
+  323.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e38343020373336380a
+  323.0  # at< OK..
+  324.0  # pred t=8352 class=Lying p=0.843
+  324.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e38343320383335320a
+  324.0  # at< OK..
+  324.0  # rate=26.541 Hz windows=4 missed=3
+  325.0  # pred t=9336 class=Lying p=0.846
+  325.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e38343620393333360a
+  325.0  # at< OK..
+  326.0  # pred t=10319 class=Lying p=0.844
+  326.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342031303331390a
+  326.0  # at< OK..
+  327.0  # pred t=11303 class=Lying p=0.846
+  327.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834362031313330330a
+  327.0  # at< OK..
+  328.0  # pred t=12286 class=Lying p=0.843
+  328.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332031323238360a
+  328.0  # at< OK..
+  329.1  # pred t=13270 class=Lying p=0.843
+  329.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332031333237300a
+  329.1  # at< OK..
+  329.1  # rate=26.600 Hz windows=9 missed=9
+  330.1  # pred t=14254 class=Lying p=0.849
+  330.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834392031343235340a
+  330.1  # at< OK..
+  331.1  # pred t=15237 class=Lying p=0.849
+  331.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834392031353233370a
+  331.1  # at< OK..
+  332.1  # pred t=16221 class=Lying p=0.849
+  332.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834392031363232310a
+  332.1  # at< OK..
+  333.1  # pred t=17205 class=Lying p=0.844
+  333.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342031373230350a
+  333.1  # at< OK..
+  334.1  # pred t=18188 class=Lying p=0.842
+  334.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322031383138380a
+  334.1  # at< OK..
+  334.1  # rate=26.400 Hz windows=14 missed=14
+  334.7  # pred t=19172 class=Lying p=0.842
+  335.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322031393137320a
+  335.2  # at< OK..
+  335.7  # pred t=20155 class=Lying p=0.843
+  335.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332032303135350a
+  335.7  # at< OK..
+  336.7  # pred t=21139 class=Lying p=0.844
+  337.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342032313133390a
+  337.2  # at< <OK..<BLE_EVT_UPD_CONN=1..   <-- таймаут
+  337.7  # pred t=22122 class=Lying p=0.845
+  338.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352032323132320a
+  338.2  # at< <OK..   <-- таймаут
+  338.7  # pred t=23106 class=Lying p=0.846
+  338.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834362032333130360a
+  338.7  # at< OK..
+  339.2  # rate=21.200 Hz windows=19 missed=45
+  339.7  # pred t=24090 class=Lying p=0.843
+  340.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332032343039300a
+  340.2  # at< <OK..   <-- таймаут
+  340.7  # pred t=25073 class=Lying p=0.844
+  340.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342032353037330a
+  340.7  # at< OK..
+  341.7  # pred t=26057 class=Lying p=0.844
+  341.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342032363035370a
+  341.7  # at< OK..
+  342.8  # pred t=27040 class=Lying p=0.843
+  342.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332032373034300a
+  342.8  # at< OK..
+  343.8  # pred t=28024 class=Lying p=0.842
+  343.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322032383032340a
+  343.8  # at< OK..
+  344.3  # rate=24.000 Hz windows=24 missed=63
+  344.8  # pred t=29007 class=Lying p=0.837
+  344.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3833372032393030370a
+  344.8  # at< OK..
+  345.8  # pred t=29991 class=Lying p=0.840
+  345.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834302032393939310a
+  345.8  # at< OK..
+  346.8  # pred t=30974 class=Lying p=0.846
+  346.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834362033303937340a
+  346.8  # at< OK..
+  347.3  # pred t=31958 class=Lying p=0.845
+  348.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352033313935380a
+  348.3  # at< <OK..   <-- таймаут
+  348.3  # pred t=32942 class=Lying p=0.845
+  348.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352033323934320a
+  348.8  # at< OK..
+  348.8  # rate=23.800 Hz windows=29 missed=81
+  349.3  # pred t=33925 class=Lying p=0.844
+  349.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342033333932350a
+  349.3  # at< OK..
+  350.3  # pred t=34909 class=Lying p=0.845
+  350.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352033343930390a
+  350.3  # at< OK..
+  351.4  # pred t=35892 class=Lying p=0.844
+  351.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342033353839320a
+  351.4  # at< OK..
+  352.4  # pred t=36876 class=Lying p=0.845
+  352.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352033363837360a
+  352.4  # at< OK..
+  353.4  # pred t=37859 class=Lying p=0.847
+  353.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834372033373835390a
+  353.4  # at< OK..
+  353.9  # rate=26.400 Hz windows=34 missed=86
+  354.4  # pred t=38843 class=Lying p=0.846
+  354.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834362033383834330a
+  354.4  # at< OK..
+  355.4  # pred t=39826 class=Lying p=0.840
+  355.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834302033393832360a
+  355.4  # at< OK..
+  356.4  # pred t=40810 class=Lying p=0.842
+  356.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322034303831300a
+  356.4  # at< OK..
+  357.4  # pred t=41793 class=Lying p=0.843
+  357.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332034313739330a
+  357.4  # at< OK..
+  358.4  # pred t=42776 class=Lying p=0.843
+  358.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332034323737360a
+  358.4  # at< OK..
+  359.0  # rate=26.600 Hz windows=39 missed=91
+  359.5  # pred t=43760 class=Lying p=0.844
+  359.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342034333736300a
+  359.5  # at< OK..
+  360.5  # pred t=44743 class=Lying p=0.842
+  360.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322034343734330a
+  360.5  # at< OK..
+  361.5  # pred t=45727 class=Lying p=0.843
+  361.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332034353732370a
+  361.5  # at< OK..
+  362.0  # pred t=46710 class=Lying p=0.844
+  362.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342034363731300a
+  362.5  # at< OK..
+  363.0  # pred t=47694 class=Lying p=0.844
+  363.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342034373639340a
+  363.5  # at< OK..
+  364.0  # rate=26.400 Hz windows=44 missed=96
+  364.0  # pred t=48677 class=Lying p=0.844
+  364.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342034383637370a
+  364.0  # at< OK..
+  365.0  # pred t=49661 class=Lying p=0.843
+  365.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332034393636310a
+  365.0  # at< OK..
+  366.0  # pred t=50644 class=Lying p=0.843
+  366.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332035303634340a
+  366.0  # at< OK..
+  367.0  # pred t=51628 class=Lying p=0.843
+  367.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332035313632380a
+  367.0  # at< OK..
+  368.1  # pred t=52611 class=Lying p=0.843
+  368.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332035323631310a
+  368.1  # at< OK..
+  369.1  # rate=26.400 Hz windows=49 missed=101
+  369.1  # pred t=53595 class=Lying p=0.843
+  369.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332035333539350a
+  369.1  # at< OK..
+  370.1  # pred t=54578 class=Lying p=0.842
+  370.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322035343537380a
+  370.1  # at< OK..
+  371.1  # pred t=55562 class=Lying p=0.843
+  371.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332035353536320a
+  371.1  # at< OK..
+  372.1  # pred t=56545 class=Lying p=0.842
+  372.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322035363534350a
+  372.1  # at< OK..
+  373.1  # pred t=57529 class=Lying p=0.843
+  373.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332035373532390a
+  373.1  # at< OK..
+  373.6  # rate=26.400 Hz windows=54 missed=106
+  374.1  # pred t=58513 class=Lying p=0.843
+  374.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332035383531330a
+  374.1  # at< OK..
+  375.2  # pred t=59496 class=Lying p=0.843
+  375.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332035393439360a
+  375.2  # at< OK..
+  375.7  # pred t=60480 class=Lying p=0.843
+  376.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332036303438300a
+  376.2  # at< OK..
+  376.7  # pred t=61463 class=Lying p=0.843
+  377.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332036313436330a
+  377.2  # at< OK..
+  377.7  # pred t=62447 class=Lying p=0.843
+  377.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332036323434370a
+  377.7  # at< OK..
+  378.7  # pred t=63431 class=Lying p=0.843
+  378.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332036333433310a
+  378.7  # at< OK..
+  378.7  # rate=26.170 Hz windows=60 missed=111
+  379.7  # pred t=64414 class=Lying p=0.843
+  379.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332036343431340a
+  379.7  # at< OK..
+  380.7  # pred t=65398 class=Lying p=0.842
+  380.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322036353339380a
+  380.7  # at< OK..
+  381.7  # pred t=66382 class=Lying p=0.843
+  381.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332036363338320a
+  381.7  # at< OK..
+  382.8  # pred t=67366 class=Lying p=0.843
+  382.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332036373336360a
+  382.8  # at< OK..
+  383.8  # pred t=68349 class=Lying p=0.843
+  383.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332036383334390a
+  383.8  # at< OK..
+  383.8  # rate=26.600 Hz windows=65 missed=117
+  384.8  # pred t=69333 class=Lying p=0.843
+  384.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332036393333330a
+  384.8  # at< OK..
+  385.8  # pred t=70316 class=Lying p=0.842
+  385.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322037303331360a
+  385.8  # at< OK..
+  386.8  # pred t=71300 class=Lying p=0.842
+  386.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322037313330300a
+  386.8  # at< OK..
+  387.8  # pred t=72283 class=Lying p=0.843
+  387.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332037323238330a
+  387.8  # at< OK..
+  388.8  # pred t=73267 class=Lying p=0.843
+  388.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332037333236370a
+  388.8  # at< OK..
+  388.8  # rate=26.400 Hz windows=70 missed=122
+  389.8  # pred t=74251 class=Lying p=0.841
+  389.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834312037343235310a
+  389.8  # at< OK..
+  390.8  # pred t=75234 class=Lying p=0.843
+  390.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332037353233340a
+  390.8  # at< OK..
+  391.3  # pred t=76218 class=Lying p=0.842
+  391.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322037363231380a
+  391.8  # at< OK..
+  392.3  # pred t=77202 class=Lying p=0.841
+  392.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834312037373230320a
+  392.9  # at< OK..
+  393.4  # pred t=78185 class=Lying p=0.841
+  393.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834312037383138350a
+  393.4  # at< OK..
+  393.9  # rate=26.600 Hz windows=75 missed=127
+  394.4  # pred t=79169 class=Lying p=0.843
+  394.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332037393136390a
+  394.4  # at< OK..
+  395.4  # pred t=80152 class=Lying p=0.843
+  395.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332038303135320a
+  395.4  # at< OK..
+  396.4  # pred t=81136 class=Lying p=0.843
+  396.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332038313133360a
+  396.4  # at< OK..
+  397.4  # pred t=82119 class=Lying p=0.843
+  397.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332038323131390a
+  397.4  # at< OK..
+  398.4  # pred t=83103 class=Lying p=0.843
+  398.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332038333130330a
+  398.4  # at< OK..
+  398.9  # rate=26.400 Hz windows=80 missed=132
+  399.4  # pred t=84087 class=Lying p=0.843
+  399.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332038343038370a
+  399.4  # at< OK..
+  400.4  # pred t=85070 class=Lying p=0.843
+  400.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332038353037300a
+  400.4  # at< OK..
+  401.4  # pred t=86054 class=Lying p=0.843
+  401.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332038363035340a
+  401.4  # at< OK..
+  402.5  # pred t=87037 class=Lying p=0.843
+  402.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332038373033370a
+  402.5  # at< OK..
+  403.5  # pred t=88021 class=Lying p=0.843
+  403.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332038383032310a
+  403.5  # at< OK..
+  404.0  # rate=26.400 Hz windows=85 missed=137
+  404.5  # pred t=89004 class=Lying p=0.843
+  404.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332038393030340a
+  404.5  # at< OK..
+  405.5  # pred t=89988 class=Lying p=0.844
+  405.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342038393938380a
+  405.5  # at< OK..
+  406.0  # pred t=90972 class=Lying p=0.842
+  406.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322039303937320a
+  406.5  # at< OK..
+  407.0  # pred t=91955 class=Lying p=0.844
+  407.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342039313935350a
+  407.0  # at< OK..
+  408.0  # pred t=92939 class=Lying p=0.847
+  408.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834372039323933390a
+  408.0  # at< OK..
+  408.5  # rate=26.400 Hz windows=90 missed=142
+  409.0  # pred t=93922 class=Lying p=0.844
+  409.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834342039333932320a
+  409.0  # at< OK..
+  410.0  # pred t=94906 class=Lying p=0.842
+  410.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834322039343930360a
+  410.0  # at< OK..
+  411.0  # pred t=95889 class=Lying p=0.843
+  411.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332039353838390a
+  411.0  # at< OK..
+  412.1  # pred t=96873 class=Lying p=0.843
+  412.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332039363837330a
+  412.1  # at< OK..
+  413.1  # pred t=97856 class=Lying p=0.845
+  413.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352039373835360a
+  413.1  # at< OK..
+  413.6  # rate=26.600 Hz windows=95 missed=147
+  414.1  # pred t=98840 class=Lying p=0.843
+  414.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834332039383834300a
+  414.1  # at< OK..
+  415.1  # pred t=99823 class=Lying p=0.845
+  415.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834352039393832330a
+  415.1  # at< OK..
+  416.1  # pred t=100807 class=Lying p=0.843
+  416.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203130303830370a
+  416.1  # at< OK..
+  417.1  # pred t=101790 class=Lying p=0.844
+  417.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203130313739300a
+  417.1  # at< OK..
+  418.1  # pred t=102774 class=Lying p=0.844
+  418.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203130323737340a
+  418.1  # at< OK..
+  418.6  # rate=26.400 Hz windows=100 missed=152
+  419.1  # pred t=103758 class=Lying p=0.841
+  419.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203130333735380a
+  419.1  # at< OK..
+  420.2  # pred t=104741 class=Lying p=0.842
+  420.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203130343734310a
+  420.2  # at< OK..
+  420.7  # pred t=105725 class=Lying p=0.843
+  421.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203130353732350a
+  421.2  # at< OK..
+  421.7  # pred t=106708 class=Lying p=0.840
+  421.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203130363730380a
+  421.7  # at< OK..
+  422.7  # pred t=107692 class=Lying p=0.840
+  422.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203130373639320a
+  422.7  # at< OK..
+  423.7  # rate=26.400 Hz windows=105 missed=157
+  423.7  # pred t=108676 class=Lying p=0.841
+  423.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203130383637360a
+  423.7  # at< OK..
+  424.7  # pred t=109659 class=Lying p=0.841
+  424.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203130393635390a
+  424.7  # at< OK..
+  425.7  # pred t=110643 class=Lying p=0.842
+  425.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203131303634330a
+  425.7  # at< OK..
+  426.7  # pred t=111627 class=Lying p=0.842
+  426.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203131313632370a
+  426.7  # at< OK..
+  427.8  # pred t=112610 class=Lying p=0.842
+  427.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203131323631300a
+  427.8  # at< OK..
+  428.8  # rate=26.400 Hz windows=110 missed=162
+  428.8  # pred t=113594 class=Lying p=0.842
+  428.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203131333539340a
+  428.8  # at< OK..
+  429.8  # pred t=114578 class=Lying p=0.843
+  429.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203131343537380a
+  429.8  # at< OK..
+  430.8  # pred t=115561 class=Lying p=0.842
+  430.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203131353536310a
+  430.8  # at< OK..
+  431.8  # pred t=116545 class=Lying p=0.842
+  431.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203131363534350a
+  431.8  # at< OK..
+  432.8  # pred t=117528 class=Lying p=0.842
+  432.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203131373532380a
+  432.8  # at< OK..
+  433.8  # pred t=118512 class=Lying p=0.841
+  433.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203131383531320a
+  433.8  # at< OK..
+  433.8  # rate=26.165 Hz windows=116 missed=167
+  434.3  # pred t=119496 class=Lying p=0.841
+  434.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203131393439360a
+  434.8  # at< OK..
+  435.3  # pred t=120479 class=Lying p=0.841
+  435.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203132303437390a
+  435.8  # at< OK..
+  436.4  # pred t=121463 class=Lying p=0.842
+  436.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203132313436330a
+  436.4  # at< OK..
+  437.4  # pred t=122446 class=Lying p=0.842
+  437.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203132323434360a
+  437.4  # at< OK..
+  438.4  # pred t=123430 class=Lying p=0.845
+  438.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203132333433300a
+  438.4  # at< OK..
+  438.9  # rate=26.600 Hz windows=121 missed=173
+  439.4  # pred t=124413 class=Lying p=0.842
+  439.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203132343431330a
+  439.4  # at< OK..
+  440.4  # pred t=125397 class=Lying p=0.844
+  440.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203132353339370a
+  440.4  # at< OK..
+  441.4  # pred t=126380 class=Lying p=0.849
+  441.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383439203132363338300a
+  441.4  # at< OK..
+  442.4  # pred t=127364 class=Lying p=0.860
+  442.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383630203132373336340a
+  442.4  # at< OK..
+  443.4  # pred t=128347 class=Lying p=0.860
+  443.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383630203132383334370a
+  443.4  # at< OK..
+  443.4  # rate=26.400 Hz windows=126 missed=178
+  444.4  # pred t=129331 class=Lying p=0.842
+  444.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203132393333310a
+  444.4  # at< OK..
+  445.5  # pred t=130314 class=Lying p=0.842
+  445.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203133303331340a
+  445.5  # at< OK..
+  446.5  # pred t=131298 class=Lying p=0.842
+  446.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203133313239380a
+  446.5  # at< OK..
+  447.5  # pred t=132282 class=Lying p=0.842
+  447.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203133323238320a
+  447.5  # at< OK..
+  448.5  # pred t=133265 class=Lying p=0.841
+  448.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203133333236350a
+  448.5  # at< OK..
+  448.5  # rate=26.600 Hz windows=131 missed=183
+  449.0  # pred t=134249 class=Lying p=0.839
+  449.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383339203133343234390a
+  449.5  # at< OK..
+  450.0  # pred t=135232 class=Lying p=0.840
+  450.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203133353233320a
+  450.5  # at< OK..
+  451.0  # pred t=136216 class=Lying p=0.840
+  451.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203133363231360a
+  451.0  # at< OK..
+  452.0  # pred t=137200 class=Lying p=0.842
+  452.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203133373230300a
+  452.0  # at< OK..
+  453.1  # pred t=138183 class=Lying p=0.841
+  453.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203133383138330a
+  453.1  # at< OK..
+  453.6  # rate=26.400 Hz windows=136 missed=188
+  454.1  # pred t=139167 class=Lying p=0.842
+  454.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203133393136370a
+  454.1  # at< OK..
+  455.1  # pred t=140151 class=Lying p=0.841
+  455.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203134303135310a
+  455.1  # at< OK..
+  456.1  # pred t=141134 class=Lying p=0.840
+  456.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203134313133340a
+  456.1  # at< OK..
+  457.1  # pred t=142118 class=Lying p=0.845
+  457.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203134323131380a
+  457.1  # at< OK..
+  458.1  # pred t=143101 class=Lying p=0.843
+  458.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203134333130310a
+  458.1  # at< OK..
+  458.7  # rate=26.400 Hz windows=141 missed=193
+  459.2  # pred t=144085 class=Lying p=0.845
+  459.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203134343038350a
+  459.2  # at< OK..
+  460.2  # pred t=145069 class=Lying p=0.843
+  460.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203134353036390a
+  460.2  # at< OK..
+  461.2  # pred t=146052 class=Lying p=0.845
+  461.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203134363035320a
+  461.2  # at< OK..
+  462.2  # pred t=147036 class=Lying p=0.844
+  462.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203134373033360a
+  462.2  # at< OK..
+  462.7  # pred t=148020 class=Lying p=0.847
+  463.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383437203134383032300a
+  463.2  # at< OK..
+  463.7  # rate=26.400 Hz windows=146 missed=198
+  463.7  # pred t=149003 class=Lying p=0.859
+  463.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383539203134393030330a
+  463.7  # at< OK..
+  464.7  # pred t=149987 class=Lying p=0.851
+  464.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383531203134393938370a
+  464.7  # at< OK..
+  465.8  # pred t=150971 class=Lying p=0.844
+  465.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203135303937310a
+  465.8  # at< OK..
+  466.8  # pred t=151954 class=Lying p=0.843
+  466.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203135313935340a
+  466.8  # at< OK..
+  467.8  # pred t=152938 class=Lying p=0.842
+  467.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203135323933380a
+  467.8  # at< OK..
+  468.3  # rate=26.600 Hz windows=151 missed=203
+  468.8  # pred t=153922 class=Lying p=0.846
+  468.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203135333932320a
+  468.8  # at< OK..
+  469.8  # pred t=154905 class=Lying p=0.843
+  469.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203135343930350a
+  469.8  # at< OK..
+  470.8  # pred t=155889 class=Lying p=0.847
+  470.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383437203135353838390a
+  470.8  # at< OK..
+  471.9  # pred t=156873 class=Lying p=0.844
+  471.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203135363837330a
+  471.9  # at< OK..
+  472.9  # pred t=157856 class=Lying p=0.845
+  472.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203135373835360a
+  472.9  # at< OK..
+  473.4  # rate=26.400 Hz windows=156 missed=208
+  473.9  # pred t=158840 class=Lying p=0.842
+  473.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203135383834300a
+  473.9  # at< OK..
+  474.4  # pred t=159823 class=Lying p=0.844
+  474.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203135393832330a
+  474.9  # at< OK..
+  475.4  # pred t=160807 class=Lying p=0.843
+  475.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203136303830370a
+  475.9  # at< OK..
+  476.4  # pred t=161790 class=Lying p=0.844
+  476.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203136313739300a
+  476.4  # at< OK..
+  477.5  # pred t=162774 class=Lying p=0.845
+  477.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203136323737340a
+  477.5  # at< OK..
+  478.5  # rate=26.400 Hz windows=161 missed=213
+  478.5  # pred t=163758 class=Lying p=0.846
+  478.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203136333735380a
+  478.5  # at< OK..
+  479.5  # pred t=164741 class=Lying p=0.847
+  479.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383437203136343734310a
+  479.5  # at< OK..
+  480.5  # pred t=165725 class=Lying p=0.848
+  480.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383438203136353732350a
+  480.5  # at< OK..
+  481.5  # pred t=166709 class=Lying p=0.844
+  481.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203136363730390a
+  481.5  # at< OK..
+  482.5  # pred t=167692 class=Lying p=0.841
+  482.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203136373639320a
+  482.5  # at< OK..
+  483.5  # rate=26.400 Hz windows=166 missed=218
+  483.5  # pred t=168676 class=Lying p=0.842
+  483.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203136383637360a
+  483.5  # at< OK..
+  484.6  # pred t=169660 class=Lying p=0.843
+  484.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203136393636300a
+  484.6  # at< OK..
+  485.6  # pred t=170643 class=Lying p=0.841
+  485.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203137303634330a
+  485.6  # at< OK..
+  486.6  # pred t=171627 class=Lying p=0.847
+  486.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383437203137313632370a
+  486.6  # at< OK..
+  487.6  # pred t=172610 class=Lying p=0.849
+  487.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383439203137323631300a
+  487.6  # at< OK..
+  488.1  # pred t=173594 class=Lying p=0.846
+  488.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203137333539340a
+  488.6  # at< OK..
+  488.6  # rate=26.170 Hz windows=172 missed=223
+  489.1  # pred t=174578 class=Lying p=0.847
+  489.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383437203137343537380a
+  489.6  # at< OK..
+  490.1  # pred t=175561 class=Lying p=0.841
+  490.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203137353536310a
+  490.1  # at< OK..
+  491.1  # pred t=176545 class=Lying p=0.845
+  491.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203137363534350a
+  491.1  # at< OK..
+  492.2  # pred t=177528 class=Lying p=0.847
+  492.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383437203137373532380a
+  492.2  # at< OK..
+  493.2  # pred t=178512 class=Lying p=0.844
+  493.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203137383531320a
+  493.2  # at< OK..
+  493.2  # rate=26.600 Hz windows=177 missed=229
+  494.2  # pred t=179495 class=Lying p=0.847
+  494.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383437203137393439350a
+  494.2  # at< OK..
+  495.2  # pred t=180479 class=Lying p=0.841
+  495.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203138303437390a
+  495.2  # at< OK..
+  496.2  # pred t=181462 class=Lying p=0.844
+  496.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203138313436320a
+  496.2  # at< OK..
+  497.2  # pred t=182446 class=Lying p=0.842
+  497.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203138323434360a
+  497.2  # at< OK..
+  498.2  # pred t=183429 class=Lying p=0.840
+  498.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203138333432390a
+  498.2  # at< OK..
+  498.2  # rate=26.400 Hz windows=182 missed=234
+  499.2  # pred t=184413 class=Lying p=0.841
+  499.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203138343431330a
+  499.2  # at< OK..
+  500.2  # pred t=185396 class=Lying p=0.843
+  500.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203138353339360a
+  500.2  # at< OK..
+  501.3  # pred t=186380 class=Lying p=0.841
+  501.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203138363338300a
+  501.3  # at< OK..
+  501.8  # pred t=187364 class=Lying p=0.835
+  502.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383335203138373336340a
+  502.3  # at< OK..
+  502.8  # pred t=188347 class=Lying p=0.842
+  503.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203138383334370a
+  503.3  # at< OK..
+  503.3  # rate=26.600 Hz windows=187 missed=239
+  503.8  # pred t=189331 class=Lying p=0.841
+  503.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203138393333310a
+  503.8  # at< OK..
+  504.8  # pred t=190314 class=Lying p=0.840
+  504.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203139303331340a
+  504.8  # at< OK..
+  505.8  # pred t=191298 class=Lying p=0.845
+  505.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203139313239380a
+  505.8  # at< OK..
+  506.9  # pred t=192281 class=Lying p=0.846
+  506.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203139323238310a
+  506.9  # at< OK..
+  507.9  # pred t=193265 class=Lying p=0.843
+  507.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203139333236350a
+  507.9  # at< OK..
+  508.4  # rate=26.400 Hz windows=192 missed=244
+  508.9  # pred t=194248 class=Lying p=0.846
+  508.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203139343234380a
+  508.9  # at< OK..
+  509.9  # pred t=195232 class=Lying p=0.841
+  509.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203139353233320a
+  509.9  # at< OK..
+  510.9  # pred t=196215 class=Lying p=0.844
+  510.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203139363231350a
+  510.9  # at< OK..
+  511.9  # pred t=197199 class=Lying p=0.844
+  511.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203139373139390a
+  511.9  # at< OK..
+  512.9  # pred t=198183 class=Lying p=0.843
+  512.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203139383138330a
+  512.9  # at< OK..
+  513.5  # rate=26.400 Hz windows=197 missed=249
+  514.0  # pred t=199166 class=Lying p=0.843
+  514.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203139393136360a
+  514.0  # at< OK..
+  515.0  # pred t=200150 class=Lying p=0.847
+  515.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383437203230303135300a
+  515.0  # at< OK..
+  515.5  # pred t=201133 class=Lying p=0.849
+  516.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383439203230313133330a
+  516.0  # at< OK..
+  516.5  # pred t=202117 class=Lying p=0.854
+  517.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383534203230323131370a
+  517.0  # at< OK..
+  517.5  # pred t=203100 class=Lying p=0.846
+  517.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203230333130300a
+  517.5  # at< OK..
+  518.0  # rate=26.400 Hz windows=202 missed=254
+  518.5  # pred t=204084 class=Lying p=0.845
+  518.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203230343038340a
+  518.5  # at< OK..
+  519.5  # pred t=205068 class=Lying p=0.846
+  519.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203230353036380a
+  519.5  # at< OK..
+  520.5  # pred t=206051 class=Lying p=0.843
+  520.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203230363035310a
+  520.5  # at< OK..
+  521.5  # pred t=207035 class=Lying p=0.846
+  521.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203230373033350a
+  521.5  # at< OK..
+  522.6  # pred t=208018 class=Lying p=0.856
+  522.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383536203230383031380a
+  522.6  # at< OK..
+  523.1  # rate=26.600 Hz windows=207 missed=259
+  523.6  # pred t=209002 class=Lying p=0.849
+  523.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383439203230393030320a
+  523.6  # at< OK..
+  524.6  # pred t=209985 class=Lying p=0.848
+  524.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383438203230393938350a
+  524.6  # at< OK..
+  525.6  # pred t=210969 class=Lying p=0.846
+  525.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203231303936390a
+  525.6  # at< OK..
+  526.6  # pred t=211952 class=Lying p=0.850
+  526.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383530203231313935320a
+  526.6  # at< OK..
+  527.6  # pred t=212936 class=Lying p=0.842
+  527.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203231323933360a
+  527.6  # at< OK..
+  528.2  # rate=26.400 Hz windows=212 missed=264
+  528.7  # pred t=213919 class=Lying p=0.844
+  528.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203231333931390a
+  528.7  # at< OK..
+  529.2  # pred t=214903 class=Lying p=0.846
+  529.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203231343930330a
+  529.7  # at< OK..
+  530.2  # pred t=215886 class=Lying p=0.845
+  530.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203231353838360a
+  530.2  # at< OK..
+  531.2  # pred t=216870 class=Lying p=0.849
+  531.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383439203231363837300a
+  531.2  # at< OK..
+  532.2  # pred t=217853 class=Lying p=0.846
+  532.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203231373835330a
+  532.2  # at< OK..
+  533.2  # rate=26.400 Hz windows=217 missed=269
+  533.2  # pred t=218837 class=Lying p=0.841
+  533.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203231383833370a
+  533.2  # at< OK..
+  534.3  # pred t=219820 class=Lying p=0.841
+  534.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203231393832300a
+  534.3  # at< OK..
+  535.3  # pred t=220804 class=Lying p=0.843
+  535.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203232303830340a
+  535.3  # at< OK..
+  536.3  # pred t=221788 class=Lying p=0.845
+  536.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203232313738380a
+  536.3  # at< OK..
+  537.3  # pred t=222771 class=Lying p=0.845
+  537.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203232323737310a
+  537.3  # at< OK..
+  538.3  # rate=26.400 Hz windows=222 missed=274
+  538.3  # pred t=223755 class=Lying p=0.847
+  538.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383437203232333735350a
+  538.3  # at< OK..
+  539.3  # pred t=224738 class=Lying p=0.845
+  539.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203232343733380a
+  539.3  # at< OK..
+  540.3  # pred t=225722 class=Lying p=0.842
+  540.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203232353732320a
+  540.3  # at< OK..
+  541.3  # pred t=226705 class=Lying p=0.844
+  541.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203232363730350a
+  541.3  # at< OK..
+  541.9  # pred t=227689 class=Lying p=0.846
+  542.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203232373638390a
+  542.4  # at< OK..
+  542.9  # pred t=228672 class=Lying p=0.847
+  543.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383437203232383637320a
+  543.4  # at< OK..
+  543.4  # rate=26.186 Hz windows=228 missed=279
+  543.9  # pred t=229656 class=Lying p=0.845
+  543.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203232393635360a
+  543.9  # at< OK..
+  544.9  # pred t=230640 class=Lying p=0.844
+  544.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203233303634300a
+  544.9  # at< OK..
+  545.9  # pred t=231623 class=Lying p=0.844
+  545.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203233313632330a
+  545.9  # at< OK..
+  546.9  # pred t=232607 class=Lying p=0.840
+  546.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203233323630370a
+  546.9  # at< OK..
+  547.9  # pred t=233590 class=Lying p=0.840
+  547.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203233333539300a
+  547.9  # at< OK..
+  547.9  # rate=26.600 Hz windows=233 missed=285
+  548.9  # pred t=234574 class=Lying p=0.844
+  548.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203233343537340a
+  548.9  # at< OK..
+  549.9  # pred t=235557 class=Lying p=0.851
+  549.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383531203233353535370a
+  549.9  # at< OK..
+  551.0  # pred t=236541 class=Lying p=0.846
+  551.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203233363534310a
+  551.0  # at< OK..
+  552.0  # pred t=237525 class=Lying p=0.847
+  552.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383437203233373532350a
+  552.0  # at< OK..
+  553.0  # pred t=238508 class=Lying p=0.844
+  553.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203233383530380a
+  553.0  # at< OK..
+  553.0  # rate=26.400 Hz windows=238 missed=290
+  554.0  # pred t=239492 class=Lying p=0.843
+  554.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203233393439320a
+  554.0  # at< OK..
+  555.0  # pred t=240475 class=Lying p=0.843
+  555.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203234303437350a
+  555.0  # at< OK..
+  555.5  # pred t=241459 class=Lying p=0.844
+  556.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203234313435390a
+  556.0  # at< OK..
+  556.5  # pred t=242442 class=Lying p=0.845
+  557.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203234323434320a
+  557.0  # at< OK..
+  557.6  # pred t=243426 class=Lying p=0.848
+  558.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383438203234333432360a
+  558.1  # at< OK..
+  558.1  # rate=26.600 Hz windows=243 missed=295
+  558.6  # pred t=244410 class=Lying p=0.851
+  558.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383531203234343431300a
+  558.6  # at< OK..
+  559.6  # pred t=245393 class=Lying p=0.844
+  559.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203234353339330a
+  559.6  # at< OK..
+  560.6  # pred t=246377 class=Lying p=0.841
+  560.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203234363337370a
+  560.6  # at< OK..
+  561.6  # pred t=247360 class=Lying p=0.844
+  561.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203234373336300a
+  561.6  # at< OK..
+  562.6  # pred t=248344 class=Lying p=0.845
+  562.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203234383334340a
+  562.6  # at< OK..
+  563.1  # rate=26.400 Hz windows=248 missed=300
+  563.6  # pred t=249327 class=Lying p=0.845
+  563.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203234393332370a
+  563.6  # at< OK..
+  564.7  # pred t=250311 class=Lying p=0.841
+  564.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203235303331310a
+  564.7  # at< OK..
+  565.7  # pred t=251294 class=Lying p=0.838
+  565.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383338203235313239340a
+  565.7  # at< OK..
+  566.7  # pred t=252278 class=Lying p=0.847
+  566.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383437203235323237380a
+  566.7  # at< OK..
+  567.7  # pred t=253262 class=Lying p=0.851
+  567.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383531203235333236320a
+  567.7  # at< OK..
+  568.2  # rate=26.400 Hz windows=253 missed=305
+  568.7  # pred t=254245 class=Lying p=0.845
+  568.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203235343234350a
+  568.7  # at< OK..
+  569.7  # pred t=255229 class=Lying p=0.846
+  569.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203235353232390a
+  569.7  # at< OK..
+  570.2  # pred t=256212 class=Lying p=0.845
+  570.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203235363231320a
+  570.7  # at< OK..
+  571.2  # pred t=257196 class=Lying p=0.843
+  571.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203235373139360a
+  571.8  # at< OK..
+  572.3  # pred t=258179 class=Lying p=0.844
+  572.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203235383137390a
+  572.3  # at< OK..
+  572.8  # rate=26.400 Hz windows=258 missed=310
+  573.3  # pred t=259163 class=Lying p=0.842
+  573.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203235393136330a
+  573.3  # at< OK..
+  574.3  # pred t=260146 class=Lying p=0.839
+  574.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383339203236303134360a
+  574.3  # at< OK..
+  575.3  # pred t=261130 class=Lying p=0.840
+  575.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203236313133300a
+  575.3  # at< OK..
+  576.3  # pred t=262113 class=Lying p=0.841
+  576.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203236323131330a
+  576.3  # at< OK..
+  577.3  # pred t=263097 class=Lying p=0.844
+  577.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203236333039370a
+  577.3  # at< OK..
+  577.8  # rate=26.600 Hz windows=263 missed=315
+  578.3  # pred t=264080 class=Lying p=0.842
+  578.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203236343038300a
+  578.3  # at< OK..
+  579.4  # pred t=265064 class=Lying p=0.846
+  579.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203236353036340a
+  579.4  # at< OK..
+  580.4  # pred t=266047 class=Lying p=0.848
+  580.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383438203236363034370a
+  580.4  # at< OK..
+  581.4  # pred t=267031 class=Lying p=0.848
+  581.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383438203236373033310a
+  581.4  # at< OK..
+  582.4  # pred t=268014 class=Lying p=0.841
+  582.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203236383031340a
+  582.4  # at< OK..
+  582.9  # rate=26.400 Hz windows=268 missed=320
+  582.9  # pred t=268998 class=Lying p=0.842
+  583.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203236383939380a
+  583.4  # at< OK..
+  583.9  # pred t=269982 class=Lying p=0.843
+  584.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203236393938320a
+  584.4  # at< OK..
+  585.0  # pred t=270965 class=Lying p=0.850
+  585.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383530203237303936350a
+  585.0  # at< OK..
+  586.0  # pred t=271949 class=Lying p=0.840
+  586.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203237313934390a
+  586.0  # at< OK..
+  587.0  # pred t=272933 class=Lying p=0.841
+  587.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203237323933330a
+  587.0  # at< OK..
+  588.0  # rate=26.400 Hz windows=273 missed=325
+  588.0  # pred t=273916 class=Lying p=0.850
+  588.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383530203237333931360a
+  588.0  # at< OK..
+  589.0  # pred t=274900 class=Lying p=0.844
+  589.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383434203237343930300a
+  589.0  # at< OK..
+  590.0  # pred t=275883 class=Lying p=0.845
+  590.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203237353838330a
+  590.0  # at< OK..
+  591.1  # pred t=276867 class=Lying p=0.845
+  591.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203237363836370a
+  591.1  # at< OK..
+  592.1  # pred t=277850 class=Lying p=0.840
+  592.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203237373835300a
+  592.1  # at< OK..
+  593.1  # rate=26.400 Hz windows=278 missed=330
+  593.1  # pred t=278834 class=Lying p=0.840
+  593.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203237383833340a
+  593.1  # at< OK..
+  594.1  # pred t=279817 class=Lying p=0.842
+  594.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203237393831370a
+  594.1  # at< OK..
+  595.1  # pred t=280801 class=Lying p=0.841
+  595.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203238303830310a
+  595.1  # at< OK..
+  596.1  # pred t=281784 class=Lying p=0.841
+  596.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203238313738340a
+  596.1  # at< OK..
+  596.6  # pred t=282768 class=Lying p=0.841
+  597.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203238323736380a
+  597.1  # at< OK..
+  597.6  # pred t=283751 class=Lying p=0.841
+  598.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203238333735310a
+  598.1  # at< OK..
+  598.1  # rate=26.191 Hz windows=284 missed=335
+  598.6  # pred t=284735 class=Lying p=0.842
+  598.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203238343733350a
+  598.6  # at< OK..
+  599.6  # pred t=285718 class=Lying p=0.843
+  599.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203238353731380a
+  599.6  # at< OK..
+  600.7  # pred t=286702 class=Lying p=0.839
+  600.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383339203238363730320a
+  600.7  # at< OK..
+  601.7  # pred t=287685 class=Lying p=0.850
+  601.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383530203238373638350a
+  601.7  # at< OK..
+  602.7  # pred t=288669 class=Lying p=0.847
+  602.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383437203238383636390a
+  602.7  # at< OK..
+  602.7  # rate=26.600 Hz windows=289 missed=341
+  603.7  # pred t=289652 class=Lying p=0.846
+  603.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203238393635320a
+  603.7  # at< OK..
+  604.8  # pred t=290636 class=Lying p=0.840
+  604.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383430203239303633360a
+  604.8  # at< OK..
+  605.8  # pred t=291619 class=Lying p=0.836
+  605.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383336203239313631390a
+  605.8  # at< OK..
+  606.8  # pred t=292603 class=Lying p=0.838
+  606.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383338203239323630330a
+  606.8  # at< OK..
+  607.8  # pred t=293586 class=Lying p=0.843
+  607.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203239333538360a
+  607.8  # at< OK..
+  607.8  # rate=26.400 Hz windows=294 missed=346
+  608.3  # pred t=294570 class=Lying p=0.846
+  608.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203239343537300a
+  608.8  # at< OK..
+  609.3  # pred t=295553 class=Lying p=0.843
+  609.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203239353535330a
+  609.8  # at< OK..
+  610.3  # pred t=296537 class=Lying p=0.849
+  610.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383439203239363533370a
+  610.9  # at< OK..
+  611.4  # pred t=297520 class=Lying p=0.845
+  611.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383435203239373532300a
+  611.4  # at< OK..
+  612.4  # pred t=298504 class=Lying p=0.843
+  612.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203239383530340a
+  612.4  # at< OK..
+  612.9  # rate=26.600 Hz windows=299 missed=351
+  613.4  # pred t=299487 class=Lying p=0.842
+  613.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203239393438370a
+  613.4  # at< OK..
+  614.4  # pred t=300471 class=Lying p=0.842
+  614.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203330303437310a
+  614.4  # at< OK..
+  615.4  # pred t=301454 class=Lying p=0.841
+  615.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383431203330313435340a
+  615.4  # at< OK..
+  616.4  # pred t=302438 class=Lying p=0.843
+  616.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203330323433380a
+  616.4  # at< OK..
+  617.4  # pred t=303421 class=Lying p=0.846
+  617.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383436203330333432310a
+  617.4  # at< OK..
+  617.9  # rate=26.400 Hz windows=304 missed=356
+  618.4  # pred t=304405 class=Lying p=0.847
+  618.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383437203330343430350a
+  618.4  # at< OK..
+  619.5  # pred t=305388 class=Lying p=0.843
+  619.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203330353338380a
+  619.5  # at< OK..
+  620.5  # pred t=306372 class=Lying p=0.843
+  620.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203330363337320a
+  620.5  # at< OK..
+  621.5  # pred t=307355 class=Lying p=0.842
+  621.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383432203330373335350a
+  621.5  # at< OK..
+  622.5  # pred t=308339 class=Lying p=0.843
+  622.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383433203330383333390a
+  622.5  # at< OK..
+  623.0  # rate=26.400 Hz windows=309 missed=361
+  623.0  # pred t=309322 class=Lying p=0.875
+  623.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383735203330393332320a
+  623.5  # at< OK..
+  624.0  # pred t=310306 class=Lying p=0.812
+  624.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383132203331303330360a
+  624.5  # at< OK..
+  625.0  # pred t=311289 class=Lying p=0.828
+  625.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383238203331313238390a
+  625.0  # at< OK..
+  626.1  # pred t=312273 class=Lying p=0.815
+  626.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383135203331323237330a
+  626.1  # at< OK..
+  627.1  # pred t=313256 class=Lying p=0.829
+  627.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383239203331333235360a
+  627.1  # at< OK..
+  627.6  # rate=26.400 Hz windows=314 missed=366
+  628.1  # pred t=314240 class=Lying p=0.825
+  628.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383235203331343234300a
+  628.1  # at< OK..
+  629.1  # pred t=315224 class=Lying p=0.827
+  629.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383237203331353232340a
+  629.1  # at< OK..
+  630.1  # pred t=316207 class=Lying p=0.827
+  630.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383237203331363230370a
+  630.1  # at< OK..
+  631.1  # pred t=317191 class=Lying p=0.816
+  631.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383136203331373139310a
+  631.1  # at< OK..
+  632.2  # pred t=318174 class=Lying p=0.828
+  632.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383238203331383137340a
+  632.2  # at< OK..
+  632.7  # rate=26.600 Hz windows=319 missed=371
+  633.2  # pred t=319158 class=Lying p=0.834
+  633.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383334203331393135380a
+  633.2  # at< OK..
+  634.2  # pred t=320141 class=Lying p=0.824
+  634.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383234203332303134310a
+  634.2  # at< OK..
+  635.2  # pred t=321125 class=Lying p=0.821
+  635.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383231203332313132350a
+  635.2  # at< OK..
+  636.2  # pred t=322108 class=Lying p=0.829
+  636.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383239203332323130380a
+  636.2  # at< OK..
+  636.7  # pred t=323092 class=Lying p=0.827
+  637.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383237203332333039320a
+  637.2  # at< OK..
+  637.7  # rate=26.400 Hz windows=324 missed=376
+  637.7  # pred t=324075 class=Lying p=0.824
+  638.2  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383234203332343037350a
+  638.2  # at< OK..
+  638.7  # pred t=325059 class=Lying p=0.827
+  638.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383237203332353035390a
+  638.7  # at< OK..
+  639.7  # pred t=326042 class=Lying p=0.832
+  639.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383332203332363034320a
+  639.7  # at< OK..
+  640.8  # pred t=327026 class=Lying p=0.826
+  640.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383236203332373032360a
+  640.8  # at< OK..
+  641.8  # pred t=328009 class=Lying p=0.827
+  641.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383237203332383030390a
+  641.8  # at< OK..
+  642.8  # rate=26.400 Hz windows=329 missed=381
+  642.8  # pred t=328993 class=Lying p=0.834
+  642.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383334203332383939330a
+  642.8  # at< OK..
+  643.8  # pred t=329976 class=Lying p=0.833
+  643.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383333203332393937360a
+  643.8  # at< OK..
+  644.8  # pred t=330959 class=Lying p=0.834
+  644.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383334203333303935390a
+  644.8  # at< OK..
+  645.8  # pred t=331943 class=Lying p=0.831
+  645.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383331203333313934330a
+  645.8  # at< OK..
+  646.9  # pred t=332926 class=Lying p=0.834
+  646.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383334203333323932360a
+  646.9  # at< OK..
+  647.4  # rate=26.594 Hz windows=334 missed=386
+  647.9  # pred t=333910 class=Lying p=0.835
+  647.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383335203333333931300a
+  647.9  # at< OK..
+  648.9  # pred t=334893 class=Lying p=0.836
+  648.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383336203333343839330a
+  648.9  # at< OK..
+  649.4  # pred t=335877 class=Lying p=0.835
+  649.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383335203333353837370a
+  649.9  # at< OK..
+  650.4  # pred t=336860 class=Lying p=0.834
+  650.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e383334203333363836300a
+  650.9  # at< OK..
+  651.4  # pred t=337844 class=Lying p=0.831
+  656.0  # at> AT
+  656.0  # at< OK..
+  656.0  # at> AT+BLE_RST=1
+  656.0  # at< OK..
+  656.5  # at> AT+BLE_NAME=Spokiy
+  656.5  # at< OK..
+  656.5  # at> AT+BLE_INIT=1
+  656.5  # at< OK..
+  656.9  # at> AT+BLE_SVC=3,2,0xaabb,10
+  656.9  # at< OK..
+  656.9  # at> AT+BLE_CHAR_ADD=3,1,2,0x3344,20,0x10,0,0
+  656.9  # at< OK..
+  656.9  # at> AT+BLE_ADV=1
+  656.9  # at< OK..
+  656.9  Start
+  656.9  WHO_AM_I = 0x6B (expected 0x6B)
+  656.9  # fs=27 Hz window=55 x 6 hop=27 lpf=12 Hz units=g,dps
+  656.9  # model=ok classes=5
+  657.4  # out=USART1 (ST-Link VCP)
+  657.4  # ble=ok step=0 soft=0x00
+  659.0  # pred t=5402 class=Running p=0.866
+  660.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3320302e38363620353430320a
+  660.0  # at< <BLE_EVT_CONN=1..   <-- таймаут
+  660.0  # pred t=6386 class=Lying p=0.831
+  660.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e38333120363338360a
+  660.5  # at< (тишина)   <-- таймаут
+  661.0  # pred t=7370 class=Lying p=0.823
+  661.5  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e38323320373337300a
+  661.5  # at< (тишина)   <-- таймаут
+  662.5  # at> AT+BLE_ADV=1
+  662.5  # at< (тишина)   <-- таймаут
+  662.5  # rate=14.623 Hz windows=3 missed=28
+  664.5  # pred t=10903 class=Lying p=0.869
+  665.5  # pred t=11887 class=Lying p=0.834
+  666.5  # pred t=12870 class=Lying p=0.836
+  667.6  # pred t=13854 class=Lying p=0.830
+  668.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3833302031333835340a
+  668.1  # at< (тишина)   <-- таймаут
+  668.1  # rate=24.876 Hz windows=7 missed=70
+  668.6  # pred t=14837 class=Lying p=0.830
+  669.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3833302031343833370a
+  669.1  # at< (тишина)   <-- таймаут
+  669.6  # pred t=15821 class=Lying p=0.827
+  670.1  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3832372031353832310a
+  670.1  # at< (тишина)   <-- таймаут
+  671.1  # at> AT+BLE_ADV=1
+  671.1  # at< (тишина)   <-- таймаут
+  673.1  # pred t=19355 class=Lying p=0.865
+  673.1  # rate=16.600 Hz windows=10 missed=140
+  674.1  # pred t=20338 class=Lying p=0.832
+  675.1  # pred t=21322 class=Lying p=0.834
+  676.2  # pred t=22305 class=Lying p=0.832
+  676.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3833322032323330350a
+  676.7  # at< (тишина)   <-- таймаут
+  677.2  # pred t=23289 class=Lying p=0.827
+  677.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3832372032333238390a
+  677.7  # at< (тишина)   <-- таймаут
+  678.2  # pred t=24272 class=Lying p=0.826
+  678.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3832362032343237320a
+  678.7  # at< (тишина)   <-- таймаут
+  679.7  # at> AT+BLE_ADV=1
+  679.7  # at< (тишина)   <-- таймаут
+  679.7  # rate=16.309 Hz windows=15 missed=168
+  681.7  # pred t=27806 class=Lying p=0.871
+  682.2  # pred t=28790 class=Lying p=0.837
+  683.2  # pred t=29774 class=Lying p=0.835
+  684.2  # pred t=30757 class=Lying p=0.831
+  684.7  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3833312033303735370a
+  684.7  # at< (тишина)   <-- таймаут
+  684.7  # rate=24.881 Hz windows=19 missed=210
+  685.2  # pred t=31741 class=Lying p=0.834
+  685.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3833342033313734310a
+  685.8  # at< (тишина)   <-- таймаут
+  686.3  # pred t=32725 class=Lying p=0.837
+  686.8  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3833372033323732350a
+  686.8  # at< (тишина)   <-- таймаут
+  687.8  # at> AT+BLE_ADV=1
+  687.8  # at< (тишина)   <-- таймаут
+  689.8  # pred t=36259 class=Lying p=0.865
+  689.8  # rate=16.600 Hz windows=22 missed=280
+  690.8  # pred t=37243 class=Lying p=0.828
+  691.8  # pred t=38227 class=Lying p=0.826
+  692.8  # pred t=39210 class=Lying p=0.829
+  693.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3832392033393231300a
+  693.3  # at< (тишина)   <-- таймаут
+  693.8  # pred t=40194 class=Lying p=0.829
+  694.3  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3832392034303139340a
+  694.3  # at< (тишина)   <-- таймаут
+  694.9  # pred t=41178 class=Lying p=0.828
+  695.4  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3832382034313137380a
+  695.4  # at< (тишина)   <-- таймаут
+  696.4  # at> AT+BLE_ADV=1
+  696.4  # at< (тишина)   <-- таймаут
+  696.4  # rate=16.306 Hz windows=27 missed=308
+  698.4  # pred t=44712 class=Lying p=0.870
+  699.4  # pred t=45695 class=Lying p=0.831
+  700.4  # pred t=46679 class=Lying p=0.812
+  701.4  # pred t=47662 class=Lying p=0.827
+  701.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3832372034373636320a
+  701.9  # at< (тишина)   <-- таймаут
+  701.9  # rate=24.881 Hz windows=31 missed=350
+  701.9  # pred t=48646 class=Lying p=0.834
+  702.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3833342034383634360a
+  702.9  # at< (тишина)   <-- таймаут
+  702.9  # pred t=49630 class=Lying p=0.825
+  703.9  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3832352034393633300a
+  703.9  # at< (тишина)   <-- таймаут
+  704.9  # at> AT+BLE_ADV=1
+  704.9  # at< (тишина)   <-- таймаут
+  706.5  # pred t=53164 class=Lying p=0.873
+  707.0  # rate=16.600 Hz windows=34 missed=420
+  707.5  # pred t=54147 class=Lying p=0.838
+  708.5  # pred t=55131 class=Lying p=0.836
+  709.5  # pred t=56115 class=Lying p=0.837
+  710.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3833372035363131350a
+  710.0  # at< (тишина)   <-- таймаут
+  710.5  # pred t=57099 class=Lying p=0.838
+  711.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3833382035373039390a
+  711.0  # at< (тишина)   <-- таймаут
+  711.5  # pred t=58082 class=Lying p=0.840
+  712.0  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3834302035383038320a
+  712.0  # at< (тишина)   <-- таймаут
+  713.0  # at> AT+BLE_ADV=1
+  713.0  # at< (тишина)   <-- таймаут
+  713.0  # rate=16.306 Hz windows=39 missed=448
+  715.1  # pred t=61617 class=Lying p=0.873
+  716.1  # pred t=62600 class=Lying p=0.837
+  717.1  # pred t=63584 class=Lying p=0.837
+  718.1  # pred t=64568 class=Lying p=0.837
+  718.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3833372036343536380a
+  718.6  # at< (тишина)   <-- таймаут
+  718.6  # rate=24.881 Hz windows=43 missed=490
+  719.1  # pred t=65552 class=Lying p=0.835
+  719.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3833352036353535320a
+  719.6  # at< (тишина)   <-- таймаут
+  720.1  # pred t=66535 class=Lying p=0.836
+  720.6  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3833362036363533350a
+  720.6  # at< (тишина)   <-- таймаут
+  721.6  # at> AT+BLE_ADV=1
+  721.6  # at< (тишина)   <-- таймаут
+  723.7  # pred t=70070 class=Lying p=0.866
+  723.7  # rate=16.600 Hz windows=46 missed=560
+  724.2  # pred t=71053 class=Lying p=0.833
+  725.2  # pred t=72037 class=Lying p=0.835
+  726.2  # pred t=73020 class=Lying p=0.837
+  727.2  # pred t=74004 class=Lying p=0.834
+  728.2  # pred t=74987 class=Lying p=0.827
+  728.7  # rate=27.400 Hz windows=51 missed=560
+  729.2  # pred t=75971 class=Lying p=0.822
+  730.2  # pred t=76955 class=Lying p=0.827
+  731.3  # pred t=77938 class=Lying p=0.825
+  732.3  # pred t=78922 class=Lying p=0.821
+  733.3  # pred t=79906 class=Lying p=0.828
+  733.3  # rate=27.400 Hz windows=56 missed=560
+  734.3  # pred t=80889 class=Lying p=0.830
+  735.3  # pred t=81873 class=Lying p=0.832
+  736.3  # pred t=82856 class=Lying p=0.833
+  737.3  # pred t=83840 class=Lying p=0.821
+  738.3  # pred t=84824 class=Lying p=0.824
+  738.3  # rate=27.400 Hz windows=61 missed=560
+  739.3  # pred t=85807 class=Lying p=0.835
+  739.8  # pred t=86791 class=Lying p=0.826
+  740.9  # pred t=87774 class=Lying p=0.823
+  741.9  # pred t=88758 class=Lying p=0.823
+  742.9  # pred t=89742 class=Lying p=0.828
+  743.4  # rate=27.600 Hz windows=66 missed=560
+  743.9  # pred t=90725 class=Lying p=0.824
+  744.9  # pred t=91709 class=Lying p=0.822
+  745.9  # pred t=92692 class=Lying p=0.821
+  746.9  # pred t=93676 class=Lying p=0.823
+  747.9  # pred t=94659 class=Lying p=0.828
+  748.4  # rate=27.400 Hz windows=71 missed=560
+  749.0  # pred t=95643 class=Lying p=0.833
+  750.0  # pred t=96627 class=Lying p=0.832
+  751.0  # pred t=97610 class=Lying p=0.835
+  752.0  # pred t=98594 class=Lying p=0.838
+  753.0  # pred t=99577 class=Lying p=0.834
+  753.5  # rate=27.400 Hz windows=76 missed=560
+  753.5  # pred t=100561 class=Lying p=0.832
+  754.5  # pred t=101544 class=Lying p=0.834
+  755.6  # pred t=102528 class=Lying p=0.836
+  756.6  # pred t=103512 class=Lying p=0.840
+  757.6  # pred t=104496 class=Lying p=0.840
+  758.1  # rate=27.400 Hz windows=81 missed=560
+  758.6  # pred t=105479 class=Lying p=0.840
+  759.6  # pred t=106463 class=Lying p=0.840
+  760.6  # pred t=107447 class=Lying p=0.838
+  761.6  # pred t=108430 class=Lying p=0.836
+  762.7  # pred t=109414 class=Lying p=0.830
+  763.2  # rate=27.594 Hz windows=86 missed=560
+  763.7  # pred t=110398 class=Lying p=0.825
+  764.7  # pred t=111381 class=Lying p=0.830
+  765.7  # pred t=112365 class=Lying p=0.832
+  766.7  # pred t=113348 class=Lying p=0.839
+  767.2  # pred t=114332 class=Lying p=0.836
+  768.2  # rate=27.400 Hz windows=91 missed=560
+  768.2  # pred t=115315 class=Lying p=0.836
+  769.2  # pred t=116299 class=Lying p=0.836
+  770.3  # pred t=117282 class=Lying p=0.838
+  771.3  # pred t=118266 class=Lying p=0.839
+  772.3  # pred t=119249 class=Lying p=0.834
+  773.3  # rate=27.400 Hz windows=96 missed=560
+  773.3  # pred t=120233 class=Lying p=0.821
+  774.3  # pred t=121217 class=Lying p=0.831
+  775.3  # pred t=122200 class=Lying p=0.837
+  776.4  # pred t=123184 class=Lying p=0.836
+  777.4  # pred t=124167 class=Lying p=0.838
+  778.4  # rate=27.400 Hz windows=101 missed=560
+  778.4  # pred t=125151 class=Lying p=0.838
+  779.4  # pred t=126134 class=Lying p=0.832
+  779.9  # pred t=127118 class=Lying p=0.833
+  780.9  # pred t=128101 class=Lying p=0.835
+  781.9  # pred t=129085 class=Lying p=0.830
+  783.0  # pred t=130069 class=Lying p=0.829
+  783.0  # rate=27.600 Hz windows=107 missed=560
+  784.0  # pred t=131052 class=Lying p=0.830
+  785.0  # pred t=132036 class=Lying p=0.835
+  786.0  # pred t=133019 class=Lying p=0.835
+  787.0  # pred t=134003 class=Lying p=0.831
+  791.1  # at> AT
+  791.1  # at< (тишина)   <-- таймаут
+  791.1  # rate=13.451 Hz windows=111 missed=560
+  793.1  # pred t=139978 class=Lying p=0.870
+  794.1  # pred t=140962 class=Lying p=0.837
+  795.1  # pred t=141945 class=Lying p=0.835
+  796.1  # pred t=142929 class=Lying p=0.833
+  796.1  # rate=27.600 Hz windows=115 missed=669
+  796.6  # pred t=143913 class=Lying p=0.836
+  797.6  # pred t=144896 class=Lying p=0.824
+  798.6  # pred t=145880 class=Lying p=0.830
+  799.6  # pred t=146863 class=Lying p=0.837
+  800.7  # pred t=147847 class=Lying p=0.832
+  801.2  # rate=27.400 Hz windows=120 missed=669
+  801.7  # pred t=148830 class=Lying p=0.828
+  802.7  # pred t=149814 class=Lying p=0.832
+  803.7  # pred t=150797 class=Lying p=0.829
+  804.7  # pred t=151781 class=Lying p=0.834
+  805.7  # pred t=152764 class=Lying p=0.831
+  805.7  # rate=27.600 Hz windows=125 missed=669
+  806.7  # pred t=153748 class=Lying p=0.831
+  807.8  # pred t=154731 class=Lying p=0.835
+  808.8  # pred t=155715 class=Lying p=0.836
+  809.8  # pred t=156699 class=Lying p=0.837
+  810.3  # pred t=157682 class=Lying p=0.837
+  810.8  # rate=27.400 Hz windows=130 missed=669
+  811.3  # pred t=158666 class=Lying p=0.836
+  812.3  # pred t=159649 class=Lying p=0.837
+  813.4  # pred t=160633 class=Lying p=0.837
+  814.4  # pred t=161616 class=Lying p=0.836
+  815.4  # pred t=162600 class=Lying p=0.837
+  815.9  # rate=27.400 Hz windows=135 missed=669
+  816.4  # pred t=163583 class=Lying p=0.839
+  817.4  # pred t=164567 class=Lying p=0.839
+  818.4  # pred t=165550 class=Lying p=0.838
+  819.4  # pred t=166534 class=Lying p=0.839
+  820.4  # pred t=167518 class=Lying p=0.839
+  820.9  # rate=27.400 Hz windows=140 missed=669
+  821.4  # pred t=168501 class=Lying p=0.839
+  822.5  # pred t=169485 class=Lying p=0.838
+  823.5  # pred t=170468 class=Lying p=0.837
+  824.0  # pred t=171452 class=Lying p=0.838
+  825.0  # pred t=172435 class=Lying p=0.838
+  826.0  # rate=27.600 Hz windows=145 missed=669
+  826.0  # pred t=173419 class=Lying p=0.837
+  827.0  # pred t=174403 class=Lying p=0.834
+  828.0  # pred t=175386 class=Lying p=0.833
+  829.1  # pred t=176370 class=Lying p=0.835
+  830.1  # pred t=177353 class=Lying p=0.837
+  830.6  # rate=27.400 Hz windows=150 missed=669
+  831.1  # pred t=178337 class=Lying p=0.837
+  832.1  # pred t=179320 class=Lying p=0.836
+  833.1  # pred t=180304 class=Lying p=0.837
+  834.1  # pred t=181288 class=Lying p=0.835
+  835.2  # pred t=182271 class=Lying p=0.835
+  835.7  # rate=27.400 Hz windows=155 missed=669
+  836.2  # pred t=183255 class=Lying p=0.834
+  836.7  # pred t=184238 class=Lying p=0.833
+  837.7  # pred t=185222 class=Lying p=0.831
+  843.3  # at> AT
+  843.3  # at< (тишина)   <-- таймаут
+  843.3  Start
+  843.3  WHO_AM_I = 0x6B (expected 0x6B)
+  843.3  # fs=27 Hz window=55 x 6 hop=27 lpf=12 Hz units=g,dps
+  843.3  # model=ok classes=5
+  843.3  # out=USART1 (ST-Link VCP)
+  843.3  # ble=fail step=1 soft=0x00
+  850.4  # pred t=10213 class=Lying p=0.874
+  851.4  # pred t=11196 class=Lying p=0.838
+  852.4  # pred t=12180 class=Lying p=0.837
+  853.5  # pred t=13163 class=Lying p=0.839
+  853.5  # rate=27.600 Hz windows=4 missed=0
+  854.0  # pred t=14147 class=Lying p=0.835
+  855.0  # pred t=15131 class=Lying p=0.836
+  856.0  # pred t=16114 class=Lying p=0.839
+  857.0  # pred t=17098 class=Lying p=0.838
+  858.0  # pred t=18081 class=Lying p=0.837
+  858.0  # rate=27.400 Hz windows=9 missed=0
+  859.1  # pred t=19065 class=Lying p=0.837
+  860.1  # pred t=20049 class=Lying p=0.839
+  861.1  # pred t=21032 class=Lying p=0.836
+  862.1  # pred t=22016 class=Lying p=0.836
+  863.1  # pred t=22999 class=Lying p=0.840
+  863.1  # rate=27.400 Hz windows=14 missed=0
+  864.1  # pred t=23983 class=Lying p=0.840
+  865.1  # pred t=24967 class=Lying p=0.840
+  866.1  # pred t=25950 class=Lying p=0.841
+  866.6  # pred t=26933 class=Lying p=0.840
+  867.7  # pred t=27917 class=Lying p=0.839
+  868.2  # rate=27.400 Hz windows=19 missed=0
+  868.7  # pred t=28900 class=Lying p=0.834
+  869.7  # pred t=29884 class=Lying p=0.829
+  870.7  # pred t=30868 class=Lying p=0.833
+  871.7  # pred t=31851 class=Lying p=0.822
+  872.7  # pred t=32835 class=Lying p=0.829
+  873.2  # rate=27.600 Hz windows=24 missed=0
+  873.8  # pred t=33818 class=Lying p=0.838
+  874.8  # pred t=34802 class=Lying p=0.834
+  875.8  # pred t=35785 class=Lying p=0.833
+  876.8  # pred t=36769 class=Lying p=0.837
+  877.8  # pred t=37752 class=Lying p=0.834
+  878.3  # rate=27.400 Hz windows=29 missed=0
+  878.8  # pred t=38736 class=Lying p=0.832
+  879.8  # pred t=39720 class=Lying p=0.836
+  880.3  # pred t=40703 class=Lying p=0.836
+  881.3  # pred t=41687 class=Lying p=0.839
+  882.3  # pred t=42670 class=Lying p=0.837
+  882.9  # rate=27.400 Hz windows=34 missed=0
+  883.4  # pred t=43654 class=Lying p=0.839
+  884.4  # pred t=44637 class=Lying p=0.837
+  885.4  # pred t=45621 class=Lying p=0.837
+  886.4  # pred t=46605 class=Lying p=0.828
+  887.4  # pred t=47588 class=Lying p=0.824
+  887.9  # rate=27.400 Hz windows=39 missed=0
+  888.4  # pred t=48572 class=Lying p=0.820
+  889.4  # pred t=49555 class=Lying p=0.825
+  890.4  # pred t=50539 class=Lying p=0.832
+  891.4  # pred t=51522 class=Lying p=0.833
+  892.5  # pred t=52506 class=Lying p=0.837
+  893.0  # rate=27.600 Hz windows=44 missed=0
+  893.5  # pred t=53490 class=Lying p=0.833
+  894.5  # pred t=54473 class=Lying p=0.836
+  895.0  # pred t=55457 class=Lying p=0.833
+  896.0  # pred t=56440 class=Lying p=0.823
+  897.0  # pred t=57424 class=Lying p=0.830
+  898.0  # rate=27.400 Hz windows=49 missed=0
+  898.0  # pred t=58407 class=Lying p=0.835
+  899.0  # pred t=59391 class=Lying p=0.829
+  900.0  # pred t=60374 class=Lying p=0.822
+  904.1  # at> AT
+  904.1  # at< (тишина)   <-- таймаут
+  904.1  # rate=9.585 Hz windows=52 missed=0
+  906.1  # pred t=66350 class=Lying p=0.868
+  907.1  # pred t=67333 class=Lying p=0.832
+  908.2  # pred t=68317 class=Lying p=0.833
+  909.2  # pred t=69300 class=Lying p=0.831
+  909.2  # rate=27.600 Hz windows=56 missed=109
+  910.2  # pred t=70284 class=Lying p=0.828
+  910.7  # pred t=71267 class=Lying p=0.834
+  911.7  # pred t=72251 class=Lying p=0.837
+  912.8  # pred t=73234 class=Lying p=0.838
+  913.8  # pred t=74218 class=Lying p=0.839
+  914.3  # rate=27.400 Hz windows=61 missed=109
+  914.8  # pred t=75201 class=Lying p=0.838
+  915.8  # pred t=76185 class=Lying p=0.830
+  916.8  # pred t=77168 class=Lying p=0.831
+  917.8  # pred t=78152 class=Lying p=0.838
+  918.8  # pred t=79135 class=Lying p=0.840
+  918.8  # rate=27.600 Hz windows=66 missed=109
+  919.9  # pred t=80119 class=Lying p=0.839
+  920.9  # pred t=81103 class=Lying p=0.838
+  921.9  # pred t=82086 class=Lying p=0.840
+  922.9  # pred t=83070 class=Lying p=0.837
+  923.4  # pred t=84053 class=Lying p=0.838
+  923.9  # rate=27.400 Hz windows=71 missed=109
+  924.4  # pred t=85037 class=Lying p=0.840
+  925.4  # pred t=86020 class=Lying p=0.840
+  926.4  # pred t=87004 class=Lying p=0.840
+  927.5  # pred t=87987 class=Lying p=0.835
+  928.5  # pred t=88971 class=Lying p=0.821
+  929.0  # rate=27.400 Hz windows=76 missed=109
+  929.5  # pred t=89955 class=Lying p=0.825
+  930.5  # pred t=90938 class=Lying p=0.827
+  931.5  # pred t=91922 class=Lying p=0.827
+  932.5  # pred t=92905 class=Lying p=0.830
+  933.5  # pred t=93889 class=Lying p=0.833
+  934.0  # rate=27.400 Hz windows=81 missed=109
+  934.5  # pred t=94872 class=Lying p=0.837
+  935.6  # pred t=95856 class=Lying p=0.839
+  936.6  # pred t=96839 class=Lying p=0.838
+  937.6  # pred t=97823 class=Lying p=0.837
+  938.1  # pred t=98806 class=Lying p=0.837
+  939.1  # rate=27.600 Hz windows=86 missed=109
+  939.1  # pred t=99790 class=Lying p=0.839
+  940.1  # pred t=100773 class=Lying p=0.835
+  941.1  # pred t=101757 class=Lying p=0.826
+  942.1  # pred t=102741 class=Lying p=0.829
+  943.2  # pred t=103724 class=Lying p=0.832
+  943.7  # rate=27.400 Hz windows=91 missed=109
+  944.2  # pred t=104708 class=Lying p=0.831
+  945.2  # pred t=105691 class=Lying p=0.830
+  946.2  # pred t=106675 class=Lying p=0.832
+  947.2  # pred t=107659 class=Lying p=0.835
+  948.2  # pred t=108642 class=Lying p=0.833
+  948.7  # rate=27.400 Hz windows=96 missed=109
+  949.2  # pred t=109626 class=Lying p=0.837
+  950.2  # pred t=110609 class=Lying p=0.838
+  951.3  # pred t=111593 class=Lying p=0.840
+  951.8  # pred t=112577 class=Lying p=0.839
+  952.8  # pred t=113560 class=Lying p=0.840
+  953.8  # rate=27.400 Hz windows=101 missed=109
+  953.8  # pred t=114544 class=Lying p=0.836
+  954.8  # pred t=115527 class=Lying p=0.829
+  955.8  # pred t=116511 class=Lying p=0.824
+  956.8  # pred t=117494 class=Lying p=0.833
+  957.9  # pred t=118478 class=Lying p=0.838
+  958.9  # rate=27.600 Hz windows=106 missed=109
+  958.9  # pred t=119461 class=Lying p=0.832
+  959.9  # pred t=120445 class=Lying p=0.829
+  963.9  # at> AT
+  963.9  # at< (тишина)   <-- таймаут
+  963.9  # rate=5.719 Hz windows=108 missed=109
+  965.9  # pred t=126420 class=Lying p=0.867
+  967.0  # pred t=127404 class=Lying p=0.832
+  967.5  # pred t=128387 class=Lying p=0.833
+  968.5  # pred t=129371 class=Lying p=0.832
+  969.0  # rate=27.600 Hz windows=112 missed=218
+  969.5  # pred t=130355 class=Lying p=0.835
+  970.5  # pred t=131338 class=Lying p=0.837
+  971.5  # pred t=132322 class=Lying p=0.828
+  972.5  # pred t=133306 class=Lying p=0.833
+  973.5  # pred t=134289 class=Lying p=0.833
+  973.5  # rate=27.400 Hz windows=117 missed=218
+  974.5  # pred t=135273 class=Lying p=0.836
+  975.6  # pred t=136256 class=Lying p=0.837
+  976.6  # pred t=137240 class=Lying p=0.839
+  977.6  # pred t=138224 class=Lying p=0.840
+  978.6  # pred t=139207 class=Lying p=0.837
+  978.6  # rate=27.600 Hz windows=122 missed=218
+  979.6  # pred t=140191 class=Lying p=0.834
+  980.6  # pred t=141174 class=Lying p=0.836
+  981.7  # pred t=142158 class=Lying p=0.838
+  982.2  # pred t=143141 class=Lying p=0.836
+  983.2  # pred t=144125 class=Lying p=0.831
+  983.7  # rate=27.400 Hz windows=127 missed=218
+  984.2  # pred t=145108 class=Lying p=0.833
+  985.2  # pred t=146092 class=Lying p=0.835
+  986.2  # pred t=147075 class=Lying p=0.837
+  987.2  # pred t=148059 class=Lying p=0.832
+  988.3  # pred t=149042 class=Lying p=0.836
+  988.8  # rate=27.400 Hz windows=132 missed=218
+  989.3  # pred t=150026 class=Lying p=0.834
+  990.3  # pred t=151010 class=Lying p=0.837
+  991.3  # pred t=151993 class=Lying p=0.837
+  992.3  # pred t=152977 class=Lying p=0.835
+  993.3  # pred t=153960 class=Lying p=0.835
+  993.8  # rate=27.400 Hz windows=137 missed=218
+  994.3  # pred t=154944 class=Lying p=0.839
+  995.4  # pred t=155927 class=Lying p=0.836
+  995.9  # pred t=156911 class=Lying p=0.838
+  996.9  # pred t=157894 class=Lying p=0.835
+  997.9  # pred t=158878 class=Lying p=0.827
+  998.4  # rate=27.600 Hz windows=142 missed=218
+  998.9  # pred t=159862 class=Lying p=0.836
+  999.9  # pred t=160845 class=Lying p=0.840
+ 1000.9  # pred t=161829 class=Lying p=0.838
+ 1001.9  # pred t=162812 class=Lying p=0.832
+ 1002.9  # pred t=163796 class=Lying p=0.834
+ 1003.4  # rate=27.400 Hz windows=147 missed=218
+ 1003.9  # pred t=164780 class=Lying p=0.832
+ 1004.9  # pred t=165763 class=Lying p=0.834
+ 1006.0  # pred t=166747 class=Lying p=0.834
+ 1007.0  # pred t=167730 class=Lying p=0.834
+ 1008.0  # pred t=168714 class=Lying p=0.835
+ 1008.5  # rate=27.400 Hz windows=152 missed=218
+ 1009.0  # pred t=169698 class=Lying p=0.836
+ 1009.5  # pred t=170681 class=Lying p=0.838
+ 1010.5  # pred t=171665 class=Lying p=0.838
+ 1011.5  # pred t=172649 class=Lying p=0.837
+ 1012.6  # pred t=173632 class=Lying p=0.834
+ 1013.6  # rate=27.400 Hz windows=157 missed=218
+ 1013.6  # pred t=174616 class=Lying p=0.836
+ 1014.6  # pred t=175599 class=Lying p=0.839
+ 1015.6  # pred t=176583 class=Lying p=0.839
+ 1016.6  # pred t=177567 class=Lying p=0.840
+ 1017.6  # pred t=178550 class=Lying p=0.841
+ 1018.6  # rate=27.600 Hz windows=162 missed=218
+ 1018.6  # pred t=179534 class=Lying p=0.830
+ 1019.6  # pred t=180518 class=Lying p=0.829
+ 1023.7  # at> AT
+ 1023.7  # at< (тишина)   <-- таймаут
+ 1023.7  # rate=5.716 Hz windows=164 missed=218
+ 1025.7  # pred t=186493 class=Lying p=0.871
+ 1026.2  # pred t=187476 class=Lying p=0.840
+ 1027.2  # pred t=188460 class=Lying p=0.839
+ 1028.2  # pred t=189443 class=Lying p=0.838
+ 1028.2  # rate=27.600 Hz windows=168 missed=327
+ 1029.3  # pred t=190427 class=Lying p=0.839
+ 1030.3  # pred t=191410 class=Lying p=0.843
+ 1031.3  # pred t=192394 class=Lying p=0.841
+ 1032.3  # pred t=193378 class=Lying p=0.839
+ 1033.3  # pred t=194361 class=Lying p=0.835
+ 1033.3  # rate=27.400 Hz windows=173 missed=327
+ 1034.3  # pred t=195345 class=Lying p=0.829
+ 1035.3  # pred t=196328 class=Lying p=0.832
+ 1036.4  # pred t=197312 class=Lying p=0.837
+ 1037.4  # pred t=198295 class=Lying p=0.837
+ 1038.4  # pred t=199279 class=Lying p=0.839
+ 1038.4  # rate=27.600 Hz windows=178 missed=327
+ 1038.9  # pred t=200263 class=Lying p=0.838
+ 1039.9  # pred t=201246 class=Lying p=0.835
+ 1040.9  # pred t=202230 class=Lying p=0.837
+ 1041.9  # pred t=203213 class=Lying p=0.834
+ 1043.0  # pred t=204197 class=Lying p=0.832
+ 1043.5  # rate=27.400 Hz windows=183 missed=327
+ 1044.0  # pred t=205180 class=Lying p=0.836
+ 1045.0  # pred t=206164 class=Lying p=0.840
+ 1046.0  # pred t=207147 class=Lying p=0.840
+ 1047.0  # pred t=208131 class=Lying p=0.841
+ 1048.1  # pred t=209114 class=Lying p=0.841
+ 1048.6  # rate=27.400 Hz windows=188 missed=327
+ 1049.1  # pred t=210098 class=Lying p=0.840
+ 1050.1  # pred t=211081 class=Lying p=0.841
+ 1051.1  # pred t=212065 class=Lying p=0.837
+ 1052.1  # pred t=213048 class=Lying p=0.840
+ 1052.6  # pred t=214032 class=Lying p=0.838
+ 1053.1  # rate=27.400 Hz windows=193 missed=327
+ 1053.6  # pred t=215015 class=Lying p=0.838
+ 1054.6  # pred t=215999 class=Lying p=0.838
+ 1055.7  # pred t=216982 class=Lying p=0.840
+ 1056.7  # pred t=217966 class=Lying p=0.840
+ 1057.7  # pred t=218950 class=Lying p=0.840
+ 1058.2  # rate=27.600 Hz windows=198 missed=327
+ 1058.7  # pred t=219933 class=Lying p=0.839
+ 1059.7  # pred t=220917 class=Lying p=0.840
+ 1060.7  # pred t=221900 class=Lying p=0.840
+ 1061.8  # pred t=222884 class=Lying p=0.840
+ 1062.8  # pred t=223867 class=Lying p=0.839
+ 1063.3  # rate=27.400 Hz windows=203 missed=327
+ 1063.8  # pred t=224851 class=Lying p=0.841
+ 1064.3  # pred t=225834 class=Lying p=0.839
+ 1065.3  # pred t=226818 class=Lying p=0.838
+ 1066.3  # pred t=227801 class=Lying p=0.840
+ 1067.4  # pred t=228785 class=Lying p=0.841
+ 1068.4  # rate=27.400 Hz windows=208 missed=327
+ 1068.4  # pred t=229769 class=Lying p=0.841
+ 1069.4  # pred t=230752 class=Lying p=0.842
+ 1070.4  # pred t=231736 class=Lying p=0.841
+ 1071.4  # pred t=232719 class=Lying p=0.839
+ 1072.4  # pred t=233703 class=Lying p=0.833
+ 1073.4  # rate=27.400 Hz windows=213 missed=327
+ 1073.4  # pred t=234686 class=Lying p=0.831
+ 1074.5  # pred t=235670 class=Lying p=0.837
+ 1075.5  # pred t=236653 class=Lying p=0.845
+ 1076.5  # pred t=237637 class=Lying p=0.839
+ 1077.5  # pred t=238620 class=Lying p=0.841
+ 1078.0  # rate=27.600 Hz windows=218 missed=327
+ 1078.0  # pred t=239604 class=Lying p=0.841
+ 1079.0  # pred t=240587 class=Lying p=0.841
+ 1083.1  # at> AT
+ 1083.1  # at< (тишина)   <-- таймаут
+ 1083.1  # rate=5.721 Hz windows=220 missed=327
+ 1085.2  # pred t=246562 class=Lying p=0.871
+ 1086.2  # pred t=247546 class=Lying p=0.841
+ 1087.2  # pred t=248530 class=Lying p=0.843
+ 1088.2  # pred t=249513 class=Lying p=0.842
+ 1088.2  # rate=27.600 Hz windows=224 missed=436
+ 1089.2  # pred t=250497 class=Lying p=0.842
+ 1090.3  # pred t=251481 class=Lying p=0.842
+ 1091.3  # pred t=252464 class=Lying p=0.842
+ 1091.8  # pred t=253448 class=Lying p=0.842
+ 1092.8  # pred t=254432 class=Lying p=0.841
+ 1093.3  # rate=27.400 Hz windows=229 missed=436
+ 1093.8  # pred t=255415 class=Lying p=0.843
+ 1094.8  # pred t=256399 class=Lying p=0.844
+ 1095.9  # pred t=257382 class=Lying p=0.842
+ 1096.9  # pred t=258366 class=Lying p=0.841
+ 1097.9  # pred t=259349 class=Lying p=0.841
+ 1097.9  # rate=27.600 Hz windows=234 missed=436
+ 1098.9  # pred t=260333 class=Lying p=0.843
+ 1099.9  # pred t=261316 class=Lying p=0.844
+ 1100.9  # pred t=262300 class=Lying p=0.842
+ 1102.0  # pred t=263283 class=Lying p=0.843
+ 1103.0  # pred t=264267 class=Lying p=0.844
+ 1103.0  # rate=27.400 Hz windows=239 missed=436
+ 1104.0  # pred t=265250 class=Lying p=0.841
+ 1104.5  # pred t=266234 class=Lying p=0.843
+ 1105.5  # pred t=267218 class=Lying p=0.844
+ 1106.5  # pred t=268201 class=Lying p=0.841
+ 1107.5  # pred t=269185 class=Lying p=0.838
+ 1108.0  # rate=27.400 Hz windows=244 missed=436
+ 1108.5  # pred t=270169 class=Lying p=0.842
+ 1109.6  # pred t=271152 class=Lying p=0.843
+ 1110.6  # pred t=272136 class=Lying p=0.843
+ 1111.6  # pred t=273120 class=Lying p=0.843
+ 1112.6  # pred t=274103 class=Lying p=0.841
+ 1113.1  # rate=27.400 Hz windows=249 missed=436
+ 1113.6  # pred t=275087 class=Lying p=0.840
+ 1114.7  # pred t=276071 class=Lying p=0.839
+ 1115.7  # pred t=277054 class=Lying p=0.842
+ 1116.7  # pred t=278038 class=Lying p=0.846
+ 1117.2  # pred t=279022 class=Lying p=0.847
+ 1118.3  # rate=27.600 Hz windows=254 missed=436
+ 1118.3  # pred t=280005 class=Lying p=0.844
+ 1119.3  # pred t=280989 class=Lying p=0.845
+ 1120.3  # pred t=281972 class=Lying p=0.844
+ 1121.3  # pred t=282956 class=Lying p=0.844
+ 1122.4  # pred t=283940 class=Lying p=0.846
+ 1122.9  # rate=27.400 Hz windows=259 missed=436
+ 1123.4  # pred t=284923 class=Lying p=0.846
+ 1124.4  # pred t=285907 class=Lying p=0.845
+ 1125.4  # pred t=286890 class=Lying p=0.851
+ 1126.4  # pred t=287874 class=Lying p=0.848
+ 1127.4  # pred t=288857 class=Lying p=0.844
+ 1127.9  # rate=27.400 Hz windows=264 missed=436
+ 1127.9  # pred t=289841 class=Lying p=0.845
+ 1129.0  # pred t=290825 class=Lying p=0.850
+ 1130.0  # pred t=291808 class=Lying p=0.846
+ 1131.0  # pred t=292792 class=Lying p=0.843
+ 1132.0  # pred t=293775 class=Lying p=0.843
+ 1133.0  # rate=27.400 Hz windows=269 missed=436
+ 1133.0  # pred t=294759 class=Lying p=0.840
+ 1134.0  # pred t=295742 class=Lying p=0.844
+ 1135.1  # pred t=296726 class=Lying p=0.842
+ 1136.1  # pred t=297709 class=Lying p=0.844
+ 1137.1  # pred t=298693 class=Lying p=0.847
+ 1138.1  # rate=27.600 Hz windows=274 missed=436
+ 1138.1  # pred t=299676 class=Lying p=0.845
+ 1139.1  # pred t=300660 class=Lying p=0.843
+ 1143.2  # at> AT
+ 1143.2  # at< (тишина)   <-- таймаут
+ 1143.2  # rate=5.716 Hz windows=276 missed=436
+ 1144.7  # pred t=306635 class=Lying p=0.874
+ 1145.7  # pred t=307619 class=Lying p=0.840
+ 1146.7  # pred t=308603 class=Lying p=0.843
+ 1147.7  # pred t=309586 class=Lying p=0.846
+ 1147.7  # rate=27.600 Hz windows=280 missed=545
+ 1148.7  # pred t=310570 class=Lying p=0.843
+ 1149.8  # pred t=311553 class=Lying p=0.844
+ 1150.8  # pred t=312537 class=Lying p=0.844
+ 1151.8  # pred t=313521 class=Lying p=0.841
+ 1152.8  # pred t=314504 class=Lying p=0.841
+ 1152.8  # rate=27.400 Hz windows=285 missed=545
+ 1153.8  # pred t=315488 class=Lying p=0.843
+ 1154.8  # pred t=316471 class=Lying p=0.844
+ 1155.9  # pred t=317455 class=Lying p=0.842
+ 1156.4  # pred t=318438 class=Lying p=0.841
+ 1157.4  # pred t=319422 class=Lying p=0.842
+ 1157.9  # rate=27.600 Hz windows=290 missed=545
+ 1158.4  # pred t=320405 class=Lying p=0.842
+ 1159.4  # pred t=321389 class=Lying p=0.843
+ 1160.4  # pred t=322373 class=Lying p=0.844
+ 1161.4  # pred t=323356 class=Lying p=0.843
+ 1162.5  # pred t=324340 class=Lying p=0.847
+ 1163.0  # rate=27.400 Hz windows=295 missed=545
+ 1163.5  # pred t=325323 class=Lying p=0.848
+ 1164.5  # pred t=326307 class=Lying p=0.845
+ 1165.5  # pred t=327290 class=Lying p=0.842
+ 1166.5  # pred t=328274 class=Lying p=0.846
+ 1167.5  # pred t=329257 class=Lying p=0.845
+ 1167.5  # rate=27.400 Hz windows=300 missed=545
+ 1168.6  # pred t=330241 class=Lying p=0.853
+ 1169.6  # pred t=331225 class=Lying p=0.843
+ 1170.1  # pred t=332208 class=Lying p=0.843
+ 1171.1  # pred t=333192 class=Lying p=0.845
+ 1172.1  # pred t=334175 class=Lying p=0.845
+ 1172.6  # rate=27.400 Hz windows=305 missed=545
+ 1173.1  # pred t=335159 class=Lying p=0.841
+ 1174.1  # pred t=336142 class=Lying p=0.843
+ 1175.2  # pred t=337126 class=Lying p=0.846
+ 1176.2  # pred t=338109 class=Lying p=0.842
+ 1177.2  # pred t=339093 class=Lying p=0.841
+ 1177.7  # rate=27.600 Hz windows=310 missed=545
+ 1178.2  # pred t=340076 class=Lying p=0.841
+ 1179.2  # pred t=341060 class=Lying p=0.841
+ 1180.2  # pred t=342043 class=Lying p=0.841
+ 1181.2  # pred t=343027 class=Lying p=0.841
+ 1182.2  # pred t=344011 class=Lying p=0.840
+ 1182.7  # rate=27.400 Hz windows=315 missed=545
+ 1183.3  # pred t=344994 class=Lying p=0.841
+ 1183.8  # pred t=345978 class=Lying p=0.841
+ 1184.8  # pred t=346961 class=Lying p=0.841
+ 1185.8  # pred t=347945 class=Lying p=0.841
+ 1186.8  # pred t=348929 class=Lying p=0.841
+ 1187.8  # rate=27.400 Hz windows=320 missed=545
+ 1187.8  # pred t=349912 class=Lying p=0.841
+ 1188.8  # pred t=350896 class=Lying p=0.843
+ 1189.8  # pred t=351880 class=Lying p=0.849
+ 1190.9  # pred t=352863 class=Lying p=0.853
+ 1191.9  # pred t=353847 class=Lying p=0.844
+ 1192.9  # rate=27.400 Hz windows=325 missed=545
+ 1192.9  # pred t=354830 class=Lying p=0.843
+ 1193.9  # pred t=355814 class=Lying p=0.843
+ 1194.9  # pred t=356798 class=Lying p=0.842
+ 1195.9  # pred t=357781 class=Lying p=0.843
+ 1196.9  # pred t=358765 class=Lying p=0.841
+ 1197.4  # rate=27.600 Hz windows=330 missed=545
+ 1197.4  # pred t=359748 class=Lying p=0.842
+ 1198.4  # pred t=360732 class=Lying p=0.843
+ 1199.5  # pred t=361715 class=Lying p=0.842
+ 1200.5  # pred t=362699 class=Lying p=0.842
+ 1201.5  # pred t=363683 class=Lying p=0.841
+ 1202.5  # pred t=364666 class=Lying p=0.842
+ 1202.5  # rate=27.400 Hz windows=336 missed=545
+ 1203.5  # pred t=365650 class=Lying p=0.842
+ 1204.5  # pred t=366633 class=Lying p=0.842
+ 1205.5  # pred t=367617 class=Lying p=0.838
+ 1206.5  # pred t=368601 class=Lying p=0.840
+ 1207.6  # pred t=369584 class=Lying p=0.842
+ 1207.6  # rate=27.400 Hz windows=341 missed=545
+ 1208.6  # pred t=370568 class=Lying p=0.841
+ 1209.6  # pred t=371551 class=Lying p=0.839
+ 1210.6  # pred t=372535 class=Lying p=0.838
+ 1211.6  # pred t=373518 class=Lying p=0.839
+ 1212.1  # pred t=374502 class=Lying p=0.844
+ 1212.6  # rate=27.400 Hz windows=346 missed=545
+ 1213.1  # pred t=375485 class=Lying p=0.842
+ 1214.2  # pred t=376469 class=Lying p=0.847
+ 1215.2  # pred t=377452 class=Lying p=0.844
+ 1216.2  # pred t=378436 class=Lying p=0.841
+ 1217.2  # pred t=379420 class=Lying p=0.841
+ 1217.7  # rate=27.600 Hz windows=351 missed=545
+ 1218.2  # pred t=380403 class=Lying p=0.842
+ 1219.2  # pred t=381387 class=Lying p=0.843
+ 1220.2  # pred t=382370 class=Lying p=0.842
+ 1221.3  # pred t=383354 class=Lying p=0.842
+ 1222.3  # pred t=384337 class=Lying p=0.843
+ 1222.3  # rate=27.400 Hz windows=356 missed=545
+ 1223.3  # pred t=385321 class=Lying p=0.842
+ 1224.3  # pred t=386305 class=Lying p=0.842
+ 1224.8  # pred t=387288 class=Lying p=0.842
+ 1225.8  # pred t=388272 class=Lying p=0.841
+ 1226.9  # pred t=389255 class=Lying p=0.842
+ 1227.4  # rate=27.400 Hz windows=361 missed=545
+ 1227.9  # pred t=390239 class=Lying p=0.842
+ 1228.9  # pred t=391222 class=Lying p=0.841
+ 1229.9  # pred t=392206 class=Lying p=0.845
+ 1230.9  # pred t=393189 class=Lying p=0.842
+ 1231.9  # pred t=394173 class=Lying p=0.844
+ 1232.5  # rate=27.400 Hz windows=366 missed=545
+ 1233.0  # pred t=395157 class=Lying p=0.843
+ 1234.0  # pred t=396140 class=Lying p=0.841
+ 1235.0  # pred t=397124 class=Lying p=0.841
+ 1236.0  # pred t=398107 class=Lying p=0.841
+ 1236.5  # pred t=399091 class=Lying p=0.841
+ 1237.5  # rate=27.600 Hz windows=371 missed=545
+ 1237.5  # pred t=400074 class=Lying p=0.844
+ 1238.6  # pred t=401058 class=Lying p=0.844
+ 1239.6  # pred t=402041 class=Lying p=0.847
+ 1240.6  # pred t=403025 class=Lying p=0.845
+ 1241.6  # pred t=404009 class=Lying p=0.844
+ 1242.1  # rate=27.400 Hz windows=376 missed=545
+ 1242.7  # pred t=404992 class=Lying p=0.842
+ 1243.7  # pred t=405976 class=Lying p=0.848
+ 1244.7  # pred t=406959 class=Lying p=0.851
+ 1245.7  # pred t=407943 class=Lying p=0.848
+ 1246.7  # pred t=408926 class=Lying p=0.850
+ 1247.2  # rate=27.400 Hz windows=381 missed=545
+ 1247.7  # pred t=409910 class=Lying p=0.850
+ 1248.8  # pred t=410894 class=Lying p=0.852
+ 1249.3  # pred t=411877 class=Lying p=0.847
+ 1250.3  # pred t=412861 class=Lying p=0.842
+ 1251.3  # pred t=413845 class=Lying p=0.839
+ 1252.3  # rate=27.400 Hz windows=386 missed=545
+ 1252.3  # pred t=414828 class=Lying p=0.843
+ 1253.3  # pred t=415812 class=Lying p=0.840
+ 1254.3  # pred t=416795 class=Lying p=0.845
+ 1255.3  # pred t=417779 class=Lying p=0.848
+ 1256.4  # pred t=418763 class=Lying p=0.845
+ 1257.4  # rate=27.600 Hz windows=391 missed=545
+ 1257.4  # pred t=419746 class=Lying p=0.842
+ 1258.4  # pred t=420730 class=Lying p=0.839
+ 1259.4  # pred t=421714 class=Lying p=0.842
+ 1260.4  # pred t=422698 class=Lying p=0.844
+ 1261.4  # pred t=423681 class=Lying p=0.846
+ 1261.9  # pred t=424665 class=Lying p=0.847
+ 1262.5  # rate=27.400 Hz windows=397 missed=545
+ 1263.0  # pred t=425649 class=Lying p=0.843
+ 1264.0  # pred t=426632 class=Lying p=0.840
+ 1265.0  # pred t=427616 class=Lying p=0.841
+ 1266.0  # pred t=428600 class=Lying p=0.843
+ 1267.0  # pred t=429583 class=Lying p=0.843
+ 1267.0  # rate=27.400 Hz windows=402 missed=545
+ 1268.0  # pred t=430567 class=Lying p=0.841
+ 1269.0  # pred t=431551 class=Lying p=0.840
+ 1270.0  # pred t=432534 class=Lying p=0.841
+ 1271.1  # pred t=433518 class=Lying p=0.843
+ 1272.1  # pred t=434501 class=Lying p=0.842
+ 1272.1  # rate=27.400 Hz windows=407 missed=545
+ 1273.1  # pred t=435485 class=Lying p=0.844
+ 1274.1  # pred t=436469 class=Lying p=0.846
+ 1275.1  # pred t=437452 class=Lying p=0.841
+ 1275.6  # pred t=438436 class=Lying p=0.843
+ 1276.7  # pred t=439419 class=Lying p=0.842
+ 1277.2  # rate=27.600 Hz windows=412 missed=545
+ 1277.7  # pred t=440403 class=Lying p=0.841
+ 1278.7  # pred t=441386 class=Lying p=0.841
+ 1279.7  # pred t=442370 class=Lying p=0.842
+ 1280.7  # pred t=443354 class=Lying p=0.842
+ 1281.7  # pred t=444337 class=Lying p=0.844
+ 1282.2  # rate=27.400 Hz windows=417 missed=545
+ 1282.8  # pred t=445321 class=Lying p=0.845
+ 1283.8  # pred t=446304 class=Lying p=0.843
+ 1284.8  # pred t=447288 class=Lying p=0.845
+ 1285.8  # pred t=448272 class=Lying p=0.848
+ 1286.8  # pred t=449255 class=Lying p=0.844
+ 1287.3  # rate=27.400 Hz windows=422 missed=545
+ 1287.8  # pred t=450239 class=Lying p=0.843
+ 1288.8  # pred t=451222 class=Lying p=0.843
+ 1289.3  # pred t=452206 class=Lying p=0.845
+ 1290.3  # pred t=453189 class=Lying p=0.845
+ 1291.3  # pred t=454173 class=Lying p=0.845
+ 1291.9  # rate=27.400 Hz windows=427 missed=545
+ 1292.4  # pred t=455157 class=Lying p=0.847
+ 1293.4  # pred t=456140 class=Lying p=0.848
+ 1294.4  # pred t=457124 class=Lying p=0.847
+ 1295.4  # pred t=458108 class=Lying p=0.848
+ 1296.4  # pred t=459091 class=Lying p=0.849
+ 1296.9  # rate=27.600 Hz windows=432 missed=545
+ 1297.4  # pred t=460075 class=Lying p=0.843
+ 1298.4  # pred t=461058 class=Lying p=0.842
+ 1299.4  # pred t=462042 class=Lying p=0.844
+ 1300.4  # pred t=463026 class=Lying p=0.848
+ 1301.5  # pred t=464009 class=Lying p=0.845
+ 1302.0  # rate=27.400 Hz windows=437 missed=545
+ 1302.5  # pred t=464993 class=Lying p=0.842
+ 1303.5  # pred t=465977 class=Lying p=0.843
+ 1304.0  # pred t=466961 class=Lying p=0.845
+ 1305.0  # pred t=467944 class=Lying p=0.840
+ 1306.0  # pred t=468928 class=Lying p=0.842
+ 1307.0  # rate=27.400 Hz windows=442 missed=545
+ 1307.0  # pred t=469911 class=Lying p=0.843
+ 1308.0  # pred t=470895 class=Lying p=0.848
+ 1309.1  # pred t=471879 class=Lying p=0.842
+ 1310.1  # pred t=472863 class=Lying p=0.844
+ 1311.1  # pred t=473846 class=Lying p=0.845
+ 1312.1  # rate=27.400 Hz windows=447 missed=545
+ 1312.1  # pred t=474830 class=Lying p=0.841
+ 1313.1  # pred t=475814 class=Lying p=0.838
+ 1314.2  # pred t=476797 class=Lying p=0.842
+ 1315.2  # pred t=477781 class=Lying p=0.842
+ 1316.2  # pred t=478764 class=Lying p=0.844
+ 1316.7  # rate=27.600 Hz windows=452 missed=545
+ 1316.7  # pred t=479748 class=Lying p=0.845
+ 1317.7  # pred t=480732 class=Lying p=0.844
+ 1318.7  # pred t=481715 class=Lying p=0.844
+ 1319.7  # pred t=482699 class=Lying p=0.843
+ 1320.8  # pred t=483682 class=Lying p=0.843
+ 1321.8  # pred t=484666 class=Lying p=0.843
+ 1321.8  # rate=27.400 Hz windows=458 missed=545
+ 1322.8  # pred t=485650 class=Lying p=0.842
+ 1323.8  # pred t=486633 class=Lying p=0.841
+ 1324.8  # pred t=487617 class=Lying p=0.844
+ 1325.8  # pred t=488601 class=Lying p=0.845
+ 1326.8  # pred t=489584 class=Lying p=0.845
+ 1326.8  # rate=27.400 Hz windows=463 missed=545
+ 1327.8  # pred t=490568 class=Lying p=0.842
+ 1328.9  # pred t=491552 class=Lying p=0.844
+ 1329.9  # pred t=492535 class=Lying p=0.847
+ 1330.4  # pred t=493519 class=Lying p=0.848
+ 1331.4  # pred t=494503 class=Lying p=0.841
+ 1331.9  # rate=27.400 Hz windows=468 missed=545
+ 1332.4  # pred t=495486 class=Lying p=0.844
+ 1333.4  # pred t=496470 class=Lying p=0.840
+ 1334.5  # pred t=497454 class=Lying p=0.845
+ 1335.5  # pred t=498437 class=Lying p=0.843
+ 1336.5  # pred t=499421 class=Lying p=0.846
+ 1337.0  # rate=27.600 Hz windows=473 missed=545
+ 1337.5  # pred t=500404 class=Lying p=0.847
+ 1338.5  # pred t=501388 class=Lying p=0.838
+ 1339.5  # pred t=502372 class=Lying p=0.822
+ 1340.5  # pred t=503355 class=Lying p=0.838
+ 1341.5  # pred t=504339 class=Lying p=0.843
+ 1341.5  # rate=27.400 Hz windows=478 missed=545
+ 1342.6  # pred t=505323 class=Lying p=0.843
+ 1343.6  # pred t=506306 class=Lying p=0.850
+ 1344.1  # pred t=507290 class=Lying p=0.847
+ 1345.1  # pred t=508274 class=Lying p=0.840
+ 1346.1  # pred t=509258 class=Lying p=0.839
+ 1346.6  # rate=27.400 Hz windows=483 missed=545
+ 1347.1  # pred t=510241 class=Lying p=0.842
+ 1348.1  # pred t=511225 class=Lying p=0.842
+ 1349.2  # pred t=512209 class=Lying p=0.845
+ 1350.2  # pred t=513192 class=Lying p=0.843
+ 1351.2  # pred t=514176 class=Lying p=0.844
+ 1351.7  # rate=27.400 Hz windows=488 missed=545
+ 1352.2  # pred t=515160 class=Lying p=0.842
+ 1353.2  # pred t=516143 class=Lying p=0.844
+ 1358.8  # at> AT
+ 1358.8  # at< (тишина)   <-- таймаут
+ 1366.4  # at> AT
+ 1366.4  # at< (тишина)   <-- таймаут
+ 1366.4  Start
+ 1366.4  WHO_AM_I = 0x6B (expected 0x6B)
+ 1366.4  # fs=27 Hz window=55 x 6 hop=27 lpf=12 Hz units=g,dps
+ 1366.4  # model=ok classes=5
+ 1366.4  # out=USART1 (ST-Link VCP)
+ 1366.4  # ble=fail step=1 soft=0x00
+ 1373.5  # pred t=18222 class=Lying p=0.876
+ 1374.5  # pred t=19206 class=Lying p=0.845
+ 1375.6  # pred t=20190 class=Lying p=0.848
+ 1376.6  # pred t=21173 class=Lying p=0.846
+ 1376.6  # rate=27.600 Hz windows=4 missed=0
+ 1377.6  # pred t=22157 class=Lying p=0.842
+ 1378.6  # pred t=23141 class=Lying p=0.843
+ 1379.6  # pred t=24124 class=Lying p=0.844
+ 1380.6  # pred t=25108 class=Lying p=0.844
+ 1381.6  # pred t=26091 class=Lying p=0.844
+ 1381.6  # rate=27.400 Hz windows=9 missed=0
+ 1382.6  # pred t=27075 class=Lying p=0.843
+ 1383.2  # pred t=28058 class=Lying p=0.843
+ 1384.2  # pred t=29042 class=Lying p=0.845
+ 1385.2  # pred t=30025 class=Lying p=0.843
+ 1386.2  # pred t=31009 class=Lying p=0.844
+ 1386.7  # rate=27.400 Hz windows=14 missed=0
+ 1387.2  # pred t=31992 class=Lying p=0.845
+ 1388.2  # pred t=32976 class=Lying p=0.844
+ 1389.2  # pred t=33960 class=Lying p=0.846
+ 1390.2  # pred t=34943 class=Lying p=0.848

@@ -29,7 +29,12 @@ static uint8_t fail_streak;
 static uint8_t last_ok;         /* чи дійшла остання спроба */
 static uint8_t soft_fail;       /* бітова маска необов'язкових кроків, що впали */
 static uint32_t hold_until;     /* тік, до якого не пробуємо; 0 — паузи нема */
+static uint8_t  readv_due;      /* сервер повідомив про відключення */
+static uint8_t  peer_connected; /* за даними подій клієнт підключений */
 static uint32_t readv_at;       /* тік останнього поновлення реклами */
+static uint32_t silent_since;   /* відколи модуль не сказав жодного байта */
+static uint8_t  revive_tries;   /* скільки разів уже пробували оживити */
+static uint32_t revive_at;      /* тік останньої спроби оживлення */
 
 /* Останній обмін із модулем — для журналу. Пишемо сюди під час команди, а
    друкуємо вже після неї: printf у USART1 блокує на ~87 мкс на символ, і
@@ -37,6 +42,89 @@ static uint32_t readv_at;       /* тік останнього поновлен�
    бо на UART4 немає ні перивань, ні DMA. */
 static char at_reply[192];
 static uint16_t at_reply_len;
+
+/* ── Приймання UART4 на перериваннях ──────────────────────────────────
+ *
+ * Спершу приймання було опитуванням: HAL_UART_Receive лише тоді, коли ми
+ * чекаємо відповідь на команду. Це не працює, і ось чому.
+ *
+ * Модуль шле події асинхронно — зокрема про підключення й відключення
+ * клієнта. Між командами ми не читаємо, а в приймачі вміщається один байт,
+ * тому подія втрачається: у журналі від неї лишався самий обрізок "<".
+ * Через це прошивка не могла дізнатися, що клієнт відійшов, і поновити
+ * рекламу — плату було видно рівно один раз за ввімкнення.
+ *
+ * Гірше: втрачені байти виставляють помилку переповнення (ORE), після якої
+ * приймач лишається непрацездатним, поки прапорець не скинути. Саме так і
+ * виглядало «зависання модуля» через 19 хвилин: мовчав не модуль, а наш
+ * власний приймач.
+ *
+ * Тому власний кільцевий буфер, наповнення з переривання, і обов'язкове
+ * очищення прапорців помилок із переозброєнням.
+ */
+#define HAR_BLE_RX_RING  256u
+
+static volatile uint8_t rx_ring[HAR_BLE_RX_RING];
+static volatile uint16_t rx_head;
+static volatile uint16_t rx_tail;
+static uint8_t rx_byte;
+
+static void rx_arm(void)
+{
+	(void) HAL_UART_Receive_IT(&huart4, &rx_byte, 1u);
+}
+
+void UART4_IRQHandler(void)
+{
+	HAL_UART_IRQHandler(&huart4);
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	if (huart->Instance == UART4) {
+		const uint16_t next = (uint16_t) ((rx_head + 1u) % HAR_BLE_RX_RING);
+
+		if (next != rx_tail) {          /* переповнення буфера — байт гине */
+			rx_ring[rx_head] = rx_byte;
+			rx_head = next;
+		}
+		rx_arm();
+	}
+}
+
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+{
+	if (huart->Instance == UART4) {
+		__HAL_UART_CLEAR_OREFLAG(huart);
+		__HAL_UART_CLEAR_NEFLAG(huart);
+		__HAL_UART_CLEAR_FEFLAG(huart);
+		__HAL_UART_CLEAR_PEFLAG(huart);
+		huart->ErrorCode = HAL_UART_ERROR_NONE;
+		rx_arm();
+	}
+}
+
+/* Наступний байт із буфера, або -1, якщо порожньо. */
+static int rx_get(void)
+{
+	int c;
+
+	if (rx_head == rx_tail) {
+		return -1;
+	}
+	c = (int) rx_ring[rx_tail];
+	rx_tail = (uint16_t) ((rx_tail + 1u) % HAR_BLE_RX_RING);
+	return c;
+}
+
+static void rx_start(void)
+{
+	rx_head = 0u;
+	rx_tail = 0u;
+	HAL_NVIC_SetPriority(UART4_IRQn, 6, 0);
+	HAL_NVIC_EnableIRQ(UART4_IRQn);
+	rx_arm();
+}
 
 #if HAR_BLE_VERBOSE
 static void at_log(const char *command, uint8_t decided)
@@ -62,12 +150,51 @@ static void at_log(const char *command, uint8_t decided)
 
 /* Wait for the command's OK or ERROR. Unsolicited events are ignored.
  * A bounded timeout ensures a missing radio never hangs the inference loop. */
+/* Зібраний рядок від модуля. Повертає 1, якщо це була остаточна відповідь
+   на команду (OK або ERROR), і кладе результат у *result. */
+static uint8_t take_line(char *line, uint8_t *result)
+{
+	const char *t = line;
+
+	/* Обрізки загублених подій лишають на початку "<". Прибираємо, інакше
+	   "<OK" не розпізнається і команда даремно чекає до таймауту. */
+	while (*t == '<') {
+		t++;
+	}
+	if (*t == '\0') {
+		return 0u;
+	}
+	if (strcmp(t, "OK") == 0) {
+		*result = 0u;
+		return 1u;
+	}
+	if (strncmp(t, "ERROR", 5u) == 0) {
+		*result = 1u;
+		return 1u;
+	}
+
+	/* Подія про з'єднання. Сервер шле її як "BLE_EVT_CONN=<status>"; у
+	   прикладі ST розділювачем буває і ':', тому приймаємо обидва. status 0
+	   означає, що клієнт відійшов, а разом із ним спинилася й реклама —
+	   саме тоді її треба поновити, і тільки тоді. */
+	if (strncmp(t, HAR_BLE_EVT_CONN, sizeof(HAR_BLE_EVT_CONN) - 1u) == 0) {
+		const char *v = t + (sizeof(HAR_BLE_EVT_CONN) - 1u);
+
+		if ((*v == '=') || (*v == ':')) {
+			peer_connected = (uint8_t) (v[1] != '0');
+			readv_due = (uint8_t) (v[1] == '0');
+			readv_at = HAL_GetTick();
+		}
+	}
+	return 0u;
+}
+
 static uint8_t at_command(const char *command, uint32_t timeout_ms)
 {
 	char line[96];
 	uint16_t used = 0u;
 	uint32_t start;
-	uint8_t ch;
+	int ch;
 	uint8_t result = 1u;        /* 1 — OK не дочекалися */
 	uint8_t decided = 0u;
 
@@ -82,12 +209,14 @@ static uint8_t at_command(const char *command, uint32_t timeout_ms)
 
 	start = HAL_GetTick();
 	while (!decided && ((uint32_t) (HAL_GetTick() - start) < timeout_ms)) {
-		if (HAL_UART_Receive(&huart4, &ch, 1u, 10u) != HAL_OK) {
+		ch = rx_get();
+		if (ch < 0) {
 			continue;
 		}
 		if (at_reply_len < (sizeof(at_reply) - 1u)) {
 			/* CR і LF у журналі показуємо точкою, щоб рядок не розривався. */
-			at_reply[at_reply_len] = ((ch == '\r') || (ch == '\n')) ? '.' : (char) ch;
+			at_reply[at_reply_len] =
+					((ch == '\r') || (ch == '\n')) ? '.' : (char) ch;
 			at_reply_len++;
 		}
 		if (ch == '\r') {
@@ -95,15 +224,8 @@ static uint8_t at_command(const char *command, uint32_t timeout_ms)
 		}
 		if (ch == '\n') {
 			line[used] = '\0';
-			if (strcmp(line, "OK") == 0) {
-				result = 0u;
-				decided = 1u;
-			} else if (strncmp(line, "ERROR", 5u) == 0) {
-				result = 1u;
-				decided = 1u;
-			} else {
-				used = 0u;      /* незапитана подія — пропускаємо */
-			}
+			used = 0u;
+			decided = take_line(line, &result);
 		} else if (used < (sizeof(line) - 1u)) {
 			line[used] = (char) ch;
 			used++;
@@ -112,6 +234,19 @@ static uint8_t at_command(const char *command, uint32_t timeout_ms)
 		}
 	}
 	at_reply[at_reply_len] = '\0';
+
+	/* Відстеження тиші. Розрізняємо два стани: модуль відповів щось (хай
+	   навіть ERROR) — він живий; модуль не сказав жодного байта — він завис.
+	   Саме другий стан лікується оживленням, а не повторами команд. */
+	if (at_reply_len > 0u) {
+		silent_since = 0u;
+	} else if (silent_since == 0u) {
+		silent_since = HAL_GetTick();
+		if (silent_since == 0u) {
+			silent_since = 1u;      /* 0 означає «модуль озивається» */
+		}
+	}
+
 	at_log(command, decided);
 	return result;
 }
@@ -129,15 +264,18 @@ static uint8_t at_command(const char *command, uint32_t timeout_ms)
  *
  * Робимо це в har_ble.c, а не в main.c, щоб налаштування переживало
  * перегенерацію проєкту з .ioc. */
-static void wake_module(void)
+static void wake_module(uint32_t low_ms)
 {
 #if HAR_BLE_DRIVE_WAKE_PIN
-	/* Короткий нуль, потім одиниця: модуль стартує з чистого стану навіть
-	   після програмного перезапуску головного МК без знеструмлення. */
+	/* Нуль, потім одиниця: модуль стартує з чистого стану навіть після
+	   програмного перезапуску головного МК без знеструмлення. Довжину нуля
+	   задає виклик: при звичайному старті досить короткого, при спробі
+	   оживити зависле модуля потрібен довгий. */
 	HAL_GPIO_WritePin(WRLS_WKUP_B_GPIO_Port, WRLS_WKUP_B_Pin, GPIO_PIN_RESET);
-	HAL_Delay(50u);
+	HAL_Delay(low_ms);
 	HAL_GPIO_WritePin(WRLS_WKUP_B_GPIO_Port, WRLS_WKUP_B_Pin, GPIO_PIN_SET);
 #else
+	(void) low_ms;
 	GPIO_InitTypeDef init = { 0 };
 
 	init.Pin = WRLS_WKUP_B_Pin;
@@ -161,7 +299,14 @@ static void wake_module(void)
 static void probe_module(void)
 {
 	static const char *const list[] = {
-		/* Контроль 1: відома робоча команда. Очікуємо OK. */
+		/* Чи живий стек BLE: читання власної адреси нічого не налаштовує,
+		   але без працюючого стека не виконується. */
+		"AT+BLE_PUB_ADDR?\r\n",
+		/* Чи вважає сервер, що реклама ввімкнена. */
+		"AT+BLE_ADV?\r\n",
+		/* Чи зареєстрований наш сервіс. */
+		"AT+BLE_SVC?\r\n",
+		/* Контроль: відома робоча команда. Очікуємо OK. */
 		"AT\r\n",
 		/* Контроль 2: свідомо вигадана команда. Якщо відповідь така сама, як
 		   на AT+BLE_*, то сервер вважає BLE_* невідомими — тобто на модулі
@@ -194,15 +339,18 @@ static void probe_module(void)
 }
 #endif
 
-uint8_t har_ble_init(void)
+/* Повний підйом каналу. low_ms — довжина нуля на лінії дозволу модуля:
+   коротка при звичайному старті, довга при спробі оживити зависле. */
+static uint8_t bring_up(uint32_t low_ms)
 {
 	ready = 0u;
 	fail_streak = 0u;
 	last_ok = 0u;
 	soft_fail = 0u;
 	hold_until = 0u;
+	readv_due = 0u;
 
-	wake_module();
+	wake_module(low_ms);
 	HAL_Delay(2000u);
 
 	/* Обов'язковий крок: якщо модуль не відповідає на AT, говорити з ним
@@ -210,6 +358,24 @@ uint8_t har_ble_init(void)
 	if (at_command("AT\r\n", 1000u)) {
 		return 1u;
 	}
+
+	/* Скидання підсистеми BLE перед будь-яким налаштуванням.
+
+	   ЗАМІРЯНО НА ПЛАТІ: модуль може лишитися у «фантомному» з'єднанні —
+	   клієнт давно відійшов, а сервер і далі вважає його підключеним. У
+	   цьому стані він бадьоро відповідає OK на все, на AT+BLE_ADV? звітує 1
+	   і навіть віддає свою адресу через AT+BLE_PUB_ADDR?, але в ефір не йде,
+	   бо підключений пристрій реклами не веде. Знайти його стає неможливо
+	   ні з телефона, ні з ноутбука.
+
+	   Скидання рве будь-яке таке з'єднання і повертає радіо в чистий стан.
+	   Відмова тут не критична: на свіжому модулі скидати нічого. */
+#if HAR_BLE_RESET_ON_BOOT
+	if (at_command("AT+BLE_RST=1\r\n", 2000u)) {
+		soft_fail |= HAR_BLE_SOFT_RST;
+	}
+	HAL_Delay(500u);
+#endif
 
 #if HAR_BLE_PROBE
 	probe_module();
@@ -245,9 +411,51 @@ uint8_t har_ble_init(void)
 		return 6u;
 	}
 
-	readv_at = HAL_GetTick();
 	ready = 1u;
 	return 0u;
+}
+
+uint8_t har_ble_init(void)
+{
+	uint8_t step;
+
+	silent_since = 0u;
+	revive_tries = 0u;
+	revive_at = 0u;
+	peer_connected = 0u;
+	readv_at = HAL_GetTick();
+	rx_start();
+
+	step = bring_up(50u);
+
+	/* Якщо модуль не озвався на просту AT, він міг лишитися зависим із
+	   минулого разу — перезапуск головного МК його не чіпає. Пробуємо ще раз
+	   із довгим нулем на лінії дозволу. Ці 5 секунд витрачаються лише тоді,
+	   коли без них усе одно нічого не працювало б. */
+	if (step == 1u) {
+		step = bring_up(HAR_BLE_REVIVE_LOW_MS);
+	}
+	return step;
+}
+
+/* Спроба оживити зависле модуля. Запускається лише тоді, коли він мовчить
+   (не ERROR, а жодного байта) довше за HAR_BLE_REVIVE_MS.
+
+   ЗАМІРЯНО НА ПЛАТІ: модуль здатен зависнути намертво — тоді ні програмне
+   скидання головного МК, ні короткий імпульс на лінії дозволу його не
+   повертають. Тому тут довгий нуль. Спроб небагато: кожна блокує головний
+   цикл на кілька секунд, і якщо модуль не відгукнувся після
+   HAR_BLE_REVIVE_TRIES, далі смикати його марно — краще віддати весь час
+   інференсу, а про стан сказати червоним світлодіодом. */
+static void try_revive(void)
+{
+	revive_at = HAL_GetTick();
+	revive_tries++;
+
+	if (bring_up(HAR_BLE_REVIVE_LOW_MS) == 0u) {
+		silent_since = 0u;
+		revive_tries = 0u;
+	}
 }
 
 uint8_t har_ble_ready(void)
@@ -298,7 +506,18 @@ uint8_t har_ble_send(const char *data, uint16_t len)
 {
 	uint16_t offset = 0u;
 
-	if (!ready || (data == NULL) || (len == 0u)) {
+	if ((data == NULL) || (len == 0u)) {
+		return 1u;
+	}
+
+	if (!ready) {
+		/* Канал лежить. Якщо модуль мовчить і спроби ще не вичерпані —
+		   зрідка пробуємо його оживити. Поки спроб немає, ця гілка не
+		   коштує нічого, і весь час іде інференсу. */
+		if ((revive_tries < HAR_BLE_REVIVE_TRIES)
+				&& ((uint32_t) (HAL_GetTick() - revive_at) >= HAR_BLE_REVIVE_MS)) {
+			try_revive();
+		}
 		return 1u;
 	}
 
@@ -308,12 +527,29 @@ uint8_t har_ble_send(const char *data, uint16_t len)
 			return 1u;
 		}
 		hold_until = 0u;
+
+		/* Пауза вийшла, а модуль так і не озвався жодним байтом — це не
+		   «зайнятий», це завис. Припиняємо слати в порожнечу: ready = 0
+		   повертає повну частоту вибірки, а оживленням займеться гілка
+		   вище, за розкладом. */
+		if ((silent_since != 0u)
+				&& ((uint32_t) (HAL_GetTick() - silent_since) >= HAR_BLE_REVIVE_MS)) {
+			ready = 0u;
+			revive_at = HAL_GetTick();
+			return 1u;
+		}
 	}
 
-	/* Поновлення реклами: без цього плата зникає з ефіру після першого ж
-	   відключення клієнта. Робимо це перед відправкою, а не після, щоб
-	   команда не вклинювалася між частинами одного повідомлення. */
-	if ((uint32_t) (HAL_GetTick() - readv_at) >= HAR_BLE_READV_MS) {
+	/* Поновлення реклами — коли сервер сам сказав, що клієнт відключився.
+	   Сліпе повторення кожні 20 с свого часу доконало модуль за 19 хвилин,
+	   тому за розкладом тут лише рідкісна підстраховка на випадок, якщо
+	   подію про відключення все-таки проґавили. */
+	if (!readv_due && !peer_connected
+			&& ((uint32_t) (HAL_GetTick() - readv_at) >= HAR_BLE_READV_SAFETY_MS)) {
+		readv_due = 1u;
+	}
+	if (readv_due) {
+		readv_due = 0u;
 		readv_at = HAL_GetTick();
 		(void) at_command("AT+BLE_ADV=1\r\n", 500u);
 	}

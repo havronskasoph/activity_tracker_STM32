@@ -230,6 +230,68 @@ The STM32U585 side measures 27.4 Hz with `missed=0` when BLE is idle, against
 the 27.45 Hz the model was trained on, and the sleeping main loop costs no
 samples.
 
+## Staying connectable, and what it cost
+
+Getting one connection to work was not the same as staying connectable. Four
+separate defects stood between the two, found by reading the board rather than
+by reasoning about it.
+
+**Events from the module were being lost.** UART4 was read only while waiting
+for a command's reply, and the receiver holds a single byte. Everything the
+module said between commands vanished — a connection event left nothing but a
+stray `<` in the log. That is why the firmware never learned the client had
+disconnected and never resumed advertising: **the board was findable exactly
+once per power-up.** Fixed by an interrupt-driven receiver with a 256-byte ring
+buffer (`UART4_IRQHandler`, `HAL_UART_RxCpltCallback` in `har_ble.c`).
+
+**Lost bytes wedged the receiver.** An overrun sets the ORE flag, after which
+the receiver stays dead until it is cleared. The earlier "the module went
+silent after 19 minutes" was most likely our own receiver, not the module.
+`HAL_UART_ErrorCallback` now clears ORE/NE/FE/PE and re-arms.
+
+**`<OK` was not recognised.** When a fragment of a lost event was prepended to
+a reply, the line no longer matched `OK`, so a perfectly good command waited
+out its timeout. Leading `<` characters are now stripped before comparing.
+
+**`AT+BLE_RST=1` at boot killed the module.** It was added to clear a phantom
+connection, and it does restore advertising — but it leaves the stack
+half-initialised, and the *first* client connection then kills the module
+outright. The log shows it exactly: `<BLE_EVT_CONN=1` arrives, and from the
+next command onwards there is not one byte, ever again. It is kept behind
+`HAR_BLE_RESET_ON_BOOT`, default 0. **Do not turn it on.**
+
+With those fixed, advertising is resumed from the event itself: the server
+sends `<BLE_EVT_CONN=<status>`, and `status` 0 means the client left and
+advertising stopped with it. One `AT+BLE_ADV=1` then, and only then. A
+safety net re-issues it every `HAR_BLE_READV_SAFETY_MS` (5 min) if the event
+was missed and no client is believed connected — deliberately rare, because
+re-advertising blindly every 20 s is what killed the module the first time.
+
+**Verified:** 12 consecutive connect/disconnect cycles, 4 then 8, over about
+four minutes of continuous cycling. Every cycle found the board in the air,
+connected, received predictions and disconnected. Afterwards the board was
+still healthy: 15 AT exchanges, all `OK`, 26.4–26.6 Hz, one interpolated
+sample per window.
+
+### A crashed module can only be revived by removing power
+
+This is a hard limit, not a shortcoming of the firmware. `WRLS_WKUP_B` (PG6)
+is a wake signal, not a reset and not a power gate. Tested, all three failing:
+a 50 ms low pulse, a 1 s pulse, and a 5 s pulse, plus a software reset of the
+STM32U585. In every case the module stayed silent and `har_ble_init()`
+returned `step=1`. Neither the module's `BOOT0` nor its `NRST` is wired to the
+host, so there is nothing else to pull.
+
+The firmware therefore does two things instead. It retries bring-up once with
+a long pulse at boot, and then at most `HAR_BLE_REVIVE_TRIES` (5) times, once a
+minute, in case the module is merely asleep rather than crashed. And when BLE
+is down it stops talking to the module entirely, which restores the full
+27.4 Hz sampling rate — measured: with BLE dead the rate returns to 27.4 Hz and
+`missed` stops growing, so a dead radio never degrades the classification.
+
+If the board is ever found silent on BLE with `# ble=fail step=1` on the cable,
+the remedy is to remove power and reapply it. Nothing in software will do it.
+
 ## Failure handling during operation
 
 A failed notification does **not** disable the channel. Until a client

@@ -47,7 +47,9 @@ export async function pairDevice(
   }
 }
 
-// The firmware flushes each short prediction as a single notification without a newline.
+// The firmware sends each prediction as a CRLF-terminated line, split across
+// notifications of at most 18 bytes, so payloads are accumulated until a "\n"
+// arrives before parsing. See firmware/BLE_SETUP.md.
 export async function subscribePredictions(
   device: BluetoothDevice,
   serviceUuid: string,

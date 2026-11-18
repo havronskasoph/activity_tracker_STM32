@@ -27,6 +27,7 @@
 #include "har_model.h"
 #include "har_out.h"
 #include "har_ble.h"
+#include "har_led.h"
 #if HAR_BLE_ENABLED && HAR_OUT_PORT == HAR_OUT_UART4
 #error "Disable HAR_BLE_ENABLED before selecting UART4 output"
 #endif
@@ -52,6 +53,13 @@
 /* Потік CSV у UART: 1 — для збору даних, 0 — коли працює тільки інференс
    (при 104 Гц рядок займає ~60 % пропускної здатності 115200 бод). */
 #define HAR_STREAM_CSV    0
+
+/* Потік CSV у BLE не вміщається: один рядок на відлік при 27.45 Гц проти
+   9600 бод AT-каналу — це на порядок більше, ніж канал здатен віддати.
+   Для збору даних треба перемкнути HAR_OUT_PORT на HAR_OUT_STLINK. */
+#if HAR_STREAM_CSV && HAR_OUT_PORT == HAR_OUT_BLE
+#error "HAR_STREAM_CSV needs HAR_OUT_PORT = HAR_OUT_STLINK (BLE is too slow)"
+#endif
 
 /* Що саме виводити: 1 — відліки після ФНЧ (те, що бачить модель),
    0 — сирі, якщо треба подивитися на сигнал до фільтра. */
@@ -172,9 +180,9 @@ static char *put_milli(char *p, int32_t milli)
 	return p;
 }
 
-/* Увесь рядок збираємо в буфер і віддаємо в UART одним викликом: при 104 Гц
-   побайтовий HAL_UART_Transmit (через printf) з'їдав би більшу частину
-   періоду вибірки. */
+#if HAR_STREAM_CSV
+/* Увесь рядок збираємо в буфер і віддаємо в UART одним викликом: побайтовий
+   HAL_UART_Transmit (через printf) з'їдав би більшу частину періоду вибірки. */
 static void emit_csv(uint32_t t_ms, const float s[HAR_CHANNELS])
 {
 	char line[CSV_LINE_MAX];
@@ -190,6 +198,7 @@ static void emit_csv(uint32_t t_ms, const float s[HAR_CHANNELS])
 
 	har_out_write(line, (uint16_t) (p - line));
 }
+#endif /* HAR_STREAM_CSV */
 
 /* Результат класифікації окремим рядком, що починається з '#': tools/log.py
    такі рядки пропускає, тож потік лишається придатним і для збору CSV. */
@@ -204,9 +213,43 @@ static void emit_pred(uint32_t t_ms, int cls, float p)
 	*q++ = '\r';
 	*q++ = '\n';
 
+	/* Повний, читабельний рядок — у кабель. Його розбирають tools/watch.py
+	   і tools/log.py, тому формат тут не міняємо. */
 	har_out_write(line, (uint16_t) (q - line));
+
 #if HAR_BLE_ENABLED
-	(void) har_ble_send(line, (uint16_t) (q - line));
+	/* В ефір іде стислий рядок, а не цей. Канал до радіомодуля — 9600 бод,
+	   і кожні зайві 18 байтів означають ще одну AT-команду та ще ~65 мс, під
+	   час яких головний цикл не читає акселерометр. А відліки приходять що
+	   36 мс, і в регістрах IMU лежить лише найсвіжіший.
+
+	   Заміряно на платі: повний рядок (37 Б, три сповіщення) обвалював
+	   частоту з 27.4 до 18.8 Гц і давав 972 втрачені відліки. Стислий
+	   формат уміщається в одне сповіщення.
+
+	   Формат: "<клас> <ймовірність> <час_мс>\n", до 18 байтів.
+	   Назви класів за індексом — у har_model_config.h (HAR_CLASS_LIST). */
+	{
+		char air[24];
+		char *r = air;
+
+		r += sprintf(r, "%d ", cls);
+		r = put_milli(r, (int32_t) (p * 1000.0f));
+		r += sprintf(r, " %lu", (unsigned long) t_ms);
+		*r++ = '\n';
+		(void) har_ble_send(air, (uint16_t) (r - air));
+	}
+
+	/* Без USB світлодіоди — єдина діагностика: зелений пульсує, поки
+	   передбачення доходять, червоний горить, коли канал не доставляє. */
+	{
+		const uint8_t live = har_ble_delivering();
+
+		har_led_stalled((uint8_t) (live == 0u));
+		if (live) {
+			har_led_beat();
+		}
+	}
 #endif
 }
 /* USER CODE END PV */
@@ -341,8 +384,19 @@ int main(void) {
 			har_model_status_str(model_st), HAR_CLASS_COUNT);
 	printf("# out=%s\r\n", har_out_name());
 #if HAR_BLE_ENABLED
-	printf("# ble=%s step=%u\r\n",
-			(ble_status == 0u) ? "ok" : "fail", (unsigned) ble_status);
+	printf("# ble=%s step=%u soft=0x%02x\r\n",
+			(ble_status == 0u) ? "ok" : "fail", (unsigned) ble_status,
+			(unsigned) har_ble_soft_fail());
+
+	/* Те саме на світлодіодах: плата працює без кабеля, і цей рядок нікому
+	   прочитати. Блимання робимо тут, поки перивання акселерометра ще
+	   вимкнене, щоб затримки не з'їли жодного відліку. */
+	har_led_init();
+	if (ble_status == 0u) {
+		har_led_ready();
+	} else {
+		har_led_fault_code(ble_status);
+	}
 #endif
 
 #if HAR_SELFTEST
@@ -393,9 +447,11 @@ int main(void) {
 	        sample[3 + i] = ism330dhcx_from_fs2000dps_to_mdps(g_raw[i]) / 1000.0f;
 	      }
 
-	      /* ФНЧ 25 Гц + накопичення вікна 208 x 6 (крок 104) з урахуванням
-	         втрачених відліків: малий провал добивається інтерполяцією,
-	         великий рве вікно — так само, як у препроцесингу датасету. */
+	      /* ФНЧ HAR_LPF_HZ + накопичення вікна HAR_WINDOW_SAMPLES x
+	         HAR_CHANNELS (крок HAR_HOP_SAMPLES) з урахуванням втрачених
+	         відліків: малий провал добивається інтерполяцією, великий рве
+	         вікно — так само, як у препроцесингу датасету. Конкретні числа
+	         див. у har_model_config.h: зараз 12 Гц і 55 x 6, крок 27. */
 	      const int window_ready = har_preproc_push_missed(sample, lost);
 	      sample_count++;
 
@@ -444,6 +500,25 @@ int main(void) {
 	      status_at = now;
 	      sample_count = 0;
 	    }
+
+	    /* Роботи більше немає — спимо до наступного перивання. Без цього ядро
+	       крутилося б на 160 МГц усі ~36 мс між відліками, а корисної роботи
+	       тут менше за відсоток часу. На акумуляторі це головна витрата.
+
+	       Перевірку й засинання робимо із замаскованими периваннями. Інакше
+	       відлік, що прийшов саме між if і __WFI(), чекав би до наступного
+	       перивання, а в регістрах IMU лежить тільки найсвіжіший відлік —
+	       тобто його було б утрачено. WFI прокидається і при PRIMASK = 1,
+	       а обробник виконається вже після __enable_irq().
+
+	       Це Sleep, не Stop: периферія і SysTick працюють, тому HAL_GetTick()
+	       і HAL_Delay() лишаються коректними. SysTick будить ядро щомілісекунди,
+	       але між тиками воно спить. */
+	    __disable_irq();
+	    if (imu_drdy_count == imu_drdy_served) {
+	      __WFI();
+	    }
+	    __enable_irq();
 	  }
 	/* USER CODE END 3 */
 }
@@ -1166,9 +1241,12 @@ void HAL_GPIO_EXTI_Rising_Callback(uint16_t GPIO_Pin) {
 	}
 }
 
+/* printf — це діагностика, і вона завжди йде в кабель, а не в канал даних.
+   Інакше в режимі BLE рядок "# ble=fail step=N" пішов би в той самий
+   Bluetooth, якого в цей момент немає, і причину збою не було б видно. */
 int __io_putchar(int ch) {
 	const char c = (char) ch;
-	har_out_write(&c, 1u);
+	har_out_diag(&c, 1u);
 	return ch;
 }
 /* USER CODE END 4 */

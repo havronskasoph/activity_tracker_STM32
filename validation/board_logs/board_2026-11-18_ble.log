@@ -1,0 +1,160 @@
+port open, resetting the board...
+reset rc=0
+--- board output (45 s) ---
+  # at> AT
+  # at< OK..
+  # at> AT+BLE_NAME=Spokiy
+  # at< OK..
+  # at> AT+BLE_INIT=1
+  # at< OK..
+  # at> AT+BLE_SVC=3,2,0xaabb,10
+  # at< OK..
+  # at> AT+BLE_CHAR_ADD=3,1,2,0x3344,20,0x10,0,0
+  # at< OK..
+  # at> AT+BLE_ADV=1
+  # at< OK..
+  Start
+  WHO_AM_I = 0x6B (expected 0x6B)
+  # fs=27 Hz window=55 x 6 hop=27 lpf=12 Hz units=g,dps
+  # model=ok classes=5
+  # out=USART1 (ST-Link VCP)
+  # ble=ok step=0 soft=0x00
+  # pred t=4879 class=Running p=0.462
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3320302e34363220343837390a
+  # at< OK..
+  # pred t=5863 class=Lying p=0.910
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e39313020353836330a
+  # at< OK..
+  # pred t=6846 class=Lying p=0.903
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e39303320363834360a
+  # at< OK..
+  # pred t=7830 class=Lying p=0.901
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e39303120373833300a
+  # at< OK..
+  # rate=26.541 Hz windows=4 missed=3
+  # pred t=8813 class=Lying p=0.901
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e39303120383831330a
+  # at< OK..
+  # pred t=9797 class=Lying p=0.899
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e38393920393739370a
+  # at< OK..
+  # pred t=10780 class=Lying p=0.901
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930312031303738300a
+  # at< OK..
+  # pred t=11764 class=Lying p=0.898
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3839382031313736340a
+  # at< OK..
+  # pred t=12747 class=Lying p=0.900
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930302031323734370a
+  # at< OK..
+  # rate=26.600 Hz windows=9 missed=9
+  # pred t=13731 class=Lying p=0.899
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3839392031333733310a
+  # at< OK..
+  # pred t=14714 class=Lying p=0.900
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930302031343731340a
+  # at< OK..
+  # pred t=15698 class=Lying p=0.901
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930312031353639380a
+  # at< OK..
+  # pred t=16681 class=Lying p=0.904
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930342031363638310a
+  # at< OK..
+  # pred t=17665 class=Lying p=0.904
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930342031373636350a
+  # at< OK..
+  # rate=26.400 Hz windows=14 missed=14
+  # pred t=18648 class=Lying p=0.901
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930312031383634380a
+  # at< OK..
+  # pred t=19631 class=Lying p=0.899
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3839392031393633310a
+  # at< OK..
+  # pred t=20615 class=Lying p=0.900
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930302032303631350a
+  # at< OK..
+  # pred t=21598 class=Lying p=0.900
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930302032313539380a
+  # at< OK..
+  # pred t=22582 class=Lying p=0.900
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930302032323538320a
+  # at< OK..
+  # rate=26.600 Hz windows=19 missed=19
+  # pred t=23565 class=Lying p=0.899
+  # at> AT+BLE_ADV=1
+  # at< OK..
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3839392032333536350a
+  # at< OK..
+  # pred t=24548 class=Lying p=0.900
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930302032343534380a
+  # at< OK..
+  # pred t=25532 class=Lying p=0.899
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3839392032353533320a
+  # at< OK..
+  # pred t=26515 class=Lying p=0.899
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3839392032363531350a
+  # at< OK..
+  # pred t=27498 class=Lying p=0.898
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3839382032373439380a
+  # at< OK..
+  # rate=26.400 Hz windows=24 missed=24
+  # pred t=28482 class=Lying p=0.901
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930312032383438320a
+  # at< OK..
+  # pred t=29465 class=Lying p=0.899
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3839392032393436350a
+  # at< OK..
+  # pred t=30449 class=Lying p=0.901
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930312033303434390a
+  # at< OK..
+  # pred t=31432 class=Lying p=0.905
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930352033313433320a
+  # at< OK..
+  # pred t=32415 class=Lying p=0.900
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930302033323431350a
+  # at< OK..
+  # rate=26.400 Hz windows=29 missed=29
+  # pred t=33399 class=Lying p=0.899
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3839392033333339390a
+  # at< OK..
+  # pred t=34382 class=Lying p=0.900
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930302033343338320a
+  # at< OK..
+  # pred t=35365 class=Lying p=0.899
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3839392033353336350a
+  # at< OK..
+  # pred t=36349 class=Lying p=0.898
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3839382033363334390a
+  # at< OK..
+  # pred t=37332 class=Lying p=0.898
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3839382033373333320a
+  # at< OK..
+  # rate=26.400 Hz windows=34 missed=34
+  # pred t=38316 class=Lying p=0.981
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3938312033383331360a
+  # at< OK..
+  # pred t=39299 class=Lying p=0.972
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3937322033393239390a
+  # at< OK..
+  # pred t=40283 class=Lying p=0.899
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3839392034303238330a
+  # at< OK..
+  # pred t=41266 class=Lying p=0.907
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930372034313236360a
+  # at< OK..
+  # pred t=42249 class=Lying p=0.907
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930372034323234390a
+  # at< OK..
+  # rate=26.600 Hz windows=39 missed=39
+  # pred t=43233 class=Lying p=0.907
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930372034333233330a
+  # at< OK..
+  # pred t=44216 class=Lying p=0.907
+  # at> AT+BLE_ADV=1
+  # at< OK..
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930372034343231360a
+  # at< OK..
+  # pred t=45200 class=Lying p=0.907
+  # at> AT+BLE_NOTIF_VAL=3,1,0x3020302e3930372034353230300a
+  # at< OK..
+--- end, 156 lines ---

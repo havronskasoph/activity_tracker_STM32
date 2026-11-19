@@ -28,7 +28,7 @@ export async function api<T>(path: string, method = "GET", body?: unknown): Prom
   return result as T;
 }
 
-export type User = { id: string; email: string; createdAt: string };
+export type User = { id: string; email: string; createdAt: string; role: "user" | "admin" };
 export type Profile = {
   firstName?: string;
   lastName?: string;

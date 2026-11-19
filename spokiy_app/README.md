@@ -64,14 +64,6 @@ Stop the development server before running preview: both use port 8443.
 
 The frontend sends `/api` requests through Vite to `http://127.0.0.1:3001`, including session cookies. This works in development and preview. If your backend uses a different address, set `$env:API_PROXY_TARGET="http://127.0.0.1:YOUR_PORT"` before starting Vite. If you change the frontend URL, update the backend's `FRONTEND_ORIGIN` and restart it. For production hosting, configure your web server to forward `/api` to the backend; Vite's proxy is a local development/preview feature.
 
-## Live model predictions over USB
-
-The STM32 firmware defaults to ST-Link virtual COM output at 115200 baud. Connect the board through its ST-Link USB port, start the backend and frontend, sign in, and select **Connect tracker by USB** on the dashboard. In Chrome or Edge, choose the board?s serial port. Close other programs using that COM port first. The browser requires localhost or HTTPS and Web Serial support.
-
-The dashboard shows the activity class, model confidence, firmware uptime, and browser reception time of the latest `# pred` line. Predictions appear after the model has collected a full window. They are live only: they are not stored in the database and do not represent steps or heart-rate measurements. After disconnecting, the last reading is marked as disconnected.
-
-The board must run the deployed model with `HAR_OUT_PORT` set to `HAR_OUT_STLINK` (the default). The firmware can also send predictions over Bluetooth as described below.
-
 ## Bluetooth connection
 
 Click **Connect device**, then **Find Bluetooth devices**. Choose your STM32 tracker in the browser's Bluetooth chooser. The app opens a real BLE GATT connection and automatically registers the selected browser device ID with your account. Use **Disconnect device** to disconnect. Connection indicators reflect the current Bluetooth link, not saved database devices.
@@ -83,11 +75,17 @@ The tracker firmware creates a custom service on ST's `BLE_AT_Server`. The websi
 - Service: `0000aabb-cc7a-482a-984a-7f2ed5b3e58f`
 - Notification characteristic: `00003344-8e22-4541-9d4c-21edae82ed19`
 
-Build and flash the main STM32 firmware with `HAR_BLE_ENABLED` set to `1` in `Core/Inc/har_ble.h` (the default). Its USB serial output remains enabled. The STM32WB5MMG module must already have a compatible ST BLE stack and `BLE_AT_Server` installed; see the repository's [BLE setup guide](../firmware/BLE_SETUP.md). Power-cycle the board after flashing, then use **Connect device** and choose `Spokiy` if it appears. Chrome or Edge on a Bluetooth-capable Windows computer and localhost or HTTPS are required; iPhone browsers do not support this Web Bluetooth flow. Close the phone's BLE connection first if the board cannot accept another connection.
+Build and flash the main STM32 firmware with `HAR_BLE_ENABLED` set to `1` in `Core/Inc/har_ble.h` (the default). The STM32WB5MMG module must already have a compatible ST BLE stack and `BLE_AT_Server` installed; see the repository's [BLE setup guide](../firmware/BLE_SETUP.md). Power-cycle the board after flashing, then use **Connect device** and choose `Spokiy` if it appears. Chrome or Edge on a Bluetooth-capable Windows computer and localhost or HTTPS are required; iPhone browsers do not support this Web Bluetooth flow. Close the phone's BLE connection first if the board cannot accept another connection.
 
-The status line on USB (`# ble=ok step=0` or `# ble=fail step=N`) reports whether AT commands were acknowledged, not whether the BLE stack actually created the characteristic. Check the service with a BLE scanner and test notifications on the board. The implementation is unverified on hardware. Predictions are live only, not saved or uploaded as steps. They are sent as newline-terminated UTF-8 text split into notifications of at most 18 bytes; the browser reassembles them.
+Check the service with a BLE scanner and test notifications on the board. The implementation is unverified on hardware. The latest prediction is saved for explicitly authorized administrators; predictions are not uploaded as steps. They are sent as newline-terminated UTF-8 text split into notifications of at most 18 bytes; the browser reassembles them.
 
 To override the UUIDs for a compatible server, set `VITE_BLE_SERVICE_UUID` and `VITE_BLE_CHARACTERISTIC_UUID` in the frontend environment before starting Vite. Both must match the running firmware.
+
+## Administrator monitoring
+
+During registration choose a regular user or administrator account. Administrators cannot access other accounts automatically. A regular user can share their latest activity with an administrator by entering their registered email on the dashboard, and can revoke access there at any time. Administrators see authorized users and their most recently received activity; the dashboard polls the server every three seconds and shows an in-app notice when an observed activity changes. An old timestamp means the status may no longer be current. Activity is sent only while the user's browser is connected to the tracker and backend.
+
+The model does not classify falls, so the app does not generate sudden-drop or fall alerts. It is not a safety monitoring or emergency notification system. An administrator account does not grant access to private measurements or profiles.
 
 ## API
 
@@ -96,7 +94,7 @@ Requests and responses use JSON. Errors return `{ "error": "message" }`. For POS
 | Method | Endpoint | Body / result |
 | --- | --- | --- |
 | GET | `/api/health` | Public health check |
-| POST | `/api/auth/register` | `{ email, password }`; creates account and signs in |
+| POST | `/api/auth/register` | `{ email, password, role }`; role is `user` or `admin` |
 | POST | `/api/auth/login` | `{ email, password }`; signs in |
 | POST | `/api/auth/logout` | `{}`; revokes current session |
 | GET | `/api/auth/me` | `{ user: { id, email, createdAt } }` |

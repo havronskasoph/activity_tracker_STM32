@@ -67,6 +67,12 @@ def create_app(database_path=None, origin=None, secure=None):
     CREATE TABLE IF NOT EXISTS devices(id TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id),identifier TEXT NOT NULL,name TEXT NOT NULL,created_at TEXT NOT NULL,UNIQUE(user_id,identifier));
     CREATE TABLE IF NOT EXISTS measurements(device_id TEXT NOT NULL REFERENCES devices(id),sample_id TEXT NOT NULL,recorded_at TEXT NOT NULL,steps INTEGER NOT NULL,heart_rate REAL,battery REAL,PRIMARY KEY(device_id,sample_id));
     CREATE INDEX IF NOT EXISTS measurements_time ON measurements(device_id,recorded_at);''')
+    if 'role' not in {row['name'] for row in db.execute('PRAGMA table_info(users)')}:
+        db.execute("ALTER TABLE users ADD COLUMN role TEXT NOT NULL DEFAULT 'user'")
+    db.executescript("""
+    CREATE TABLE IF NOT EXISTS monitoring_grants(user_id TEXT NOT NULL REFERENCES users(id), admin_id TEXT NOT NULL REFERENCES users(id), PRIMARY KEY(user_id, admin_id));
+    CREATE TABLE IF NOT EXISTS live_predictions(user_id TEXT PRIMARY KEY REFERENCES users(id), activity TEXT NOT NULL, confidence REAL NOT NULL, device_time INTEGER NOT NULL, received_at TEXT NOT NULL);
+    """)
     limits = {}
 
     @asynccontextmanager
@@ -126,7 +132,7 @@ def create_app(database_path=None, origin=None, secure=None):
         return user
 
     def public(user):
-        return {'id': user['id'], 'email': user['email'], 'createdAt': user['created_at']}
+        return {'id': user['id'], 'email': user['email'], 'createdAt': user['created_at'], 'role': user['role']}
 
     @app.get('/api/health')
     async def health():
@@ -156,12 +162,15 @@ def create_app(database_path=None, origin=None, secure=None):
             if action == 'register':
                 if user:
                     fail(409, 'Email already registered')
+                role = body.get('role', 'user')
+                if role not in ('user', 'admin'):
+                    fail(400, 'Invalid role')
                 salt = secrets.token_hex(16)
                 digest = hashlib.scrypt(password.encode(), salt=salt.encode(), n=16384, r=8, p=1, dklen=64).hex()
                 uid, created = str(uuid.uuid4()), iso(now())
                 try:
                     with db:
-                        db.execute('INSERT INTO users VALUES(?,?,?,?)', (uid, email, f'{salt}:{digest}', created))
+                        db.execute('INSERT INTO users(id,email,password,created_at,role) VALUES(?,?,?,?,?)', (uid, email, f'{salt}:{digest}', created, role))
                         db.execute('INSERT INTO profiles VALUES(?,?)', (uid, json.dumps({'firstName': '', 'lastName': '', 'dailyStepGoal': 10000})))
                 except sqlite3.IntegrityError:
                     fail(409, 'Email already registered')
@@ -262,6 +271,54 @@ def create_app(database_path=None, origin=None, secure=None):
         with db:
             inserted = sum(db.execute('INSERT INTO measurements VALUES(?,?,?,?,?,?) ON CONFLICT(device_id,sample_id) DO NOTHING', row).rowcount for row in rows)
         return {'inserted': inserted, 'duplicates': len(rows)-inserted}
+
+    @app.api_route('/api/monitoring/grants', methods=['GET', 'POST', 'DELETE'])
+    async def grants(request: Request):
+        user = user_for(request)
+        if user['role'] != 'user':
+            fail(403, 'Only users can manage monitoring access')
+        if request.method == 'GET':
+            return {'admins': [dict(row) for row in db.execute('SELECT u.id,u.email FROM monitoring_grants g JOIN users u ON u.id=g.admin_id WHERE g.user_id=? ORDER BY u.email', (user['id'],))]}
+        if request.method == 'DELETE':
+            admin_id = request.query_params.get('adminId', '')
+            with db:
+                db.execute('DELETE FROM monitoring_grants WHERE user_id=? AND admin_id=?', (user['id'], admin_id))
+            return {'ok': True}
+        email = text(request.state.body.get('email'), 'email', 254).lower()
+        admin = db.execute("SELECT id,email FROM users WHERE email=? AND role='admin'", (email,)).fetchone()
+        if not admin:
+            fail(404, 'Administrator not found')
+        with db:
+            db.execute('INSERT OR IGNORE INTO monitoring_grants VALUES(?,?)', (user['id'], admin['id']))
+        return {'admin': dict(admin)}
+
+    @app.post('/api/predictions')
+    async def save_prediction(request: Request):
+        user = user_for(request)
+        if user['role'] != 'user':
+            fail(403, 'Only users can send activity predictions')
+        body = request.state.body
+        if body.get('userId') != user['id']:
+            fail(403, 'Prediction account does not match the signed-in user')
+        label = text(body.get('activity'), 'activity', 80)
+        confidence = body.get('confidence')
+        device_time = body.get('deviceTime')
+        if not number(confidence) or not 0 <= confidence <= 1:
+            fail(400, 'Invalid confidence')
+        if not number(device_time) or device_time % 1 or not 0 <= device_time <= 4294967295:
+            fail(400, 'Invalid deviceTime')
+        received = iso(now())
+        with db:
+            db.execute('INSERT INTO live_predictions VALUES(?,?,?,?,?) ON CONFLICT(user_id) DO UPDATE SET activity=excluded.activity,confidence=excluded.confidence,device_time=excluded.device_time,received_at=excluded.received_at', (user['id'], label, confidence, device_time, received))
+        return {'ok': True, 'receivedAt': received}
+
+    @app.get('/api/monitoring/users')
+    async def monitoring(request: Request):
+        user = user_for(request)
+        if user['role'] != 'admin':
+            fail(403, 'Administrator account required')
+        rows = db.execute('SELECT u.id,u.email,p.activity,p.confidence,p.device_time AS deviceTime,p.received_at AS receivedAt FROM monitoring_grants g JOIN users u ON u.id=g.user_id LEFT JOIN live_predictions p ON p.user_id=u.id WHERE g.admin_id=? ORDER BY u.email', (user['id'],))
+        return {'users': [dict(row) for row in rows]}
 
     @app.get('/api/activity/{kind}')
     async def activity(kind: str, request: Request):

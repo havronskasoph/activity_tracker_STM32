@@ -47,6 +47,34 @@ class APITest(unittest.TestCase):
                 self.assertEqual(client.get('/api/activity/summary'+bounds).json()['steps'], 50)
                 self.assertEqual(client.post('/api/auth/logout', content='{}').status_code, 415)
                 self.assertEqual(client.post('/api/auth/logout', content='{', headers={'content-type': 'application/json'}).status_code, 400)
+    def test_monitoring_requires_explicit_access_and_revocation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            with TestClient(create_app(str(Path(directory) / 'monitor.sqlite'))) as user:
+                account = user.post('/api/auth/register', json={'email': 'user@example.com', 'password': 'a-secure-password', 'role': 'user'}).json()['user']
+                self.assertEqual(account['role'], 'user')
+                # Multiple browser sessions share this application's database.
+                from fastapi.testclient import TestClient as Client
+                admin = Client(user.app)
+                stranger = Client(user.app)
+                if True:
+                    result = admin.post('/api/auth/register', json={'email': 'admin@example.com', 'password': 'a-secure-password', 'role': 'admin'})
+                    self.assertEqual(result.json()['user']['role'], 'admin')
+                    stranger.post('/api/auth/register', json={'email': 'other@example.com', 'password': 'a-secure-password', 'role': 'admin'})
+                    self.assertEqual(user.get('/api/monitoring/users').status_code, 403)
+                    self.assertEqual(admin.get('/api/monitoring/users').json()['users'], [])
+                    payload = {'userId': account['id'], 'activity': 'Walking', 'confidence': 0.9, 'deviceTime': 123}
+                    self.assertEqual(user.post('/api/predictions', json={**payload, 'userId': 'other'}).status_code, 403)
+                    self.assertEqual(admin.post('/api/predictions', json=payload).status_code, 403)
+                    self.assertEqual(user.post('/api/predictions', json=payload).status_code, 200)
+                    grant = user.post('/api/monitoring/grants', json={'email': 'admin@example.com'})
+                    self.assertEqual(grant.status_code, 200)
+                    self.assertEqual(admin.get('/api/monitoring/users').json()['users'][0]['activity'], 'Walking')
+                    self.assertEqual(stranger.get('/api/monitoring/users').json()['users'], [])
+                    self.assertEqual(user.post('/api/predictions', json={**payload, 'activity': 'Lying'}).status_code, 200)
+                    self.assertEqual(admin.get('/api/monitoring/users').json()['users'][0]['activity'], 'Lying')
+                    self.assertEqual(user.delete('/api/monitoring/grants', params={'adminId': grant.json()['admin']['id']}).status_code, 200)
+                    self.assertEqual(admin.get('/api/monitoring/users').json()['users'], [])
+
 
 if __name__ == '__main__':
     unittest.main()
